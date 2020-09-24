@@ -1,14 +1,38 @@
 ﻿@model ArticleModel
 @{var articles = ViewData["Articles"] as List<ArticleModel>;}
 
-@foreach (var art in articles)
-{
 
-
-    <div class="card bg-dark stretched-link m-5 d-inline-block">
-        <div class="card-header text-white">@art.Title</div>
-        <img class="card-img-top" />
-        <div class="card-body text-white">@art.Content</div>
-        <div class="card-footer text-white">Created by: @art.Author</div>
-    </div>
-}
+    @foreach (var art in articles)
+    {
+        <div class="container float-right">
+            <div class="row">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4 float-sm-right">
+                    <div class="card">
+                        <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                        <div class="card-img-overlay">
+                            <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Test Article</h4>
+                            <small class="text-muted cat">
+                                <i class="far fa-clock text-info"></i> Geschreven door: @art.Author
+                                <i class="far fa-clock text-info"></i> | 
+                                <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                            </small>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <button href="#" class="btn btn-warning text-light">Lees artikel</button>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                            <div class="views">Oct 20, 12:45PM
+                            </div>
+                            <div class="stats">
+                                <i class="far fa-eye"></i> 1347
+                                <i class="far fa-comment"></i> 12
+                            </div>
+           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
