@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\techburst_Data Access Layer\techburst_Data Access Layer.csproj" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 
