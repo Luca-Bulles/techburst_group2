@@ -31,6 +31,7 @@ namespace techburst_group2.Controllers
                 ViewName = "_ArticleCard"
             };
 
+        //Move this to business logic layer in a later iteration pls :)
         public List<ArticleModel> GetArticleData()
         {
             List<ArticleModel> articles = new List<ArticleModel>();
