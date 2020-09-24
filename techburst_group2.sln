@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techburst_group2", "techburst_group2\techburst_group2.csproj", "{1F634E88-41F0-4C27-8888-57A063C1104E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_group2", "techburst_group2\techburst_group2.csproj", "{1F634E88-41F0-4C27-8888-57A063C1104E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_Data Access Layer", "techburst_Data Access Layer\techburst_Data Access Layer.csproj", "{DCB40C3D-4336-4E34-8399-0C048964C6D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_Interface", "techburst_Interface\techburst_Interface.csproj", "{5BDAEE08-896E-4FE9-9502-6C9B625B115D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{1F634E88-41F0-4C27-8888-57A063C1104E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F634E88-41F0-4C27-8888-57A063C1104E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F634E88-41F0-4C27-8888-57A063C1104E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
