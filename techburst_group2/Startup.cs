@@ -57,7 +57,7 @@ namespace techburst_group2
             });
 
             //ArticleHandler.SetConnectionString(ConnectionString);
-            ArticleHandler articleHandler = new ArticleHandler(ConnectionString);
+            //ArticleHandler articleHandler = new ArticleHandler(ConnectionString);
         }
     }
     

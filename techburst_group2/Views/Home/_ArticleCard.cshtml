@@ -2,37 +2,81 @@
 @{var articles = ViewData["Articles"] as List<ArticleModel>;}
 
 
-    @foreach (var art in articles)
-    {
-        <div class="container float-right">
+<div id="carouselControls" class="carousel slide" data-ride="carousel">
+    <div class ="carousel-inner">
+        <div class="container carousel-item active m-auto">
             <div class="row">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-4 float-sm-right">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                     <div class="card">
                         <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
                         <div class="card-img-overlay">
                             <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Test Article</h4>
+                            <h4 class="card-title">Title</h4>
                             <small class="text-muted cat">
-                                <i class="far fa-clock text-info"></i> Geschreven door: @art.Author
-                                <i class="far fa-clock text-info"></i> | 
+                                <i class="far fa-clock text-info"></i> Geschreven door: @articles[0].Author
+                                <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                <i class="far fa-clock text-info"></i>
                                 <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
                             </small>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            <button href="#" class="btn btn-warning text-light">Lees artikel</button>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                             <div class="views">Oct 20, 12:45PM
                             </div>
                             <div class="stats">
-                                <i class="far fa-eye"></i> 1347
+                                <i class="far fa-eye"></i> 
                                 <i class="far fa-comment"></i> 12
                             </div>
-           
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    }
+
+        @for(int i = 1; i < articles.Count; i++)
+        {
+            <div class="container carousel-item">
+                <div class="row">
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-4 ">
+                        <div class="card">
+                            <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                            <div class="card-img-overlay">
+                                <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Title</h4>
+                                <small class="text-muted cat">
+                                    <i class="far fa-clock text-info"></i> Geschreven door: @articles[i].Author
+                                    <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <i class="far fa-clock text-info"></i>
+                                    <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                                </small>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                            <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                                <div class="views">Oct 20, 12:45PM
+                                </div>
+                                <div class="stats">
+                                    <i class="far fa-eye"></i> 1347
+                                    <i class="far fa-comment"></i> 12
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
