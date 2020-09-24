@@ -1,0 +1,14 @@
+﻿@model ArticleModel
+@{var articles = ViewData["Articles"] as List<ArticleModel>;}
+
+@foreach (var art in articles)
+{
+
+
+    <div class="card bg-dark stretched-link m-5 d-inline-block">
+        <div class="card-header text-white">@art.Title</div>
+        <img class="card-img-top" />
+        <div class="card-body text-white">@art.Content</div>
+        <div class="card-footer text-white">Created by: @art.Author</div>
+    </div>
+}

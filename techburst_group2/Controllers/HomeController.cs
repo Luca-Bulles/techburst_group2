@@ -20,7 +20,28 @@ namespace techburst_group2.Controllers
 
         public IActionResult Index()
         {
+            var data = GetArticleData();
+            ViewData["Articles"] = data;
             return View();
+        }
+
+        public IActionResult ArticleCard() =>
+            new PartialViewResult
+            {
+                ViewName = "_ArticleCard"
+            };
+
+        public List<ArticleModel> GetArticleData()
+        {
+            List<ArticleModel> articles = new List<ArticleModel>();
+            for (int i = 0; i < 9; i++)
+            {
+                ArticleModel article = new ArticleModel("test", "testbody", "Calin Peters");
+                articles.Add(article);
+
+            }
+
+            return articles;
         }
 
         public IActionResult Privacy()
