@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using techburst_Data_Access_Layer.Handler;
 
 namespace techburst_group2
 {
@@ -55,8 +56,8 @@ namespace techburst_group2
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            CarDatabaseHandler.SetConnectionString(ConnectionString);
+            ArticleHandler.SetConnectionString(ConnectionString);
         }
     }
-    }
+    
 }
