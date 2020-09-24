@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_group2", "techburst_group2\techburst_group2.csproj", "{1F634E88-41F0-4C27-8888-57A063C1104E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_Data Access Layer", "C:\Users\goert\OneDrive\Bureaublad\techburst_Data Access Layer\techburst_Data Access Layer.csproj", "{D32C0664-A22D-448E-9F16-34B040E801E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_Data Access Layer", "techburst_Data Access Layer\techburst_Data Access Layer.csproj", "{DCB40C3D-4336-4E34-8399-0C048964C6D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_Interface", "C:\Users\goert\OneDrive\Bureaublad\techburst_Interface\techburst_Interface.csproj", "{F828466F-E86C-422B-B273-6A7CA66AC3CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_Interface", "techburst_Interface\techburst_Interface.csproj", "{5BDAEE08-896E-4FE9-9502-6C9B625B115D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{1F634E88-41F0-4C27-8888-57A063C1104E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F634E88-41F0-4C27-8888-57A063C1104E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F634E88-41F0-4C27-8888-57A063C1104E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D32C0664-A22D-448E-9F16-34B040E801E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D32C0664-A22D-448E-9F16-34B040E801E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D32C0664-A22D-448E-9F16-34B040E801E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D32C0664-A22D-448E-9F16-34B040E801E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F828466F-E86C-422B-B273-6A7CA66AC3CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F828466F-E86C-422B-B273-6A7CA66AC3CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F828466F-E86C-422B-B273-6A7CA66AC3CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F828466F-E86C-422B-B273-6A7CA66AC3CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB40C3D-4336-4E34-8399-0C048964C6D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BDAEE08-896E-4FE9-9502-6C9B625B115D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
