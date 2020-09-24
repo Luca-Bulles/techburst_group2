@@ -56,7 +56,8 @@ namespace techburst_group2
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            ArticleHandler.SetConnectionString(ConnectionString);
+            //ArticleHandler.SetConnectionString(ConnectionString);
+            ArticleHandler articleHandler = new ArticleHandler(ConnectionString);
         }
     }
     

@@ -4,26 +4,28 @@ using System.Data.SqlClient;
 using System.Text;
 using techburst_Data_Access_Layer.DTO;
 using techburst_Interface;
+using techburst_Interface.Handler_Interfaces;
 
 namespace techburst_Data_Access_Layer.Handler
 {
     public class ArticleHandler
     {
         private static string connectionString = "";
+        private IDBConnectionHandler _dbCon;
 
-        public static void SetConnectionString(string constring)
+        public ArticleHandler(IDBConnectionHandler dbCon)
         {
-            connectionString = constring;
+            _dbCon = dbCon;
         }
         public List<IArticle> GetArticles()
         {
             var articles = new List<IArticle>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (_dbCon.Open())
             {
                 string query = "SELECT * FROM [dbi434548].[dbo].[Car]";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
-                    connection.Open();
+                    //connection.Open();
                     var reader = command.ExecuteReader();
                     while (reader.Read())
                     {
@@ -42,6 +44,8 @@ namespace techburst_Data_Access_Layer.Handler
 
                         articles.Add(ArticleDTO);
                     }
+
+                    _dbCon.Close();
                 }
             }
             return articles;
