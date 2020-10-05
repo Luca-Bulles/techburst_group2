@@ -1,0 +1,187 @@
+﻿@model ArticleModel
+@{var articles = ViewData["Articles"] as List<ArticleModel>;}
+@{ ViewData["Title"] = "Articles"; }
+
+<head>
+    <link rel="stylesheet" href="~/css/articles.css">
+</head>
+
+<body>
+    <h2>Alle artikelen</h2>
+
+    <div class="dropdown" >
+        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+            Dropdown Example
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <li><a href="#">C#</a></li>
+            <li><a href="#">Java</a></li>
+            <li><a href="#">C++</a></li>
+        </ul>
+    </div>
+
+    <div class "container">
+        <div class="card-columns">
+            <div class="card">
+                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                <div class="card-img-overlay">
+                    <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <small class="text-muted cat">
+                        <i class="far fa-clock text-info"></i> Geschreven door: Jaap
+                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="far fa-clock text-info"></i>
+                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                    </small>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                    <div class="views">
+                        Oct 20, 12:45PM
+                    </div>
+                    <div class="stats">
+                        <i class="far fa-eye"></i>
+                        <i class="far fa-comment"></i> 12
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                <div class="card-img-overlay">
+                    <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <small class="text-muted cat">
+                        <i class="far fa-clock text-info"></i> Geschreven door: Jaap
+                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="far fa-clock text-info"></i>
+                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                    </small>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                    <div class="views">
+                        Oct 20, 12:45PM
+                    </div>
+                    <div class="stats">
+                        <i class="far fa-eye"></i>
+                        <i class="far fa-comment"></i> 12
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                <div class="card-img-overlay">
+                    <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <small class="text-muted cat">
+                        <i class="far fa-clock text-info"></i> Geschreven door: Jaap
+                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="far fa-clock text-info"></i>
+                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                    </small>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                    <div class="views">
+                        Oct 20, 12:45PM
+                    </div>
+                    <div class="stats">
+                        <i class="far fa-eye"></i>
+                        <i class="far fa-comment"></i> 12
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                <div class="card-img-overlay">
+                    <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <small class="text-muted cat">
+                        <i class="far fa-clock text-info"></i> Geschreven door: Jaap
+                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="far fa-clock text-info"></i>
+                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                    </small>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                    <div class="views">
+                        Oct 20, 12:45PM
+                    </div>
+                    <div class="stats">
+                        <i class="far fa-eye"></i>
+                        <i class="far fa-comment"></i> 12
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                <div class="card-img-overlay">
+                    <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <small class="text-muted cat">
+                        <i class="far fa-clock text-info"></i> Geschreven door: Jaap
+                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="far fa-clock text-info"></i>
+                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                    </small>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                    <div class="views">
+                        Oct 20, 12:45PM
+                    </div>
+                    <div class="stats">
+                        <i class="far fa-eye"></i>
+                        <i class="far fa-comment"></i> 12
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                <div class="card-img-overlay">
+                    <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Title</h4>
+                    <small class="text-muted cat">
+                        <i class="far fa-clock text-info"></i> Geschreven door: Jaap
+                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <i class="far fa-clock text-info"></i>
+                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                    </small>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                    <div class="views">
+                        Oct 20, 12:45PM
+                    </div>
+                    <div class="stats">
+                        <i class="far fa-eye"></i>
+                        <i class="far fa-comment"></i> 12
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
