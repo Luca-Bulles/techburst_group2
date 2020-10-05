@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<div class="row">
+    <div class="col-5">
+        <h3 class="contact-big-text"><br />Get in touch! </h3>
+        <p>
+            <br />
+            Alle leden van ons frontoffice team hebben stuk voor stuk een bijzonder fijne stem om naar te luisteren.<br />
+            <br /> Bel ons dus als je meer wil weten over onze werkwijze, het Dev Program, onze events,
+            vacatures of als je een andere brandende vraag hebt!
+        </p>
+        <p><br />Tel: 073 - 615 77 77</p>
+        <p><br />Van 08:30 tot 17:30 bereikbaar</p>
+    </div>
+    <div class="col-2">
+        <p></p>
+    </div>
+    <div class="col-5">
+        <img src="~/Images/superhero_rockstars.jpg" alt="Rockstarsit Superhero" width="500" height="322">
+    </div>
+</div>
+<div class="row">
+    <div class="col-5">
+        <iframe frameborder="1" scrolling="no" marginheight="0" marginwidth="0" width="630" height="400"
+                src="https://maps.google.com/maps?hl=nl&q=lekkerbeetjestraat8&ie=UTF8&t=m&z=15&iwloc=B&output=embed">
+        </iframe>
+    </div>
+    <div class="col-2">
+        <p></p>
+    </div>
+    <div class="contact col-5">
+        <h5 class="contact-big-text"><br />Voor vragen kunt u ook een bericht sturen!</h5>
+        <div class="form-group">
+            <label class="control-label" for="name">Uw naam:</label>
+            <input placeholder="Voornaam en achternaam..." class="form-control" type="text" id="name" name="name" value="">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="email">Email:</label>
+            <input placeholder="Emailadres..." class="form-control" type="text" id="emailaddress" name="emailaddress" value="">
+        </div>
+        <div class="form-group">
+            <label for="question">Stel hieronder uw vraag:</label>
+            <textarea class="form-control" input placeholder="Type uw vraag..." id="question" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-warning">Verstuur!</button>
+        </div>
+    </div>
+</div>

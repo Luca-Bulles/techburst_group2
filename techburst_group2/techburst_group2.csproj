@@ -4,6 +4,15 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\techburst_Data Access Layer\techburst_Data Access Layer.csproj" />
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
 
 
 </Project>

@@ -8,14 +8,17 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using techburst_Data_Access_Layer.Handler;
 
 namespace techburst_group2
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private string ConnectionString = "";
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            configuration = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
+            ConnectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
 
         public IConfiguration Configuration { get; }
@@ -52,6 +55,10 @@ namespace techburst_group2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //ArticleHandler.SetConnectionString(ConnectionString);
+            //ArticleHandler articleHandler = new ArticleHandler(ConnectionString);
         }
     }
+    
 }
