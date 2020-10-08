@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Factories
+namespace techburst_DAL
 {
     public class Class1
     {
