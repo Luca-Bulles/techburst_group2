@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entities.Enums
 {
-    public enum Tags
+    public enum Tag
     {
         CSharp,
         Python,

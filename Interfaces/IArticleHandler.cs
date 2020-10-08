@@ -5,7 +5,7 @@ using techburst_Data_Access_Layer.DTO;
 
 namespace Interfaces
 {
-    public interface IArticleHandler : IHandler<Article>
+    public interface IArticleHandler : IHandler<ArticleDto>
     {
 
     }

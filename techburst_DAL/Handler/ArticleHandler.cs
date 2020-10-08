@@ -15,9 +15,9 @@ namespace techburst_DAL.Handler
         {
             _dbCon = dbCon;
         }
-        public List<Article> GetAll()
+        public List<ArticleDto> GetAll()
         {
-            var articles = new List<Article>();
+            var articles = new List<ArticleDto>();
             using (_dbCon.Open())
             {
                 string query = "SELECT * FROM [dbi434548].[dbo].[Car]";
@@ -27,7 +27,7 @@ namespace techburst_DAL.Handler
                     var reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        Article ArticleDTO = new Article
+                        ArticleDto ArticleDTO = new ArticleDto
                         {
                            ArticleID = reader.GetInt32(0),
                            AccountID = reader.GetInt32(1),
@@ -49,7 +49,7 @@ namespace techburst_DAL.Handler
             return articles;
         }
 
-        public void Create(Article C1)
+        public void Create(ArticleDto C1)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -74,7 +74,7 @@ namespace techburst_DAL.Handler
         }
 
 
-        public void Update(Article E1)
+        public void Update(ArticleDto E1)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -106,7 +106,7 @@ namespace techburst_DAL.Handler
                 }
             }
         }
-        public Article GetById(int id)
+        public ArticleDto GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -117,7 +117,7 @@ namespace techburst_DAL.Handler
 
                 }
             }
-            return new Article();
+            return new ArticleDto();
         }
 
     }
