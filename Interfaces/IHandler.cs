@@ -7,7 +7,7 @@ namespace Interfaces
     {
         List<T> GetAll();
         void Create(T entity);
-        void Edit(T entity);
+        void Update(T entity);
         void Delete(int id);
         T GetById(int id);
 

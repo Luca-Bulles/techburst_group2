@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
-using techburst_Interface;
+using Interfaces;
+using techburst_Data_Access_Layer.DTO;
 using techburst_Interface.Handler_Interfaces;
 
-namespace techburst_Data_Access_Layer.Handler
+namespace techburst_DAL.Handler
 {
-    public class ArticleHandler
+    public class ArticleHandler : IArticleHandler
     {
         private static string connectionString = "";
         private IDBConnectionHandler _dbCon;
@@ -16,7 +15,7 @@ namespace techburst_Data_Access_Layer.Handler
         {
             _dbCon = dbCon;
         }
-        public List<Article> GetArticles()
+        public List<Article> GetAll()
         {
             var articles = new List<Article>();
             using (_dbCon.Open())
@@ -50,7 +49,7 @@ namespace techburst_Data_Access_Layer.Handler
             return articles;
         }
 
-        public void CreateArticle(IArticle C1)
+        public void Create(Article C1)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -74,7 +73,8 @@ namespace techburst_Data_Access_Layer.Handler
 
         }
 
-        public void UpdateArticle(IArticle E1)
+
+        public void Update(Article E1)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -94,7 +94,7 @@ namespace techburst_Data_Access_Layer.Handler
             }
         }
 
-        public void DeleteArticle(int ID)
+        public void Delete(int ID)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -106,7 +106,7 @@ namespace techburst_Data_Access_Layer.Handler
                 }
             }
         }
-        public IArticle GetById(int id)
+        public Article GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
