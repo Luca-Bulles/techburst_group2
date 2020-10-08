@@ -22,7 +22,7 @@ namespace techburst_Data_Access_Layer.Handler
             var articles = new List<IArticle>();
             using (_dbCon.Open())
             {
-                string query = "SELECT * FROM [dbi434548].[dbo].[Car]";
+                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[Articles]";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     //connection.Open();
