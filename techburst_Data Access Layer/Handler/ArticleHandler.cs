@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using techburst_Data_Access_Layer.DTO;
 using techburst_Interface;
 using techburst_Interface.Handler_Interfaces;
 
@@ -17,9 +16,9 @@ namespace techburst_Data_Access_Layer.Handler
         {
             _dbCon = dbCon;
         }
-        public List<IArticle> GetArticles()
+        public List<Article> GetArticles()
         {
-            var articles = new List<IArticle>();
+            var articles = new List<Article>();
             using (_dbCon.Open())
             {
                 string query = "SELECT * FROM [dbi434548].[dbo].[Car]";
@@ -107,18 +106,18 @@ namespace techburst_Data_Access_Layer.Handler
                 }
             }
         }
-        public IArticle GetById(IArticle article)
+        public IArticle GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Article WHERE ArticleID = @ArticleID; ";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ArticleID", article.ArticleID);
+                    command.Parameters.AddWithValue("@ArticleID", id);
 
                 }
             }
-            return article;
+            return new Article();
         }
 
     }
