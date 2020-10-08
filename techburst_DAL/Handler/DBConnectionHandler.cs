@@ -13,30 +13,15 @@ namespace techburst_Data_Access_Layer.Handler
         public SqlConnection connection { get; private set; }
         public SqlConnection Open()
         {
-            try
-            {
-                connection = new SqlConnection(connectionString);
-                connection.Open();
-            }
-            catch (SqlException e)
-            {
-                
-            }
+            connection = new SqlConnection(connectionString);
+            connection.Open();
 
             return connection;
         }
 
-        public bool Close()
+        public void Close()
         {
-            try
-            {
-                connection.Close();
-                return true;
-            }
-            catch (SqlException e)
-            {
-                return false;
-            }
+            connection.Close();
         }
     }
 }
