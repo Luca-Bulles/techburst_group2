@@ -9,6 +9,14 @@ namespace techburst_BLL
     {
         private List<Article> _articles;
 
+        //@TODO: Add validation for user type in later iteration.
+
+        public void Create(Article article)
+        {
+            var result = ModelConverter.ConvertModelToDto(article);
+            DalFactory.ArticleHandler.Create(result);
+        }
+
         public List<Article> GetAllArticles()
         {
             var result = DalFactory.ArticleHandler.GetAll();
