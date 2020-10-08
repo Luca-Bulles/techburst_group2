@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "techburst_Interface", "tech
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "techburst_BusinessLogic", "techburst_BusinessLogic\techburst_BusinessLogic.csproj", "{B7A44783-1963-4C0C-8BB3-595D9392A53A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factories", "Factories\Factories.csproj", "{8D6F6276-0938-4090-95A1-924FD7787EC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B7A44783-1963-4C0C-8BB3-595D9392A53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7A44783-1963-4C0C-8BB3-595D9392A53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7A44783-1963-4C0C-8BB3-595D9392A53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D6F6276-0938-4090-95A1-924FD7787EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6F6276-0938-4090-95A1-924FD7787EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6F6276-0938-4090-95A1-924FD7787EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6F6276-0938-4090-95A1-924FD7787EC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
