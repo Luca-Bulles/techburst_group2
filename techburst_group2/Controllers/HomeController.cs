@@ -45,6 +45,11 @@ namespace techburst_group2.Controllers
             return articles;
         }
 
+        public IActionResult AddArticle()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
