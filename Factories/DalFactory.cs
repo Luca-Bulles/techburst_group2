@@ -8,6 +8,7 @@ namespace Factories
     public static class DalFactory
     {
         private static IArticleHandler _articleHandler;
+        private static ICategoryHandler _categoryHandler;
         public static IArticleHandler ArticleHandler
         {
             get
@@ -19,6 +20,19 @@ namespace Factories
                 return _articleHandler;
             }
 
+        }
+
+        public static ICategoryHandler CategoryHandler
+        {
+            get
+            {
+                if (_categoryHandler == null)
+                {
+                    _categoryHandler = new CategoryHandler(new DBConnectionHandler());
+                }
+
+                return _categoryHandler;
+            }
         }
     }
 }
