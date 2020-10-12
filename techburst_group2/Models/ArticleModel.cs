@@ -23,5 +23,6 @@ namespace techburst_group2.Models
         public string Author { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastEdited { get; set; }
+        public string Subject { get; set; }
     }
 }

@@ -13,6 +13,8 @@ namespace techburst_group2.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        public List<string> SubjectSamples = new List<string>();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -34,6 +36,7 @@ namespace techburst_group2.Controllers
         //Move this to business logic layer in a later iteration pls :)
         public List<ArticleModel> GetArticleData()
         {
+
             List<ArticleModel> articles = new List<ArticleModel>();
             for (int i = 0; i < 9; i++)
             {
@@ -47,6 +50,7 @@ namespace techburst_group2.Controllers
 
         public IActionResult AddArticle()
         {
+
             return View();
         }
 
@@ -62,7 +66,7 @@ namespace techburst_group2.Controllers
 
         public IActionResult Articles()
         {
-            return View();
+            return View(GetArticleData());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

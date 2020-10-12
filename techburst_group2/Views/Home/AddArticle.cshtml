@@ -13,11 +13,13 @@
             <label for="exampleInputEmail1">Title</label>
             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
         </div>
-    </fieldset>
-    <fieldset>
         <div class="form-group">
-            <label for="exampleInputEmail1">Content</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your content">
+            <label for="exampleTextarea">Content</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Image URL</label>
+            <input type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter image URL">
         </div>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
@@ -32,13 +34,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputFile">Image input</label>
-            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+        <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </fieldset>
-    <fieldset>
-    <button type="submit" class="btn btn-primary">Submit</button>
     </fieldset>
 </form>
 
