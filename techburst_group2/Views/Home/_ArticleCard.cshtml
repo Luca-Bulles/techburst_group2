@@ -1,4 +1,5 @@
-﻿@{var articles = ViewData["Articles"] as List<ArticleModel>;}
+﻿@model ArticleModel
+@{var articles = ViewData["Articles"] as List<ArticleModel>;}
 
 <div id="carouselControls" class="carousel slide" data-ride="carousel" style="width:100%">
     <div class="carousel-inner">
@@ -10,7 +11,7 @@
                         <div class="card-img-overlay">
                             @foreach (var tag in articles[0].Tags)
                             {
-                                <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
+                                <a href="#" asp-action="GetArticlesByTag" class="btn btn-dark btn-sm text-light">@tag.ToString()</a>
                             }
                         </div>
                         <div class="card-body">
