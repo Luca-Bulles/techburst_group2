@@ -20,12 +20,13 @@ namespace techburst_BLL
         public List<Article> GetAllArticles()
         {
             var result = DalFactory.ArticleHandler.GetAll();
+            _articles = new List<Article>();
 
             foreach (var dto in result)
             {
                 var model = ModelConverter.ConvertDtoToModel(dto);
                 model.Categories.Add(model.GetCategory(model.CategoryId));
-                _articles = new List<Article>() { model };
+                _articles.Add(model);
             }
 
             return _articles;

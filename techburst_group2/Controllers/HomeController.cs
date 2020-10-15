@@ -13,18 +13,26 @@ namespace techburst_group2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private List<ArticleModel> _articles;
         private ArticleCollection _coll;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
             _coll = new ArticleCollection();
+            _articles = new List<ArticleModel>();
         }
 
         public IActionResult Index()
         {
             var data = _coll.GetAllArticles();
-            ViewData["Articles"] = data;
+            foreach (var unconvertedArticle in data)
+            {
+                ArticleModel viewModel = new ArticleModel() {Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, Tags = unconvertedArticle.Categories, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited};
+                _articles.Add(viewModel);
+
+            }
+            ViewData["Articles"] = _articles;
             return View();
         }
 
