@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
+using Interfaces;
 using techburst_Data_Access_Layer.DTO;
-using techburst_Interface;
 using techburst_Interface.Handler_Interfaces;
 
-namespace techburst_Data_Access_Layer.Handler
+namespace techburst_DAL.Handler
 {
-    public class ArticleHandler
+    public class ArticleHandler : IArticleHandler
     {
         private static string connectionString = "";
         private IDBConnectionHandler _dbCon;
@@ -17,28 +15,29 @@ namespace techburst_Data_Access_Layer.Handler
         {
             _dbCon = dbCon;
         }
-        public List<IArticle> GetArticles()
+        public List<ArticleDto> GetAll()
         {
-            var articles = new List<IArticle>();
+            var articles = new List<ArticleDto>();
             using (_dbCon.Open())
             {
-                string query = "SELECT * FROM [dbi434548].[dbo].[Car]";
+                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[Articles]";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     //connection.Open();
                     var reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        Article ArticleDTO = new Article
+                        ArticleDto ArticleDTO = new ArticleDto
                         {
                            ArticleID = reader.GetInt32(0),
                            AccountID = reader.GetInt32(1),
                            Title = reader.GetString(2),
                            ArticleText = reader.GetString(3),
                            DateCreated = reader.GetDateTime(4),
-                           Draft = reader.GetBoolean(5),
+                           Draft = reader.GetDouble(5),
                            LastEdited = reader.GetDateTime(6),
-                           Images = reader.GetString(7)
+                           Images = reader.GetString(7),
+                           Categories = reader.GetInt32(8)
 
                         };
 
@@ -51,7 +50,7 @@ namespace techburst_Data_Access_Layer.Handler
             return articles;
         }
 
-        public void CreateArticle(IArticle C1)
+        public void Create(ArticleDto C1)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -75,7 +74,8 @@ namespace techburst_Data_Access_Layer.Handler
 
         }
 
-        public void UpdateArticle(IArticle E1)
+
+        public void Update(ArticleDto E1)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -95,7 +95,7 @@ namespace techburst_Data_Access_Layer.Handler
             }
         }
 
-        public void DeleteArticle(int ID)
+        public void Delete(int ID)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -107,18 +107,18 @@ namespace techburst_Data_Access_Layer.Handler
                 }
             }
         }
-        public IArticle GetById(IArticle article)
+        public ArticleDto GetById(int id)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "SELECT * FROM Article WHERE ArticleID = @ArticleID; ";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ArticleID", article.ArticleID);
+                    command.Parameters.AddWithValue("@ArticleID", id);
 
                 }
             }
-            return article;
+            return new ArticleDto();
         }
 
     }
