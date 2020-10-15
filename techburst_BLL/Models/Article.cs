@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Entities.Enums;
+using Factories;
+using techburst_BLL.Utilities;
 
 namespace techburst_BLL
 {
@@ -16,6 +18,17 @@ namespace techburst_BLL
         public bool Draft { get; set; }
         public DateTime LastEdited { get; set; }
         public string Images { get; set; }
+
+        public void Remove(int id)
+        {
+            DalFactory.ArticleHandler.Delete(id);
+        }
+
+        public void Edit(Article updatedArticle)
+        {
+            var dto = ModelConverter.ConvertModelToDto(updatedArticle);
+            DalFactory.ArticleHandler.Update(dto);
+        }
 
     }
 }
