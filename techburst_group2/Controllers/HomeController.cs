@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using techburst_BLL;
 using techburst_group2.Models;
 
 namespace techburst_group2.Controllers
@@ -12,18 +13,26 @@ namespace techburst_group2.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public List<string> SubjectSamples = new List<string>();
+        private List<ArticleModel> _articles;
+        private ArticleCollection _coll;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _coll = new ArticleCollection();
+            _articles = new List<ArticleModel>();
         }
 
         public IActionResult Index()
         {
-            var data = GetArticleData();
-            ViewData["Articles"] = data;
+            var data = _coll.GetAllArticles();
+            foreach (var unconvertedArticle in data)
+            {
+                ArticleModel viewModel = new ArticleModel() {Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, Tags = unconvertedArticle.Categories, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited};
+                _articles.Add(viewModel);
+
+            }
+            ViewData["Articles"] = _articles;
             return View();
         }
 
@@ -33,26 +42,6 @@ namespace techburst_group2.Controllers
                 ViewName = "_ArticleCard"
             };
 
-        //Move this to business logic layer in a later iteration pls :)
-        public List<ArticleModel> GetArticleData()
-        {
-
-            List<ArticleModel> articles = new List<ArticleModel>();
-            for (int i = 0; i < 9; i++)
-            {
-                ArticleModel article = new ArticleModel("Sample Title", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "Calin Peters");
-                articles.Add(article);
-
-            }
-
-            return articles;
-        }
-
-        public IActionResult AddArticle()
-        {
-
-            return View();
-        }
 
         public IActionResult Privacy()
         {
@@ -62,11 +51,6 @@ namespace techburst_group2.Controllers
         public IActionResult Contact()
         {
             return View();
-        }
-
-        public IActionResult Articles()
-        {
-            return View(GetArticleData());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

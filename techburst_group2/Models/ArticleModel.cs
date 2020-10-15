@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
+using Entities.Enums;
 
 namespace techburst_group2.Models
 {
@@ -21,6 +23,7 @@ namespace techburst_group2.Models
         public string Title { get; set; }
         public string Content { get; set; }
         public string Author { get; set; }
+        public List<Tag> Tags { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastEdited { get; set; }
         public string Subject { get; set; }

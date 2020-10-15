@@ -9,7 +9,7 @@ namespace techburst_Data_Access_Layer.Handler
 {
     public class DBConnectionHandler : IDBConnectionHandler
     {
-        private protected string connectionString = "Server=mssql.fhict.local;Database=dbi434548_rockstars";
+        private protected string connectionString = "Server=mssql.fhict.local;Database=dbi434548_rockstars; User Id=dbi434548_rockstars;Password = StockRars";
         public SqlConnection connection { get; private set; }
         public SqlConnection Open()
         {

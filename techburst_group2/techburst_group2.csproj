@@ -12,6 +12,10 @@
     <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\techburst_BLL\techburst_BLL.csproj" />
+  </ItemGroup>
+
 
 
 </Project>

@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using techburst_DAL.Handler;
+using techburst_Data_Access_Layer.Handler;
+using techburst_Interface.Handler_Interfaces;
 
 namespace techburst_group2
 {
@@ -26,6 +30,9 @@ namespace techburst_group2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IDBConnectionHandler, DBConnectionHandler>();
+            services.AddScoped<IArticleHandler, ArticleHandler>();
+            services.AddScoped<ICategoryHandler, CategoryHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
