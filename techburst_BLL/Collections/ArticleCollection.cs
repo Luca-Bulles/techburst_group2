@@ -45,5 +45,19 @@ namespace techburst_BLL
             }
             return article;
         }
+
+        public List<Article> GetArticlesByTag(int tagId)
+        {
+            var dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
+
+            foreach (var dto in dtoList)
+            {
+                var richModel = ModelConverter.ConvertDtoToModel(dto);
+                _articles.Add(richModel);
+            }
+
+            return _articles;
+        }
+        }
     }
 }
