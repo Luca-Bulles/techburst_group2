@@ -48,6 +48,23 @@ namespace techburst_group2.Controllers
             return View();
         }
 
+        public IActionResult Articles() 
+        {
+            var data = _coll.GetAllArticles();
+            foreach (var unconvertedArticle in data)
+            {
+                ArticleModel viewModel = new ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, Tags = unconvertedArticle.Categories, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited };
+                _articles.Add(viewModel);
+
+            }
+
+            return View(_articles);
+        }
+
+        public IActionResult AddArticle() 
+        {
+            return View();
+        }
         public IActionResult Contact()
         {
             return View();
