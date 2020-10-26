@@ -50,7 +50,6 @@ namespace techburst_group2.Controllers
 
         public IActionResult ArticlePage(Article selectedArticle)
         {
-            var data = _coll.GetAllArticles();
             ArticleModel viewModel = new ArticleModel() { Id = selectedArticle.Id, Author = selectedArticle.Author, Title = selectedArticle.Title, Content = selectedArticle.ArticleText, Tags = selectedArticle.Categories, CreatedAt = selectedArticle.DateCreated, LastEdited = selectedArticle.LastEdited };
             _articles.Add(viewModel);
             return View();

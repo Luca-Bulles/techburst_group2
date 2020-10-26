@@ -31,5 +31,19 @@ namespace techburst_BLL
 
             return _articles;
         }
+
+        public Article GetArticleById(int articleId)
+        {
+            Article article = null;
+            var articles = GetAllArticles();
+            for (int i = 0; i < articles.Count; i++)
+            {
+                if (articles[i].Id == articleId)
+                {
+                    article = new Article() { Id = articles[i].Id, Author = articles[i].Author, Title = articles[i].Title, ArticleText = articles[i].ArticleText, Categories = articles[i].Categories, DateCreated = articles[i].DateCreated, Draft = articles[i].Draft, Images = articles[i].Images, LastEdited = articles[i].LastEdited };
+                }
+            }
+            return article;
+        }
     }
 }
