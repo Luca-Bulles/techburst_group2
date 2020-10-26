@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Entities.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using techburst_BLL;
@@ -42,12 +43,36 @@ namespace techburst_group2.Controllers
                 ViewName = "_ArticleCard"
             };
 
-
         public IActionResult Privacy()
         {
             return View();
         }
 
+        public IActionResult ArticlePage(Article selectedArticle)
+        {
+            var data = _coll.GetAllArticles();
+            ArticleModel viewModel = new ArticleModel() { Id = selectedArticle.Id, Author = selectedArticle.Author, Title = selectedArticle.Title, Content = selectedArticle.ArticleText, Tags = selectedArticle.Categories, CreatedAt = selectedArticle.DateCreated, LastEdited = selectedArticle.LastEdited };
+            _articles.Add(viewModel);
+            return View();
+        }
+
+        public IActionResult Articles() 
+        {
+            var data = _coll.GetAllArticles();
+            foreach (var unconvertedArticle in data)
+            {
+                ArticleModel viewModel = new ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, Tags = unconvertedArticle.Categories, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited };
+                _articles.Add(viewModel);
+
+            }
+
+            return View(_articles);
+        }
+
+        public IActionResult AddArticle() 
+        {
+            return View();
+        }
         public IActionResult Contact()
         {
             return View();
