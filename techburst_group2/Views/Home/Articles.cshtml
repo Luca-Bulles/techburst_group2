@@ -32,7 +32,7 @@
                             @foreach (var tag in article.Tags)
                             {
                                 <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
-                                <a asp-controller="Home" asp-action="ArticlePage">Lees article</a>
+                                @Html.ActionLink("Lees Artikel", "ArticlePage", "Home",  new { id = article.Id}, null) 
                             }
                         </div>
                         <div class="card-body">
