@@ -12,7 +12,7 @@
     <!--indicators-->
     <!--carousel slides-->
     <div class="carousel-inner">
-        @for (int c = 0; c < 3; c++)
+        @for (int c = 0; c < (articles.Count+2)/3; c++)
         {
             string classname;
             if (c == 0)
@@ -27,12 +27,19 @@
                 <div class="row">
                     @for (int i = c * 3; i < 3 * (c + 1); i++)
                     {
+                        if (i >= articles.Count)
+                        {
+                            break;
+                        }
                         <!--carousel cards-->
                         <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                             <div class="card">
                                 <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
                                 <div class="card-img-overlay">
-                                    <a href="#" class="btn btn-dark btn-sm text-light">C#</a>
+                                    @foreach (Entities.Enums.Tag tag in articles[i].Tags)
+                                    {
+                                        <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
+                                    }
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">Title</h4>
@@ -42,11 +49,11 @@
                                         <i class="far fa-clock text-info"></i>
                                         <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
                                     </small>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <p class="card-text">@articles[i].Content</p>
                                 </div>
                                 <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                                     <div class="views">
-                                        Oct 20, 12:45PM
+                                        @articles[i].CreatedAt
                                     </div>
                                     <div class="stats">
                                         <i class="far fa-eye"></i>
