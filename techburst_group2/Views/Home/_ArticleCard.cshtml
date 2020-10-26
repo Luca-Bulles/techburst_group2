@@ -31,12 +31,17 @@
                         {
                             break;
                         }
+                        string content = articles[i].Content;
+                        if (content.Length > 40)
+                        {
+                            content = content.Substring(0, 160) + "...";
+                        }
                         <!--carousel cards-->
                         <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                             <div class="card">
                                 <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
                                 <div class="card-img-overlay">
-                                    @foreach (Entities.Enums.Tag tag in articles[i].Tags)
+                                    @foreach (var tag in articles[i].Tags)
                                     {
                                         <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
                                     }
@@ -49,7 +54,7 @@
                                         <i class="far fa-clock text-info"></i>
                                         <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
                                     </small>
-                                    <p class="card-text">@articles[i].Content</p>
+                                    <p class="card-text">@content</p>
                                 </div>
                                 <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                                     <div class="views">
