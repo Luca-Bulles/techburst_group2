@@ -36,6 +36,7 @@ namespace techburst_BLL
             DalFactory.ArticleHandler.Update(dto);
         }
 
+
         public Tag GetCategory(int categoryId)
         {
             return DalFactory.CategoryHandler.GetCategoryById(categoryId);
