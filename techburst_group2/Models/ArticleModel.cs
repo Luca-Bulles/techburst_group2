@@ -26,5 +26,6 @@ namespace techburst_group2.Models
         public List<Tag> Tags { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime LastEdited { get; set; }
+        public string Subject { get; set; }
     }
 }

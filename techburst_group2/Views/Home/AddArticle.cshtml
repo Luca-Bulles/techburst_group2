@@ -1,0 +1,42 @@
+﻿@model ArticleModel
+@{var articles = ViewData["Articles"] as List<ArticleModel>;}
+@{ ViewData["Title"] = "AddArticle"; }
+
+<head>
+    <link rel="stylesheet" href="~/css/bootstrap-lux.css" />
+</head>
+
+<h1>Create Article</h1>
+<form>
+    <fieldset>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Title</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+        </div>
+        <div class="form-group">
+            <label for="exampleTextarea">Content</label>
+            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Image URL</label>
+            <input type="url" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter image URL">
+        </div>
+        <div>
+            <select>
+                <option class="dropdown-item" href="#">C#</option>
+                <option class="dropdown-item" href="#">HTML</option>
+                <option class="dropdown-item" href="#">Java</option>
+                <option class="dropdown-item" href="#">JavaScript</option>
+                <option class="dropdown-item" href="#">Ruby</option>
+                <option class="dropdown-item" href="#">C</option>
+            </select>
+        </div>
+        <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </fieldset>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
