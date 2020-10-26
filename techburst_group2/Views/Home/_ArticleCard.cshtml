@@ -11,7 +11,7 @@
                         <div class="card-img-overlay">
                             @foreach (var tag in articles[0].Tags)
                             {
-                                <a href="#" asp-action="GetArticlesByTag" class="btn btn-dark btn-sm text-light">@tag.ToString()</a>
+                                <a asp-action="GetArticlesByTag" asp-controller="Article" class="btn btn-dark btn-sm text-light">@tag.ToString()</a>
                             }
                         </div>
                         <div class="card-body">
