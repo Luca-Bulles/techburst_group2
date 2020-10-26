@@ -107,19 +107,6 @@ namespace techburst_DAL.Handler
                 }
             }
         }
-        public ArticleDto GetById(int id)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT * FROM Article WHERE ArticleID = @ArticleID; ";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ArticleID", id);
-
-                }
-            }
-            return new ArticleDto();
-        }
 
         public List<ArticleDto> GetArticlesByTag(int tagId)
         {
