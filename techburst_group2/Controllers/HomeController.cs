@@ -51,7 +51,7 @@ namespace techburst_group2.Controllers
         public IActionResult ArticlePage(int id)
         {
             var article = _coll.GetArticleById(id);
-            ArticleModel articleModel = new ArticleModel() { Content = article.ArticleText };
+            ArticleModel articleModel = new ArticleModel() { Title = article.Title, Content = article.ArticleText, Tags = article.Categories };
             return View(articleModel);
         }
 
