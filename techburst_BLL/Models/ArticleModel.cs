@@ -7,7 +7,7 @@ using techburst_BLL.Utilities;
 
 namespace techburst_BLL
 {
-    public class Article
+    public class ArticleModel
     {
         public List<Tag> Categories { get; set; }
         public int CategoryId { get; set; }
@@ -20,17 +20,17 @@ namespace techburst_BLL
         public DateTime LastEdited { get; set; }
         public string Images { get; set; }
 
-        public Article()
+        public ArticleModel()
         {
             Categories = new List<Tag>();
         }
 
-        public void Remove(int id)
+        public void Delete(int id)
         {
             DalFactory.ArticleHandler.Delete(id);
         }
 
-        public void Edit(Article updatedArticle)
+        public void Edit(ArticleModel updatedArticle)
         {
             var dto = ModelConverter.ConvertModelToDto(updatedArticle);
             DalFactory.ArticleHandler.Update(dto);

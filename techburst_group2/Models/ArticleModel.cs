@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Policy;
 using System.Threading.Tasks;
@@ -20,12 +21,19 @@ namespace techburst_group2.Models
             Author = author;
         }
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Content { get; set; }
+        [Required]
         public string Author { get; set; }
+        [Required]
         public List<Tag> Tags { get; set; }
+        [Required]
+        public string Images { get; set; }
+        [Required]
         public DateTime CreatedAt { get; set; }
+        [Required]
         public DateTime LastEdited { get; set; }
-        public string Subject { get; set; }
     }
 }

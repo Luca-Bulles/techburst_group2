@@ -8,20 +8,20 @@ namespace techburst_BLL
 {
     public class ArticleCollection
     {
-        private List<Article> _articles;
+        private List<ArticleModel> _articles;
 
         //@TODO: Add validation for user type in later iteration.
 
-        public void Create(Article article)
+        public void Create(ArticleModel article)
         {
             var result = ModelConverter.ConvertModelToDto(article);
             DalFactory.ArticleHandler.Create(result);
         }
 
-        public List<Article> GetAllArticles()
+        public List<ArticleModel> GetAllArticles()
         {
             var result = DalFactory.ArticleHandler.GetAll();
-            _articles = new List<Article>();
+            _articles = new List<ArticleModel>();
 
             foreach (var dto in result)
             {
@@ -33,7 +33,7 @@ namespace techburst_BLL
             return _articles;
         }
 
-        public List<Article> GetArticlesByTag(int tagId)
+        public List<ArticleModel> GetArticlesByTag(int tagId)
         {
             var dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
 

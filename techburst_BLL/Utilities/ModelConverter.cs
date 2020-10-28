@@ -8,11 +8,11 @@ namespace techburst_BLL.Utilities
 {
     public static class ModelConverter
     {
-        private static Article _model;
+        private static ArticleModel _model;
         private static ArticleDto _dto;
-        public static Article ConvertDtoToModel(ArticleDto dto)
+        public static ArticleModel ConvertDtoToModel(ArticleDto dto)
         {
-            _model = new Article()
+            _model = new ArticleModel()
             {
                 Id = dto.ArticleID, Title = dto.Title, ArticleText = dto.ArticleText, CategoryId = dto.Categories, DateCreated = dto.DateCreated, Draft = dto.Draft, Images = dto.Images, LastEdited = dto.LastEdited
             };
@@ -20,7 +20,7 @@ namespace techburst_BLL.Utilities
             return _model;
         }
 
-        public static ArticleDto ConvertModelToDto(Article model)
+        public static ArticleDto ConvertModelToDto(ArticleModel model)
         {
             _dto = new ArticleDto() {ArticleID = model.Id, Title = model.Title, ArticleText = model.ArticleText, Categories = model.CategoryId, DateCreated = model.DateCreated, Draft = model.Draft, Images = model.Images, LastEdited = model.LastEdited};
             return _dto;

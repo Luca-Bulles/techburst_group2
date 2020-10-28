@@ -1,0 +1,81 @@
+﻿@model techburst_group2.Models.ArticleModel
+
+
+    @{
+        ViewData["Title"] = "Create";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h1>Create</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <label asp-for="Content" class="control-label"></label>
+                    </div>
+                    <textarea asp-for="Content" class="form-control" rows="6"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Images" class="control-label"></label>
+                    <input asp-for="Images" class="form-control" />
+                    <span asp-validation-for="Images" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CreatedAt" class="control-label"></label>
+                    <input asp-for="CreatedAt" class="form-control" />
+                    <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastEdited" class="control-label"></label>
+                    <input asp-for="LastEdited" class="form-control" />
+                    <span asp-validation-for="LastEdited" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tags" class="control-label"></label>
+                    <select asp-for="Tags" class="form-control" id="Tags">
+                        <option value="1">C#</option>
+                        <option value="2">Java</option>
+                        <option value="3">C</option>
+                        <option value="4">Angular</option>
+                    </select>
+                    <span asp-validation-for="Tags" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-sm btn-warning btn-outline-dark input text-center" type="submit" asp-controller="Article" asp-action="Submit">Add new Article!</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
