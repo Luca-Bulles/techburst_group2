@@ -45,10 +45,12 @@ namespace techburst_group2.Controllers
                 Title = article.Title,
                 Images = article.Images,
                 LastEdited = article.LastEdited,
-                Categories = article.Tags
+                Categories = article.Tags,
+                Draft = article.Draft
 
             };
             _artColl.Create(model);
+             RedirectToAction("index");
         }
 
         public IActionResult Create()

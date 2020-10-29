@@ -14,7 +14,7 @@ namespace techburst_group2.Models
         {
 
         }
-        public ArticleModel(string title, string content, string author)
+        public ArticleModel(string title, string content, int author)
         {
             Title = title;
             Content = content;
@@ -26,7 +26,7 @@ namespace techburst_group2.Models
         [Required]
         public string Content { get; set; }
         [Required]
-        public string Author { get; set; }
+        public int Author { get; set; }
         [Required]
         public List<Tag> Tags { get; set; }
         [Required]
@@ -35,5 +35,7 @@ namespace techburst_group2.Models
         public DateTime CreatedAt { get; set; }
         [Required]
         public DateTime LastEdited { get; set; }
+        [Required]
+        public double Draft { get; set; }
     }
 }

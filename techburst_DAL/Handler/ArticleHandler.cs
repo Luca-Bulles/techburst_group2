@@ -54,7 +54,7 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open()) 
             {
-                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] (AccountID, Title, ArticleText, DateCreated, LastEdited, Images) VALUES (@AccountID, @Title, @ArticleText, @DateCreated, @LastEdited, @Images)";
+                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] (AccountID, Title, ArticleText, DateCreated, Draft, LastEdited, Images) VALUES (@AccountID, @Title, @ArticleText, @DateCreated, @Draft, @LastEdited, @Images)";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     
@@ -64,6 +64,7 @@ namespace techburst_DAL.Handler
                     command.Parameters.AddWithValue("@DateCreated", C1.DateCreated);
                     command.Parameters.AddWithValue("@LastEdited", C1.LastEdited);
                     command.Parameters.AddWithValue("@Images", C1.Images);
+                    command.Parameters.AddWithValue("@Draft", C1.Draft);
                    
 
                     command.ExecuteNonQuery();
