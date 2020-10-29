@@ -12,7 +12,7 @@
     <!--indicators-->
     <!--carousel slides-->
     <div class="carousel-inner">
-        @for (int c = 0; c < (articles.Count+2)/3; c++)
+        @for (int c = 0; c < (articles.Count + 2) / 3; c++)
         {
             string classname;
             if (c == 0)
@@ -32,7 +32,7 @@
                             break;
                         }
                         string content = articles[i].Content;
-                        if (content.Length > 40)
+                        if (content.Length > 160)
                         {
                             content = content.Substring(0, 160) + "...";
                         }
@@ -45,9 +45,10 @@
                                     {
                                         <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
                                     }
+                                    @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = articles[i].Id }, null)
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title">Title</h4>
+                                    <h4 class="card-title">@articles[i].Title</h4>
                                     <small class="text-muted cat">
                                         <i class="far fa-clock text-info"></i> Geschreven door: @articles[i].Author
                                         <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -60,11 +61,6 @@
                                     <div class="views">
                                         @articles[i].CreatedAt
                                     </div>
-                                    <div class="stats">
-                                        <i class="far fa-eye"></i>
-                                        <i class="far fa-comment"></i> 12
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -75,14 +71,14 @@
         }
     </div>
     <!--carousel stlides-->
-    <!--carousel controls-->
-    <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-    <!--carousel controls-->
 </div>
+<!--carousel controls-->
+<a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+</a>
+<!--carousel controls-->
