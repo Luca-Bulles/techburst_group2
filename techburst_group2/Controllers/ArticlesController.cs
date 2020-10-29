@@ -13,16 +13,16 @@ using techburst_group2.Models;
 
 namespace techburst_group2.Controllers
 {
-    public class ArticleController : Controller
+    public class ArticlesController : Controller
     {
         private ArticleCollection _artColl;
-        private List<ArticleModel> _articles;
+        private List<Models.ArticleModel> _articles;
         private List<TagDto> _tags;
 
-        public ArticleController()
+        public ArticlesController()
         {
             _artColl = new ArticleCollection();
-            _articles = new List<ArticleModel>();
+            _articles = new List<Models.ArticleModel>();
             _tags = new List<TagDto>();
         }
         public IActionResult Index()
@@ -33,6 +33,24 @@ namespace techburst_group2.Controllers
         public IActionResult Article(int id)
         {
             return View();
+        }
+
+        public void Submit(Models.ArticleModel article)
+        {
+            techburst_BLL.ArticleModel model = new techburst_BLL.ArticleModel()
+            {
+                Author = article.Author,
+                DateCreated = article.CreatedAt,
+                ArticleText = article.Content,
+                Title = article.Title,
+                Images = article.Images,
+                LastEdited = article.LastEdited,
+                Categories = article.Tags,
+                Draft = article.Draft
+
+            };
+            _artColl.Create(model);
+             RedirectToAction("index");
         }
 
         public IActionResult Create()
@@ -68,13 +86,13 @@ namespace techburst_group2.Controllers
             return tagViewModels;
         }
 
-        public List<ArticleModel> GetArticlesByTag(int tagId)
+        public List<Models.ArticleModel> GetArticlesByTag(int tagId)
         {
             var result = _artColl.GetArticlesByTag(tagId);
 
             foreach (var model in result)
             {
-                ArticleModel viewModel = new ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, Tags = model.Categories, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, Tags = model.Categories, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
                 _articles.Add(viewModel);
             }
 

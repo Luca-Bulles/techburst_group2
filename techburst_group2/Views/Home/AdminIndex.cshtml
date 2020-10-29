@@ -1,0 +1,81 @@
+﻿@model IEnumerable<techburst_group2.Models.ArticleModel>
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h2 class="text-center">Admin Workstadion</h2>
+@Html.ActionLink("Add new article to the system", "Create", "Articles")
+<hr/>
+
+
+<table class="table bg-y text-white" style="width: 1200px; position: absolute; left: 250px; top: 200px;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Images)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tags)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastEdited)
+            </th>
+         
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Author)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Content)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Images)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tags)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedAt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastEdited)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Update", new { id = item.Id })
+    </td>
+    <td>
+        @Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })
+    </td>
+</tr>}
+    </tbody>
+</table>
+
+
+
+

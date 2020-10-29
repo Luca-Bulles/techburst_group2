@@ -16,5 +16,6 @@ namespace techburst_Data_Access_Layer.DTO
         public double Draft { get; set; }
         public DateTime LastEdited { get; set; }
         public string Images { get; set; }
+        public int Author { get; set; }
     }
 }
