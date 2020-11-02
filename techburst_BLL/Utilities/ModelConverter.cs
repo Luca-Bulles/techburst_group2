@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.DTO;
 using Entities.Enums;
 using techburst_Data_Access_Layer.DTO;
 

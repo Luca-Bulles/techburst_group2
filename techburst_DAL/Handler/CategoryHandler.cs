@@ -59,10 +59,10 @@ namespace techburst_DAL.Handler
             Tag parsedCategory;
             using (SqlConnection connection = _dbCon.Open())
             {
-                string query = $"SELECT SubjectName FROM Subject WHERE SubjectId = {id};";
+                string query = $"SELECT SubjectName FROM Subject WHERE SubjectId = @TagID;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ArticleID", id);
+                    command.Parameters.AddWithValue("@TagID", id);
                     //connection.Open();
                     var reader = command.ExecuteReader();
 
