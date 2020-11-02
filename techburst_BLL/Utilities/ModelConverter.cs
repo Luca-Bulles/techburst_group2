@@ -14,7 +14,7 @@ namespace techburst_BLL.Utilities
         {
             _model = new ArticleModel()
             {
-                Author = dto.Author, Id = dto.ArticleID, Title = dto.Title, ArticleText = dto.ArticleText, CategoryId = dto.Categories, DateCreated = dto.DateCreated, Draft = dto.Draft, Images = dto.Images, LastEdited = dto.LastEdited
+                Id = dto.ArticleID, Title = dto.Title, ArticleText = dto.ArticleText, CategoryId = dto.Categories, DateCreated = dto.DateCreated, Draft = dto.Draft, Images = dto.Images, LastEdited = dto.LastEdited
             };
 
             return _model;

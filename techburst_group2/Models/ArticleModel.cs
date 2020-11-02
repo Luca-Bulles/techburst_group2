@@ -14,7 +14,7 @@ namespace techburst_group2.Models
         {
 
         }
-        public ArticleModel(string title, string content, int author)
+        public ArticleModel(string title, string content, string author)
         {
             Title = title;
             Content = content;
@@ -26,7 +26,9 @@ namespace techburst_group2.Models
         [Required]
         public string Content { get; set; }
         [Required]
-        public int Author { get; set; }
+        public string Author { get; set; }
+        [Required]
+        public int AuthorId { get; set; }
         [Required]
         public List<Tag> Tags { get; set; }
         [Required]
