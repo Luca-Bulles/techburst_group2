@@ -80,5 +80,12 @@ namespace techburst_group2.Controllers
 
             return _articles;
         }
+
+                public IActionResult ArticlePage(int id)
+        {
+            var article = _coll.GetArticleById(id);
+            ArticleModel articleModel = new ArticleModel() { Title = article.Title, Content = article.ArticleText, Tags = article.Categories };
+            return View(articleModel);
+        }
     }
 }
