@@ -9,13 +9,13 @@ using techburst_Interface.Handler_Interfaces;
 
 namespace techburst_DAL.Handler
 {
-    public class CategoryHandler : ICategoryHandler
+    public class TagHandler : ITagHandler
     {
         private static string connectionString = "";
         private IDBConnectionHandler _dbCon;
         private List<TagDto> _tags;
 
-        public CategoryHandler(IDBConnectionHandler dbCon)
+        public TagHandler(IDBConnectionHandler dbCon)
         {
             _dbCon = dbCon;
         }
@@ -53,13 +53,12 @@ namespace techburst_DAL.Handler
             }
         }
 
-        public Tag GetCategoryById(int id)
+        public TagDto GetTagById(int id)
         {
-            string unParsedCategory = "";
-            Tag parsedCategory;
+            TagDto tag = null;
             using (SqlConnection connection = _dbCon.Open())
             {
-                string query = $"SELECT SubjectName FROM Subject WHERE SubjectId = @TagID;";
+                string query = $"SELECT SubjectName FROM Subject WHERE SubjectId = @TagID ;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@TagID", id);
@@ -68,14 +67,17 @@ namespace techburst_DAL.Handler
 
                     while (reader.Read())
                     {
-                        unParsedCategory = reader.GetString(0);
+                        tag = new TagDto()
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1)
+                        };
                     }
 
                     connection.Close();
-                    parsedCategory = Enum.Parse<Tag>(unParsedCategory);
                 }
 
-                return parsedCategory;
+                return tag;
             }
         }
     }

@@ -22,7 +22,7 @@ namespace techburst_BLL.Models
 
         public TagModel ConvertEntityToModel(TagDto dto)
         {
-
+            return null;
         }
     }
 }

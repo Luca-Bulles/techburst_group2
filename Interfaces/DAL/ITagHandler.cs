@@ -6,9 +6,9 @@ using Entities.Enums;
 
 namespace Interfaces
 {
-    public interface ICategoryHandler
+    public interface ITagHandler
     {
         List<TagDto> GetAllTags();
-        Tag GetCategoryById(int id);
+        TagDto GetTagById(int id);
     }
 }
