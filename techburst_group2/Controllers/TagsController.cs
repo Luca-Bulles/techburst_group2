@@ -13,6 +13,7 @@ namespace techburst_group2.Controllers
     {
         private ITagCollection _tagColl;
         private ITagModel _tagModel;
+        private List<TagViewModel> _tagList;
         public TagsController(ITagCollection tagColl, ITagModel tagModel)
         {
             _tagColl = tagColl;
@@ -23,9 +24,10 @@ namespace techburst_group2.Controllers
             return View();
         }
 
-        public void CreateTag(TagViewModel tvm)
+        public IActionResult CreateTag(TagViewModel tvm)
         {
             _tagColl.Create(_tagModel = new TagModel() {Id = tvm.Id, Name = tvm.Name});
+            return RedirectToAction("Create");
         }
 
         public IActionResult Edit(int id)
@@ -33,12 +35,24 @@ namespace techburst_group2.Controllers
             return View();
         }
 
+        public IActionResult All()
+        {
+            var tags =_tagColl.GetAllTags();
+            _tagList = new List<TagViewModel>();
+            foreach (var tag in tags)
+            {
+                TagViewModel tvm = new TagViewModel() {Id = tag.Id, Name = tag.Name};
+                _tagList.Add(tvm);
+            }
+            return View(_tagList);
+        }
+
         public IActionResult Delete(int id)
         {
             return View();
         }
 
-        public IActionResult Tag(int id)
+        public IActionResult Details(int id)
         {
             return View();
         }

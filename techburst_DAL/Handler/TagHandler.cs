@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using Entities.DTO;
 using Entities.Enums;
@@ -38,10 +39,10 @@ namespace techburst_DAL.Handler
         public List<TagDto> GetAllTags()
         {
             _tags = new List<TagDto>();
-            using (SqlConnection connection = _dbCon.Open())
+            using (_dbCon.Open())
             {
-                string query = $"SELECT TagID, TagName FROM Tags;";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = $"SELECT * FROM [dbi434548_rockstars].[dbo].[Tags]";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     //connection.Open();
                     var reader = command.ExecuteReader();
