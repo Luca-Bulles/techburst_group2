@@ -1,2 +1,13 @@
 ﻿@model ArticleModel
-<p>Geschreven door: @Html.DisplayFor(model => model.Content)</p>
+
+
+
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+<p>
+    tags:
+    @foreach (var tag in Model.Tags)
+    {
+        @tag
+    }
+</p>
+<p>@Html.DisplayFor(model => model.Content)</p>

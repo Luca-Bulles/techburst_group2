@@ -20,7 +20,7 @@
         </ul>
     </div>
 
-    <div class "container">
+    <div class = "container">
         <div class="card-columns">
             @if (Model != null)
             {
@@ -32,8 +32,8 @@
                             @foreach (var tag in article.Tags)
                             {
                                 <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
-                                @Html.ActionLink("Lees Artikel", "ArticlePage", "Home",  new { id = article.Id}, null) 
                             }
+                            @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = article.Id }, null)
                         </div>
                         <div class="card-body">
                             <h4 asp-action="ArticlePage" class="card-title">@Html.DisplayFor(model => article.Title)</h4>

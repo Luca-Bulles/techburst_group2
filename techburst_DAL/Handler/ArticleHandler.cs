@@ -52,23 +52,23 @@ namespace techburst_DAL.Handler
 
         public void Create(ArticleDto C1)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (_dbCon.Open()) 
             {
-                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] VALUES (@ArticleID, @AccountID, @Title, @ArticleText, @DateCreated, @Draft, @LastEdited, @Images";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] (AccountID, Title, ArticleText, DateCreated, Draft, LastEdited, Images) VALUES (@AccountID, @Title, @ArticleText, @DateCreated, @Draft, @LastEdited, @Images)";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
-                    command.Parameters.AddWithValue("@ArticleID", C1.ArticleID);
+                    
                     command.Parameters.AddWithValue("@AccountID", C1.AccountID);
                     command.Parameters.AddWithValue("@Title", C1.Title);
                     command.Parameters.AddWithValue("@ArticleText", C1.ArticleText);
                     command.Parameters.AddWithValue("@DateCreated", C1.DateCreated);
-                    command.Parameters.AddWithValue("@Draft", C1.Draft);
                     command.Parameters.AddWithValue("@LastEdited", C1.LastEdited);
                     command.Parameters.AddWithValue("@Images", C1.Images);
+                    command.Parameters.AddWithValue("@Draft", C1.Draft);
                    
-                    connection.Open();
+
                     command.ExecuteNonQuery();
-                    connection.Close();
+  
                 }
             }
 
@@ -97,15 +97,28 @@ namespace techburst_DAL.Handler
 
         public void Delete(int ID)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (_dbCon.Open())
             {
-                string query = "DELETE FROM Article WHERE ArticleID = @ArticleID";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = "DELETE FROM Articles WHERE ArticleID = @ArticleID";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     command.Parameters.AddWithValue("@ArticleID", ID);
                     command.ExecuteNonQuery();
                 }
             }
+        }
+        public ArticleDto GetById(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Articles WHERE ArticleID = @ArticleID; ";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ArticleID", id);
+
+                }
+            }
+            return new ArticleDto();
         }
 
         public List<ArticleDto> GetArticlesByTag(int tagId)
