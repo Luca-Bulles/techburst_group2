@@ -5,23 +5,34 @@ using System.Text;
 using Entities.DTO;
 using Entities.Enums;
 using Factories;
+using Interfaces.BLL;
 using techburst_BLL.Models;
+using techburst_BLL.Utilities;
 
 namespace techburst_BLL.Collections
 {
     public class TagCollection
     {
         private List<TagDto> _dtos;
-        private List<TagModel> _tags;
+        private List<ITagModel> _tags;
         private TagModel _tag;
 
         public TagCollection()
         {
-            _tags = new List<TagModel>();
+            _tags = new List<ITagModel>();
         }
-        public List<TagModel> GetAllTags()
+
+        public void Create(ITagModel tag)
         {
-            _dtos = DalFactory.CategoryHandler.GetAllTags();
+            if (tag != null)
+            {
+                var dto = ModelConverter.ConvertTagModelToDto(tag);
+                DalFactory.TagHandler.Create(dto);
+            }
+        }
+        public List<ITagModel> GetAllTags()
+        {
+            _dtos = DalFactory.TagHandler.GetAllTags();
             foreach (var dto in _dtos)
             {
                 _tags.Add(_tag = new TagModel() {Id = dto.Id, Name = dto.Name});

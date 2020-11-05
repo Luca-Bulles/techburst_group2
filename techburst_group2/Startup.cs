@@ -32,7 +32,7 @@ namespace techburst_group2
             services.AddControllersWithViews();
             services.AddScoped<IDBConnectionHandler, DBConnectionHandler>();
             services.AddScoped<IArticleHandler, ArticleHandler>();
-            services.AddScoped<ICategoryHandler, CategoryHandler>();
+            services.AddScoped<ITagHandler, TagHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

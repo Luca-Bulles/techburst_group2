@@ -8,6 +8,7 @@ namespace Interfaces
 {
     public interface ITagHandler
     {
+        void Create(TagDto tag);
         List<TagDto> GetAllTags();
         TagDto GetTagById(int id);
     }

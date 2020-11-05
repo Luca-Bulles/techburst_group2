@@ -38,10 +38,6 @@ namespace techburst_BLL
         }
 
 
-        public Tag GetCategory(int categoryId)
-        {
-            return DalFactory.CategoryHandler.GetCategoryById(categoryId);
-        }
 
     }
 }

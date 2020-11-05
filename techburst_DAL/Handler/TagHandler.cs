@@ -20,6 +20,21 @@ namespace techburst_DAL.Handler
             _dbCon = dbCon;
         }
 
+        public void Create(TagDto tag)
+        {
+            using (_dbCon.Open())
+            {
+                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Tag] (TagName) VALUES (@TagName)";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
+                {
+                    command.Parameters.AddWithValue("@TagName", tag.Name);
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
+
         public List<TagDto> GetAllTags()
         {
             _tags = new List<TagDto>();
