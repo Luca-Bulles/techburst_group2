@@ -11,7 +11,7 @@ using techburst_BLL.Utilities;
 
 namespace techburst_BLL.Collections
 {
-    public class TagCollection
+    public class TagCollection : ITagCollection
     {
         private List<TagDto> _dtos;
         private List<ITagModel> _tags;
@@ -40,7 +40,7 @@ namespace techburst_BLL.Collections
             return _tags;
         }
 
-        public TagModel GetById(int id)
+        public ITagModel GetById(int id)
         {
             _tag = null;
 

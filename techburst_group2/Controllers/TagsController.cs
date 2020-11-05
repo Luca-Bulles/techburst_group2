@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Interfaces.BLL;
 using Microsoft.AspNetCore.Mvc;
 using techburst_group2.Models;
 
@@ -9,9 +10,12 @@ namespace techburst_group2.Controllers
 {
     public class TagsController : Controller
     {
-        public TagsController()
+        private ITagCollection _tagColl;
+        private ITagModel _tagModel;
+        public TagsController(ITagCollection tagColl, ITagModel tagModel)
         {
-            
+            _tagColl = tagColl;
+            _tagModel = tagModel;
         }
         public IActionResult Create()
         {
