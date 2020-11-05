@@ -40,14 +40,12 @@ namespace techburst_DAL.Handler
                                 Id = reader.GetInt32(0),
                                 Name = reader.GetString(1)
                             };
-                            /*unParsedCategory = reader.GetString(i);
-                            parsedCategory = Enum.Parse<Tag>(unParsedCategory);*/
+
                             _tags.Add(tag);
 
                         }
                     }
 
-                    connection.Close();
                     return _tags;
                 }
             }
@@ -62,7 +60,6 @@ namespace techburst_DAL.Handler
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@TagID", id);
-                    //connection.Open();
                     var reader = command.ExecuteReader();
 
                     while (reader.Read())
@@ -73,8 +70,6 @@ namespace techburst_DAL.Handler
                             Name = reader.GetString(1)
                         };
                     }
-
-                    connection.Close();
                 }
 
                 return tag;
