@@ -1,7 +1,16 @@
-﻿bg-rockstar {
+﻿/*
+    Rockstar Yellow : #FFE000
+    Rockstar Grey: #232323
+*/
+
+.bg-rockstar {
     background-color: #FFE000 !important;
 }
 
-rockstar-text{
+a.rockstar-text{
     color: #232323 !important;
+}
+
+a.rockstar-text:hover{
+    color: #000000 !important;
 }
