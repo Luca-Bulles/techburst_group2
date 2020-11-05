@@ -24,7 +24,7 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open())
             {
-                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Tag] (TagName) VALUES (@TagName)";
+                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Tags] (TagName) VALUES (@TagName)";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     command.Parameters.AddWithValue("@TagName", tag.Name);
@@ -40,7 +40,7 @@ namespace techburst_DAL.Handler
             _tags = new List<TagDto>();
             using (SqlConnection connection = _dbCon.Open())
             {
-                string query = $"SELECT * FROM Subject;";
+                string query = $"SELECT TagID, TagName FROM Tags;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     //connection.Open();

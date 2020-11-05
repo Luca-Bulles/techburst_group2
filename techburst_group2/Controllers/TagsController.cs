@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Interfaces.BLL;
 using Microsoft.AspNetCore.Mvc;
+using techburst_BLL.Models;
 using techburst_group2.Models;
 
 namespace techburst_group2.Controllers
@@ -24,7 +25,7 @@ namespace techburst_group2.Controllers
 
         public void CreateTag(TagViewModel tvm)
         {
-
+            _tagColl.Create(_tagModel = new TagModel() {Id = tvm.Id, Name = tvm.Name});
         }
 
         public IActionResult Edit(int id)
