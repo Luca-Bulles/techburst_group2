@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using Entities.DTO;
 using Entities.Enums;
 using Factories;
+using Interfaces.BLL;
 using Microsoft.AspNetCore.Mvc;
 using techburst_BLL;
 using techburst_BLL.Collections;
 using techburst_group2.Models;
+using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
@@ -18,12 +20,14 @@ namespace techburst_group2.Controllers
         private ArticleCollection _artColl;
         private List<Models.ArticleModel> _articles;
         private List<TagDto> _tags;
+        private IArticleModel _article;
 
-        public ArticlesController()
+        public ArticlesController(IArticleModel article)
         {
             _artColl = new ArticleCollection();
             _articles = new List<Models.ArticleModel>();
             _tags = new List<TagDto>();
+            _article = article;
         }
         public IActionResult Index()
         {
@@ -37,19 +41,16 @@ namespace techburst_group2.Controllers
 
         public void Submit(Models.ArticleModel article)
         {
-            techburst_BLL.ArticleModel model = new techburst_BLL.ArticleModel()
-            {
-                Author = article.Author,
-                DateCreated = article.CreatedAt,
-                ArticleText = article.Content,
-                Title = article.Title,
-                Images = article.Images,
-                LastEdited = article.LastEdited,
-                Categories = article.Tags,
-                Draft = article.Draft
+            _article.Author = article.Author;
+            _article.DateCreated = article.CreatedAt;
+            _article.ArticleText = article.Content;
+            _article.Title = article.Title;
+            _article.Images = article.Images;
+            _article.LastEdited = article.LastEdited;
+            _article.Categories = ViewModelConverter.ConvertTagViewModelList(article.Tags); 
+            _article.Draft = article.Draft;
 
-            };
-            _artColl.Create(model);
+                _artColl.Create(_article);
              RedirectToAction("index");
         }
 
@@ -75,7 +76,7 @@ namespace techburst_group2.Controllers
 
             foreach (var model in result)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, Tags = model.Categories, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, /*Tags = model.Categories,*/ CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
                 _articles.Add(viewModel);
             }
 

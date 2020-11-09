@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using Entities.Enums;
+using techburst_group2.Models;
 
 namespace techburst_group2.Models
 {
@@ -12,13 +13,14 @@ namespace techburst_group2.Models
     {
         public ArticleModel()
         {
-
+            Tags = new List<TagViewModel>();
         }
         public ArticleModel(string title, string content, string author)
         {
             Title = title;
             Content = content;
             Author = author;
+            Tags = new List<TagViewModel>();
         }
         public int Id { get; set; }
         [Required]
@@ -30,7 +32,7 @@ namespace techburst_group2.Models
         [Required]
         public int AuthorId { get; set; }
         [Required]
-        public List<Tag> Tags { get; set; }
+        public List<TagViewModel> Tags { get; set; }
         [Required]
         public string Images { get; set; }
         [Required]
