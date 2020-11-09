@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Policy;
 using System.Threading.Tasks;
@@ -13,19 +14,28 @@ namespace techburst_group2.Models
         {
 
         }
-        public ArticleModel(string title, string content, string author)
+        public ArticleModel(string title, string content, int author)
         {
             Title = title;
             Content = content;
             Author = author;
         }
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Content { get; set; }
-        public string Author { get; set; }
+        [Required]
+        public int Author { get; set; }
+        [Required]
         public List<Tag> Tags { get; set; }
+        [Required]
+        public string Images { get; set; }
+        [Required]
         public DateTime CreatedAt { get; set; }
+        [Required]
         public DateTime LastEdited { get; set; }
-        public string Subject { get; set; }
+        [Required]
+        public double Draft { get; set; }
     }
 }

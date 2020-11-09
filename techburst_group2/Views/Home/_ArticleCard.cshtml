@@ -1,83 +1,78 @@
 ﻿@model ArticleModel
 @{var articles = ViewData["Articles"] as List<ArticleModel>;}
 
-<div id="carouselControls" class="carousel slide" data-ride="carousel" style="width:100%">
+
+<div id="carouselControls" class="carousel slide" data-ride="carousel">
+    <!--indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        <li data-target="#multi-item-example" data-slide-to="2"></li>
+    </ol>
+    <!--indicators-->
+    <!--carousel slides-->
     <div class="carousel-inner">
-        <div class="container carousel-item active m-auto">
-            <div class="row">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-                    <div class="card mb-4" >
-                        <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
-                        <div class="card-img-overlay">
-                            @foreach (var tag in articles[0].Tags)
-                            {
-                                <a asp-action="GetArticlesByTag" asp-controller="Article" class="btn btn-dark btn-sm text-light">@tag.ToString()</a>
-                            }
+        @for (int c = 0; c < (articles.Count + 2) / 3; c++)
+        {
+            string classname;
+            if (c == 0)
+            {
+                classname = "carousel-item active";
+            }
+            else
+            {
+                classname = "carousel-item";
+            }
+            <div class="@classname">
+                <div class="row">
+                    @for (int i = c * 3; i < 3 * (c + 1); i++)
+                    {
+                        if (i >= articles.Count)
+                        {
+                            break;
+                        }
+                        string content = articles[i].Content;
+                        if (content.Length > 160)
+                        {
+                            content = content.Substring(0, 160) + "...";
+                        }
+                        <!--carousel cards-->
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                            <div class="card">
+                                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                                <div class="card-img-overlay">
+                                    @foreach (var tag in articles[i].Tags)
+                                    {
+                                        <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
+                                    }
+                                    @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = articles[i].Id }, null)
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">@articles[i].Title</h4>
+                                    <small class="text-muted cat">
+                                        <i class="far fa-clock text-info"></i> Geschreven door: @articles[i].Author
+                                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                        <i class="far fa-clock text-info"></i>
+                                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                                    </small>
+                                    <p class="card-text">@content</p>
+                                </div>
+                                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                                    <div class="views">
+                                        @articles[i].CreatedAt
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h4 class="card-title">@articles[0].Title</h4>
-                            <small class="text-muted cat">
-                                <i class="far fa-clock text-info"></i> Geschreven door: @articles[0].Author
-                                <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
-                                <i class="far fa-clock text-info"></i>
-                                <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
-                            </small>
-                            <p class="card-text">@articles[0].Content</p>
-                        </div>
-                        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                            <div class="views">
-                                @articles[0].CreatedAt
-                        </div>
-                        <div class="stats">
-                            <i class="far fa-eye"></i>
-                            <i class="far fa-comment"></i> 12
-                        </div>
-
-                    </div>
+                        <!--carousel cards-->
+                    }
                 </div>
             </div>
-        </div>
+        }
     </div>
-
-    @for (int i = 1; i < articles.Count; i++)
-    {
-        <div class="container carousel-item">
-            <div class="row">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-4 ">
-                    <div class="card">
-                        <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
-                        <div class="card-img-overlay">
-                            @foreach (var tag in articles[i].Tags)
-                            {
-                                <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
-                            }
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">@articles[i].Title</h4>
-                            <small class="text-muted cat">
-                                <i class="far fa-clock text-info"></i> Geschreven door: @articles[i].Author
-                                <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
-                                <i class="far fa-clock text-info"></i>
-                                <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
-                            </small>
-                            <p class="card-text">@articles[i].Content</p>
-                        </div>
-                        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                            <div class="views">
-                                @articles[i].CreatedAt
-                        </div>
-                        <div class="stats">
-                            <i class="far fa-eye"></i>
-                            <i class="far fa-comment"></i> 12
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-}
+    <!--carousel stlides-->
 </div>
+<!--carousel controls-->
 <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -86,4 +81,4 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
 </a>
-</div>
+<!--carousel controls-->

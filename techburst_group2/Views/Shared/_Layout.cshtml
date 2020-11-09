@@ -6,12 +6,13 @@
     <title>@ViewData["Title"] - techburst_group2</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-cyborg.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Sauce.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 bg-warning">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-rockstar border-bottom box-shadow mb-3 bg-warning">
             <div class="container">
-                <img src="https://cdn.discordapp.com/attachments/560772369770217472/692691098941915176/logo.png" width="75" height="75" />
+                <img src="https://cdn.discordapp.com/attachments/420292690127618089/771284704477184000/RST-073-logo-Team-Rockstars-IT.png" width="75" height="75" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Team Up IT</a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,8 +29,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
+                       
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddArticle">AddArticle</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminIndex">AdminIndex</a>
                         </li>
                     </ul>
                 </div>
@@ -53,11 +55,11 @@
     }
 
 
-    <footer class="border-top footer text-muted">
+    @*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - techburst_group2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
