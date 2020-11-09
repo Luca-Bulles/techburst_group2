@@ -49,8 +49,7 @@ namespace techburst_DAL.Handler
 
                     while (reader.Read())
                     {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
+                        
                             TagDto tag = new TagDto()
                             {
                                 Id = reader.GetInt32(0),
@@ -59,7 +58,7 @@ namespace techburst_DAL.Handler
 
                             _tags.Add(tag);
 
-                        }
+                        
                     }
 
                     return _tags;
