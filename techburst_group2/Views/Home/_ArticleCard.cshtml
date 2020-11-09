@@ -45,7 +45,7 @@
                                     {
                                         <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
                                     }
-                                    @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = articles[i].Id }, null)
+                                    
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">@articles[i].Title</h4>
@@ -61,6 +61,9 @@
                                     <div class="views">
                                         @articles[i].CreatedAt
                                     </div>
+                                    <button class="bg-rockstar btn btn-primary">
+                                        @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = articles[i].Id }, null)
+                                    </button>
                                 </div>
                             </div>
                         </div>
