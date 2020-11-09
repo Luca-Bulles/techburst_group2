@@ -68,23 +68,6 @@ namespace techburst_group2.Controllers
             return View();
         }
 
-        public List<TagModel> GetAllTags()
-        {
-            _tags = DalFactory.CategoryHandler.GetAllTags();
-            List<TagModel> tagViewModels = new List<TagModel>();
-
-            foreach (var dto in _tags)
-            {
-                TagModel tag = new TagModel()
-                {
-                    Id = dto.Id,
-                    Name = dto.Name
-                };
-
-                tagViewModels.Add(tag);
-            }
-            return tagViewModels;
-        }
 
         public List<Models.ArticleModel> GetArticlesByTag(int tagId)
         {

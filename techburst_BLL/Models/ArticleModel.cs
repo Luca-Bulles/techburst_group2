@@ -12,7 +12,8 @@ namespace techburst_BLL
         public List<Tag> Categories { get; set; }
         public int CategoryId { get; set; }
         public int Id { get; set; }
-        public int Author { get; set; }
+        public string Author { get; set; }
+        public int AuthorId { get; set; }
         public string Title { get; set; }
         public string ArticleText { get; set; }
         public DateTime DateCreated { get; set; }
@@ -37,10 +38,6 @@ namespace techburst_BLL
         }
 
 
-        public Tag GetCategory(int categoryId)
-        {
-            return DalFactory.CategoryHandler.GetCategoryById(categoryId);
-        }
 
     }
 }
