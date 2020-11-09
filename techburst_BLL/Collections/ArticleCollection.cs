@@ -26,7 +26,7 @@ namespace techburst_BLL
             foreach (var dto in result)
             {
                 var model = ModelConverter.ConvertDtoToModel(dto);
-                model.Categories.Add(model.GetCategory(model.CategoryId));
+                //model.Categories.Add(model.GetCategory(model.CategoryId));
                 _articles.Add(model);
             }
 

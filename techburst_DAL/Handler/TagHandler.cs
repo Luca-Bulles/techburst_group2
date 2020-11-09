@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using Entities.DTO;
 using Entities.Enums;
@@ -9,24 +10,39 @@ using techburst_Interface.Handler_Interfaces;
 
 namespace techburst_DAL.Handler
 {
-    public class CategoryHandler : ICategoryHandler
+    public class TagHandler : ITagHandler
     {
         private static string connectionString = "";
         private IDBConnectionHandler _dbCon;
         private List<TagDto> _tags;
 
-        public CategoryHandler(IDBConnectionHandler dbCon)
+        public TagHandler(IDBConnectionHandler dbCon)
         {
             _dbCon = dbCon;
+        }
+
+        public void Create(TagDto tag)
+        {
+            using (_dbCon.Open())
+            {
+                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Tags] (TagName) VALUES (@TagName)";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
+                {
+                    command.Parameters.AddWithValue("@TagName", tag.Name);
+
+                    command.ExecuteNonQuery();
+
+                }
+            }
         }
 
         public List<TagDto> GetAllTags()
         {
             _tags = new List<TagDto>();
-            using (SqlConnection connection = _dbCon.Open())
+            using (_dbCon.Open())
             {
-                string query = $"SELECT * FROM Subject;";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = $"SELECT * FROM [dbi434548_rockstars].[dbo].[Tags]";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     //connection.Open();
                     var reader = command.ExecuteReader();
@@ -40,42 +56,39 @@ namespace techburst_DAL.Handler
                                 Id = reader.GetInt32(0),
                                 Name = reader.GetString(1)
                             };
-                            /*unParsedCategory = reader.GetString(i);
-                            parsedCategory = Enum.Parse<Tag>(unParsedCategory);*/
+
                             _tags.Add(tag);
 
                         }
                     }
 
-                    connection.Close();
                     return _tags;
                 }
             }
         }
 
-        public Tag GetCategoryById(int id)
+        public TagDto GetTagById(int id)
         {
-            string unParsedCategory = "";
-            Tag parsedCategory;
+            TagDto tag = null;
             using (SqlConnection connection = _dbCon.Open())
             {
-                string query = $"SELECT SubjectName FROM Subject WHERE SubjectId = {id};";
+                string query = $"SELECT SubjectName FROM Subject WHERE SubjectId = @TagID ;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ArticleID", id);
-                    //connection.Open();
+                    command.Parameters.AddWithValue("@TagID", id);
                     var reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        unParsedCategory = reader.GetString(0);
+                        tag = new TagDto()
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1)
+                        };
                     }
-
-                    connection.Close();
-                    parsedCategory = Enum.Parse<Tag>(unParsedCategory);
                 }
 
-                return parsedCategory;
+                return tag;
             }
         }
     }
