@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Interfaces;
 using Interfaces.BLL;
+using Interfaces.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,6 +39,7 @@ namespace techburst_group2
             services.AddScoped<ITagHandler, TagHandler>();
             services.AddScoped<ITagCollection, TagCollection>();
             services.AddScoped<ITagModel, TagModel>();
+            services.AddScoped<IUserHandler, UserHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +48,7 @@ namespace techburst_group2
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {
