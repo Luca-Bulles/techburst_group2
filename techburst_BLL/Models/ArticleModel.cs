@@ -10,7 +10,6 @@ namespace techburst_BLL
 {
     public class ArticleModel : IArticleModel
     {
-        public List<ITagModel> Categories { get; set; }
         public int TagID { get; set; }
         public string TagName { get; set; }
         public int Id { get; set; }
@@ -22,11 +21,6 @@ namespace techburst_BLL
         public double Draft { get; set; }
         public DateTime LastEdited { get; set; }
         public string Images { get; set; }
-       
-        public ArticleModel()
-        {
-            Categories = new List<ITagModel>();
-        }
 
         public void Delete(int id)
         {

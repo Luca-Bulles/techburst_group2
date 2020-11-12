@@ -6,7 +6,6 @@ namespace Interfaces.BLL
 {
     public interface IArticleModel
     {
-        List<ITagModel> Categories { get; set; }
         int TagID { get; set; }
         string TagName { get; set; }
         int Id { get; set; }
