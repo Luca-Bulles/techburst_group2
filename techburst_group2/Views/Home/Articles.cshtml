@@ -26,6 +26,10 @@
             {
                 @foreach (var article in Model)
                 {
+                    if (article.Content.Length > 160)
+                    {
+                        article.Content = article.Content.Substring(0, 160) + "...";
+                    }
                 <div class="card">
 
                     <a href='@Url.Action("ArticlePage", "Article", new { id = article.Id }, null)'>
