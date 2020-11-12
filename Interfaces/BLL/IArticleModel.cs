@@ -8,6 +8,7 @@ namespace Interfaces.BLL
     {
         List<ITagModel> Categories { get; set; }
         int TagID { get; set; }
+        string TagName { get; set; }
         int Id { get; set; }
         string Author { get; set; }
         int AuthorId { get; set; }
