@@ -106,9 +106,14 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open())
             {
-                string query = "DELETE FROM Articles WHERE ArticleID = @ArticleID";
+                string query = "BEGIN TRANSACTION [T2]; " +
+                               "DELETE FROM ArticleTag WHERE ArticleID = @ArticleTagID;" +
+                               "DELETE FROM Articles WHERE ArticleID = @ArticleID;" +
+                               "COMMIT TRANSACTION [T2]";
+
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
+                    command.Parameters.AddWithValue("@ArticleTagID", ID);
                     command.Parameters.AddWithValue("@ArticleID", ID);
                     command.ExecuteNonQuery();
                 }

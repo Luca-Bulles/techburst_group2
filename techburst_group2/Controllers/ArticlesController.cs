@@ -41,7 +41,7 @@ namespace techburst_group2.Controllers
             return View();
         }
 
-        public void Submit(Models.ArticleModel article)
+        public IActionResult Submit(Models.ArticleModel article)
         {
             _article.Author = article.Author;
             _article.DateCreated = article.CreatedAt;
@@ -52,8 +52,8 @@ namespace techburst_group2.Controllers
             _article.TagID = _tagColl.GetByName(article.TagName).Id;
             _article.Draft = article.Draft;
 
-                _artColl.Create(_article);
-             RedirectToAction("index");
+            _artColl.Create(_article);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Create()
@@ -68,7 +68,8 @@ namespace techburst_group2.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View();
+            _article.Delete(id);
+            return RedirectToAction("AdminIndex", "Home");
         }
 
 
