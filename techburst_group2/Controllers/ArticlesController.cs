@@ -78,7 +78,7 @@ namespace techburst_group2.Controllers
 
             foreach (var model in result)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, /*Tags = model.Categories,*/ CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
                 _articles.Add(viewModel);
             }
 

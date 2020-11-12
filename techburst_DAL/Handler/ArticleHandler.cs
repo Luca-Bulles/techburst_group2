@@ -21,7 +21,11 @@ namespace techburst_DAL.Handler
             var articles = new List<ArticleDto>();
             using (_dbCon.Open())
             {
-                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[Articles]";
+                string query =
+                    "SELECT Articles.ArticleID, Articles.AccountID, Articles.Title, Articles.ArticleText, Articles.DateCreated, Articles.Draft, Articles.LastEdited, Articles.Images, a1.TagID, t.TagName " +
+                    "FROM Articles " +
+                    "INNER JOIN ArticleTag a1 on Articles.ArticleID = a1.ArticleID " +
+                    "INNER JOIN Tags t on a1.TagID = t.TagID;";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     var reader = command.ExecuteReader();
@@ -38,7 +42,8 @@ namespace techburst_DAL.Handler
                            Draft = reader.GetDouble(5),
                            LastEdited = reader.GetDateTime(6),
                            Images = reader.GetString(7),
-                           //TagID = reader.GetInt32(8)
+                           TagID = reader.GetInt32(8),
+                           TagName = reader.GetString(9)
                         };
 
                         articles.Add(ArticleDTO);

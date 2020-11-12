@@ -43,7 +43,7 @@
                             <div class="card">
                                 <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
                                 <div class="card-img-overlay">
-                                    <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(articles[i].TagID)</a>
+                                    <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(articles[i].TagID).Name</a>
                                     @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = articles[i].Id }, null)
                                 </div>
                                 <div class="card-body">
