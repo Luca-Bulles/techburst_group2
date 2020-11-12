@@ -16,5 +16,17 @@ namespace techburst_BLL.Collections
             var dto = ModelConverter.ConvertUserModelToDto(model);
             DalFactory.UserHandler.Create(dto);
         }
+
+        public bool Login(UserModel model)
+        {
+            var dto = ModelConverter.ConvertUserModelToDto(model);
+            return DalFactory.UserHandler.Login(dto);
+        }
+
+        public UserModel GetUserFromEmail(string email)
+        {
+            var model = ModelConverter.ConvertUserDtoToModel(DalFactory.UserHandler.GetUserFromEmail(email));
+            return model;
+        }
     }
 }

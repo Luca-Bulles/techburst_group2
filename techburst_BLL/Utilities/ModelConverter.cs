@@ -15,6 +15,9 @@ namespace techburst_BLL.Utilities
         private static ArticleDto _dto;
         private static TagDto _tagDto;
         private static UserDto _userDto;
+        private static UserModel _userModel;
+        private static RoleModel _roleModel;
+        private static RoleDto _roleDto;
         public static ArticleModel ConvertDtoToModel(ArticleDto dto)
         {
             _model = new ArticleModel()
@@ -53,6 +56,39 @@ namespace techburst_BLL.Utilities
                 UserId = model.UserId
             };
             return _userDto;
+        }
+
+        public static UserModel ConvertUserDtoToModel(UserDto dto)
+        {
+            _userModel = new UserModel()
+            {
+                Email = dto.Email,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Password = dto.Password,
+                UserId = dto.UserId
+            };
+            return _userModel;
+        }
+
+        public static RoleDto ConvertRoleModelToDto(RoleModel model)
+        {
+            _roleDto = new RoleDto()
+            {
+                Id = model.RoleId,
+                Name = model.RoleName
+            };
+            return _roleDto;
+        }
+
+        public static RoleModel ConvertRoleDtoToModel(RoleDto dto)
+        {
+            _roleModel = new RoleModel()
+            {
+                RoleId = dto.Id,
+                RoleName = dto.Name
+            };
+            return _roleModel;
         }
     }
 }

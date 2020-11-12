@@ -11,6 +11,7 @@ namespace Factories
         private static IArticleHandler _articleHandler;
         private static ITagHandler _tagHandler;
         private static IUserHandler _userHandler;
+        private static IRoleHandler _roleHandler;
         public static IArticleHandler ArticleHandler
         {
             get
@@ -47,6 +48,19 @@ namespace Factories
                 }
 
                 return _tagHandler;
+            }
+        }
+
+        public static IRoleHandler RoleHandler
+        {
+            get
+            {
+                if (_roleHandler == null)
+                {
+                    _roleHandler = new RoleHandler(new DBConnectionHandler());
+                }
+
+                return _roleHandler;
             }
         }
     }

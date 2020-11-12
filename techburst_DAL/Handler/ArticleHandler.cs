@@ -38,7 +38,7 @@ namespace techburst_DAL.Handler
                            Draft = reader.GetDouble(5),
                            LastEdited = reader.GetDateTime(6),
                            Images = reader.GetString(7),
-                           Categories = reader.GetInt32(8)
+                           //Categories = reader.GetInt32(8)
                         };
 
                         articles.Add(ArticleDTO);

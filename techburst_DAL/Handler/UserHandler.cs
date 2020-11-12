@@ -32,7 +32,7 @@ namespace techburst_DAL.Handler
                     {
                         UserDto dto = new UserDto()
                         {
-                            UserId = reader.GetString(0),
+                            UserId = reader.GetInt32(0),
                             FirstName = reader.GetString(1),
                             LastName = reader.GetString(2),
                             Email = reader.GetString(3),
@@ -70,7 +70,7 @@ namespace techburst_DAL.Handler
             using (_dbCon.Open())
             {
                 string query =
-                    "UPDATE User SET FirstName = @FirstName, LastName = @Lastname, Email = @Email, Password = @Password WHERE UserId = @UserId";
+                    "UPDATE [dbi434548_rockstars].[dbo].[User] SET FirstName = @FirstName, LastName = @Lastname, Email = @Email, Password = @Password WHERE UserId = @UserId";
                 using (SqlCommand update = new SqlCommand(query, _dbCon.connection))
                 {
                     update.Parameters.AddWithValue("@UserId", user.UserId);
@@ -89,13 +89,69 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open())
             {
-                string query = "DELETE FROM User WHERE UserId = @UserId";
+                string query = "DELETE FROM [dbi434548_rockstars].[dbo].[User] WHERE UserId = @UserId";
                 using (SqlCommand delete = new SqlCommand(query, _dbCon.connection))
                 {
                     delete.Parameters.AddWithValue("@UserId", id);
                     delete.ExecuteNonQuery();
                 }
                 _dbCon.Close();
+            }
+        }
+
+        public bool Login(UserDto dto)
+        {
+            using (_dbCon.Open())
+            {
+                string query = "SELECT COUNT(Email) FROM [dbi434548_rockstars].[dbo].[User] WHERE Email = @Email AND Password = @Password";
+                using (SqlCommand login = new SqlCommand(query, _dbCon.connection))
+                {
+                    login.Parameters.AddWithValue("@Email", dto.Email);
+                    login.Parameters.AddWithValue("@Password", dto.Password);
+                    var result = (int) login.ExecuteScalar();
+                    _dbCon.Close();
+                    return result != 0;
+                }
+            }
+        }
+
+        public UserDto GetUserFromEmail(string email)
+        {
+            UserDto dto = new UserDto();
+            using (_dbCon.Open())
+            {
+                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[User] WHERE Email = @Email";
+                using (SqlCommand getUser = new SqlCommand(query, _dbCon.connection))
+                {
+                    getUser.Parameters.AddWithValue("@Email", email);
+                    var reader = getUser.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        dto.UserId = reader.GetInt32(0);
+                        dto.FirstName = reader.GetString(1);
+                        dto.LastName = reader.GetString(2);
+                        dto.Email = reader.GetString(3);
+                        dto.Password = reader.GetString(4);
+                    }
+                    _dbCon.Close();
+                }
+
+                return dto;
+            }
+        }
+
+        public bool CheckIfEmailExists(string email)
+        {
+            using (_dbCon.Open())
+            {
+                string query = "SELECT COUNT (Email) FROM [dbi434548_rockstars].[dbo].[User] WHERE Email = @Email";
+                using (SqlCommand checkEmail = new SqlCommand(query, _dbCon.connection))
+                {
+                    checkEmail.Parameters.AddWithValue("@Email", email);
+                    var result = (int) checkEmail.ExecuteScalar();
+                    _dbCon.Close();
+                    return result != 0;
+                }
             }
         }
     }
