@@ -21,13 +21,15 @@ namespace techburst_group2.Controllers
         private List<Models.ArticleModel> _articles;
         private List<TagDto> _tags;
         private IArticleModel _article;
+        private ITagCollection _tagColl;
 
-        public ArticlesController(IArticleModel article)
+        public ArticlesController(IArticleModel article, ITagCollection tagColl)
         {
             _artColl = new ArticleCollection();
             _articles = new List<Models.ArticleModel>();
             _tags = new List<TagDto>();
             _article = article;
+            _tagColl = tagColl;
         }
         public IActionResult Index()
         {
@@ -47,7 +49,7 @@ namespace techburst_group2.Controllers
             _article.Title = article.Title;
             _article.Images = article.Images;
             _article.LastEdited = article.LastEdited;
-            _article.Categories = ViewModelConverter.ConvertTagViewModelList(article.Tags); 
+            _article.TagID = _tagColl.GetByName(article.TagName).Id;
             _article.Draft = article.Draft;
 
                 _artColl.Create(_article);

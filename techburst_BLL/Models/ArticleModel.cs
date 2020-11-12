@@ -11,7 +11,7 @@ namespace techburst_BLL
     public class ArticleModel : IArticleModel
     {
         public List<ITagModel> Categories { get; set; }
-        public int CategoryId { get; set; }
+        public int TagID { get; set; }
         public int Id { get; set; }
         public string Author { get; set; }
         public int AuthorId { get; set; }
