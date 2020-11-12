@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using Entities.Enums;
 using Factories;
+using Interfaces.BLL;
 using techburst_BLL.Utilities;
 
 namespace techburst_BLL
 {
     public class ArticleCollection
     {
-        private List<ArticleModel> _articles;
+        private List<IArticleModel> _articles;
 
         //@TODO: Add validation for user type in later iteration.
 
-        public void Create(ArticleModel article)
+        public void Create(IArticleModel article)
         {
             var result = ModelConverter.ConvertModelToDto(article);
             DalFactory.ArticleHandler.Create(result);
         }
 
-        public List<ArticleModel> GetAllArticles()
+        public List<IArticleModel> GetAllArticles()
         {
             var result = DalFactory.ArticleHandler.GetAll();
-            _articles = new List<ArticleModel>();
+            _articles = new List<IArticleModel>();
 
             foreach (var dto in result)
             {
@@ -33,7 +34,7 @@ namespace techburst_BLL
             return _articles;
         }
 
-        public List<ArticleModel> GetArticlesByTag(int tagId)
+        public List<IArticleModel> GetArticlesByTag(int tagId)
         {
             var dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
 

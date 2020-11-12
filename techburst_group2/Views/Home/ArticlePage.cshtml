@@ -1,0 +1,15 @@
+﻿@inject ITagCollection TagCollection
+@using Interfaces.BLL
+@model ArticleModel
+
+
+
+<h1>@Html.DisplayFor(model => model.Title)</h1>
+<p>
+    tags:
+    @foreach (var tag in TagCollection.GetAllTags())
+    {
+        @tag
+    }
+</p>
+<p>@Html.DisplayFor(model => model.Content)</p>

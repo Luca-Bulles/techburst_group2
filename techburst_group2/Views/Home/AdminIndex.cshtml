@@ -26,8 +26,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Images)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tags)
+            <th> <!--Temporary display for functionality, fix later-->
+                @Html.DisplayNameFor(model => model.TagID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedAt)
@@ -58,7 +58,7 @@
         @Html.DisplayFor(modelItem => item.Images)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.Tags)
+        @Html.DisplayFor(modelItem => item.TagID)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.CreatedAt)
