@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using techburst_BLL;
 using techburst_BLL.Collections;
 using techburst_BLL.Models;
 using techburst_DAL.Handler;
@@ -34,7 +35,10 @@ namespace techburst_group2
         {
             services.AddControllersWithViews();
             services.AddScoped<IDBConnectionHandler, DBConnectionHandler>();
+
             services.AddScoped<IArticleHandler, ArticleHandler>();
+            services.AddScoped<IArticleModel, ArticleModel>();
+
             services.AddScoped<ITagHandler, TagHandler>();
             services.AddScoped<ITagCollection, TagCollection>();
             services.AddScoped<ITagModel, TagModel>();
