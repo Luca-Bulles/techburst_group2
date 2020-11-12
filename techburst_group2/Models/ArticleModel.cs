@@ -14,11 +14,13 @@ namespace techburst_group2.Models
         public ArticleModel()
         {
         }
-        public ArticleModel(string title, string content, string author)
+        public ArticleModel(string title, string content, string author, string image)
         {
             Title = title;
             Content = content;
             Author = author;
+            Images = image;
+
         }
         public int Id { get; set; }
         [Required]
