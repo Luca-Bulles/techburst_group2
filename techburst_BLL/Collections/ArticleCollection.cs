@@ -4,10 +4,11 @@ using Entities.Enums;
 using Factories;
 using Interfaces.BLL;
 using techburst_BLL.Utilities;
+using techburst_Data_Access_Layer.DTO;
 
 namespace techburst_BLL
 {
-    public class ArticleCollection
+    public class ArticleCollection : IArticleCollection
     {
         private List<IArticleModel> _articles;
 
@@ -21,13 +22,12 @@ namespace techburst_BLL
 
         public List<IArticleModel> GetAllArticles()
         {
-            var result = DalFactory.ArticleHandler.GetAll();
+            List<ArticleDto> result = DalFactory.ArticleHandler.GetAll();
             _articles = new List<IArticleModel>();
 
             foreach (var dto in result)
             {
                 var model = ModelConverter.ConvertDtoToModel(dto);
-                //model.Categories.Add(model.GetCategory(model.CategoryId));
                 _articles.Add(model);
             }
 
@@ -36,7 +36,7 @@ namespace techburst_BLL
 
         public List<IArticleModel> GetArticlesByTag(int tagId)
         {
-            var dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
+            List<ArticleDto> dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
 
             foreach (var dto in dtoList)
             {
@@ -45,6 +45,21 @@ namespace techburst_BLL
             }
 
             return _articles;
+        }
+
+        public IArticleModel GetArticleById(int id)
+        {
+            IArticleModel article = null;
+            _articles = GetAllArticles();
+            foreach (var art in _articles)
+            {
+                if (art.Id == id)
+                {
+                    article = art;
+                }
+            }
+
+            return article;
         }
     }
 }
