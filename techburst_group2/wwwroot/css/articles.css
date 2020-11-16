@@ -16,3 +16,7 @@
 .dropdown {
     margin-bottom: 4px;
 }
+
+.border-yellow{
+    border-color: #ffd800 !important;
+}
