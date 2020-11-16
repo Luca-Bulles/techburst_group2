@@ -26,6 +26,7 @@ namespace techburst_DAL.Handler
                     "FROM Articles " +
                     "INNER JOIN ArticleTag a1 on Articles.ArticleID = a1.ArticleID " +
                     "INNER JOIN Tags t on a1.TagID = t.TagID;";
+
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     var reader = command.ExecuteReader();
@@ -61,7 +62,7 @@ namespace techburst_DAL.Handler
             {
                 string query = "BEGIN TRANSACTION [T1]; " +
                                "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] (AccountID, Title, ArticleText, DateCreated, Draft, LastEdited, Images) " +
-                               "VALUES (@AccountID, @Title, @ArticleText, @DateCreated, @Draft, @LastEdited, @Images); " +
+                               "VALUES (@AccountID, @Title, @ArticleText, CURRENT_TIMESTAMP, @Draft, CURRENT_TIMESTAMP, @Images); " +
                                "INSERT INTO [dbi434548_rockstars].[dbo].[ArticleTag] (TagID, ArticleID) " +
                                "VALUES (@TagID, IDENT_CURRENT('Articles')); " +
                                "COMMIT TRANSACTION [T1];";
@@ -71,13 +72,10 @@ namespace techburst_DAL.Handler
                     command.Parameters.AddWithValue("@AccountID", C1.AccountID);
                     command.Parameters.AddWithValue("@Title", C1.Title);
                     command.Parameters.AddWithValue("@ArticleText", C1.ArticleText);
-                    command.Parameters.AddWithValue("@DateCreated", C1.DateCreated);
                     command.Parameters.AddWithValue("@Draft", C1.Draft);
-                    command.Parameters.AddWithValue("@LastEdited", C1.LastEdited);
                     command.Parameters.AddWithValue("@Images", C1.Images);
                     command.Parameters.AddWithValue("@TagID", C1.TagID);
-                    
-                    
+
                     command.ExecuteNonQuery();
                 }
             }
@@ -108,9 +106,14 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open())
             {
-                string query = "DELETE FROM Articles WHERE ArticleID = @ArticleID";
+                string query = "BEGIN TRANSACTION [T2]; " +
+                               "DELETE FROM ArticleTag WHERE ArticleID = @ArticleTagID;" +
+                               "DELETE FROM Articles WHERE ArticleID = @ArticleID;" +
+                               "COMMIT TRANSACTION [T2]";
+
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
+                    command.Parameters.AddWithValue("@ArticleTagID", ID);
                     command.Parameters.AddWithValue("@ArticleID", ID);
                     command.ExecuteNonQuery();
                 }

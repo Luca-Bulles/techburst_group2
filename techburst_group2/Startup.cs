@@ -37,6 +37,7 @@ namespace techburst_group2
             services.AddScoped<IDBConnectionHandler, DBConnectionHandler>();
 
             services.AddScoped<IArticleHandler, ArticleHandler>();
+            services.AddScoped<IArticleCollection, ArticleCollection>();
             services.AddScoped<IArticleModel, ArticleModel>();
 
             services.AddScoped<ITagHandler, TagHandler>();
