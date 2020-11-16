@@ -1,4 +1,6 @@
 ﻿@model ArticleModel
+@using Interfaces.BLL
+@inject ITagCollection TagCollection
 @{var articles = ViewData["Articles"] as List<ArticleModel>;}
 
 
@@ -39,18 +41,11 @@
                         <!--carousel cards-->
                         <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                             <div class="card">
-                                @*<a href="@Url.Action("ArticlePage", "Articles", new { id = articles[i].Id }, null)">
-                                    <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
-                                </a>*@
-                                <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
+                                <img class="card-img" src="@articles[i].Images" alt="Cardphoto">
+                                <div class="card-img-overlay">
+                                    <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(articles[i].TagID).Name</a>
+                                </div>
                                 <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Articles", new { id = articles[i].Id }, null)"></a>
-                                @*<div class="card-img-overlay">
-                                    @foreach (var tag in articles[i].Tags)
-                                    {
-                                        <a href="#" class="btn btn-dark btn-sm text-light">@tag</a>
-                                    }
-                                    
-                                </div>*@
                                 <div class="card-body">
                                     <h4 class="card-title">@articles[i].Title</h4>
                                     <small class="text-muted cat">
@@ -65,9 +60,6 @@
                                     <div class="views">
                                         @articles[i].CreatedAt
                                     </div>
-                                    <button class="bg-rockstar btn btn-primary">
-                                        @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = articles[i].Id }, null)
-                                    </button>
                                 </div>
                             </div>
                         </div>
