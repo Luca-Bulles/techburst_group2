@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-rockstar border-bottom box-shadow mb-3 bg-warning">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-rockstar box-shadow mb-3">
             <div class="container">
                 <img src="https://cdn.discordapp.com/attachments/420292690127618089/771284704477184000/RST-073-logo-Team-Rockstars-IT.png" width="75" height="75" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Team Up IT</a>
@@ -24,32 +24,41 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Articles">Articles</a>
+                            <a class="nav-link rockstar-text" asp-area="" asp-controller="Home" asp-action="Articles">Articles</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link rockstar-text" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
-                       
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AdminIndex">AdminIndex</a>
+                            <a class="nav-link rockstar-text" asp-area="" asp-controller="Home" asp-action="AddArticle">AddArticle</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <partial name="_loginpartial"/>
+            <partial name="_loginpartial" />
         </nav>
     </header>
-    <div class="container">
+    @if (ViewBag.ArticlePage == null)
+    {
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
+    else
+    {
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+    }
 
-    @*<footer class="border-top footer text-muted">
+
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - techburst_group2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>*@
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

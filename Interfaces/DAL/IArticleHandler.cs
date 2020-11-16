@@ -9,5 +9,6 @@ namespace Interfaces
     public interface IArticleHandler : IHandler<ArticleDto>
     {
         List<ArticleDto> GetArticlesByTag(int id);
+        ArticleDto GetById(int id);
     }
 }

@@ -23,18 +23,22 @@
         </ul>
     </div>
 
-    <div class = "container">
+    <div class="container">
         <div class="card-columns">
             @if (Model != null)
             {
                 @foreach (var article in Model)
                 {
+                    if (article.Content.Length > 160)
+                    {
+                        article.Content = article.Content.Substring(0, 160) + "...";
+                    }
                     <div class="card">
-                        <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">
-                        <div class="card-img-overlay" href="">
-                            <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(article.TagID)</a>
-                            @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = article.Id }, null)
-                        </div>
+
+                        <a href='@Url.Action("ArticlePage", "Home", new { id = article.Id }, null)'>
+                            <img class="card-img" src="@article.Images" alt="Cardphoto">
+                        </a>
+
                         <div class="card-body">
                             <h4 asp-action="ArticlePage" class="card-title">@Html.DisplayFor(model => article.Title)</h4>
                             <small class="text-muted cat">
