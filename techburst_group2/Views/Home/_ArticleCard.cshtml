@@ -1,6 +1,6 @@
-﻿@using Interfaces.BLL
+﻿@model ArticleModel
+@using Interfaces.BLL
 @inject ITagCollection TagCollection
-@model ArticleModel
 @{var articles = ViewData["Articles"] as List<ArticleModel>;}
 
 
@@ -44,8 +44,8 @@
                                 <img class="card-img" src="@articles[i].Images" alt="Cardphoto">
                                 <div class="card-img-overlay">
                                     <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(articles[i].TagID).Name</a>
-                                    @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = articles[i].Id }, null)
                                 </div>
+                                <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Articles", new { id = articles[i].Id }, null)"></a>
                                 <div class="card-body">
                                     <h4 class="card-title">@articles[i].Title</h4>
                                     <small class="text-muted cat">
