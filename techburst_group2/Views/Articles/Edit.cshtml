@@ -32,6 +32,7 @@
                 <input asp-for="Draft" class="form-control" />
                 <span asp-validation-for="Draft" class="text-danger"></span>
             </div>
+            <div class="form-group"><input hidden asp-for="Id"/></div>
             <div class="form-group">
                 <input type="submit" value="Save" asp-action="CommitChanges" asp-controller="Articles" class="btn btn-primary" />
             </div>

@@ -64,12 +64,21 @@ namespace techburst_group2.Controllers
 
         public IActionResult Edit(int id)
         {
-            IArticleModel richModel = _artColl.GetById
-            return View();
+            IArticleModel richModel = _artColl.GetArticleById(id);
+            ArticleModel article = new ArticleModel();
+            article.Id = richModel.Id;
+            article.Title = richModel.Title;
+            article.Content = richModel.ArticleText;
+            article.Images = richModel.Images;
+            article.Author = richModel.Author;
+            article.CreatedAt = richModel.DateCreated;
+            article.LastEdited = richModel.LastEdited;
+            return View(article);
         }
 
         public IActionResult CommitChanges(ArticleModel articleViewModel)
         {
+            _article.Id = articleViewModel.Id;
             _article.Title = articleViewModel.Title;
             _article.ArticleText = articleViewModel.Content;
             _article.Images = articleViewModel.Images;
