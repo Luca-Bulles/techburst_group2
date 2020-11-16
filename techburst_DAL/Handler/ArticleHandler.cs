@@ -84,18 +84,16 @@ namespace techburst_DAL.Handler
 
         public void Update(ArticleDto E1)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (_dbCon.Open())
             {
-                string query = "UPDATE Articles SET Title = @Title, ArticleText = @ArticleText, DateCreated = @DateCreated, Draft = @Draft, LastEdited = @LastEdited, Images = @Images WHERE = ArticlesID = @ArticlesID ";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string query = "UPDATE Articles SET Title = @Title, ArticleText = @ArticleText, Draft = @Draft, LastEdited = CURRENT_TIMESTAMP, Images = @Images WHERE ArticleID = @ArticleID";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     command.Parameters.AddWithValue("@ArticleID", E1.ArticleID);
                     command.Parameters.AddWithValue("@AccountID", E1.AccountID);
                     command.Parameters.AddWithValue("@Title", E1.Title);
                     command.Parameters.AddWithValue("@ArticleText", E1.ArticleText);
-                    command.Parameters.AddWithValue("@DateCreated", E1.DateCreated);
                     command.Parameters.AddWithValue("@Draft", E1.Draft);
-                    command.Parameters.AddWithValue("@LastEdited", E1.LastEdited);
                     command.Parameters.AddWithValue("@Images", E1.Images);
                     command.ExecuteNonQuery();
                 }

@@ -67,7 +67,7 @@
         @Html.DisplayFor(modelItem => item.LastEdited)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Update", new { id = item.Id })
+        @Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id })
     </td>
     <td>
         @Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })

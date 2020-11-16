@@ -12,6 +12,7 @@ using techburst_BLL;
 using techburst_BLL.Collections;
 using techburst_group2.Models;
 using techburst_group2.Utilities;
+using ArticleModel = techburst_group2.Models.ArticleModel;
 
 namespace techburst_group2.Controllers
 {
@@ -63,7 +64,26 @@ namespace techburst_group2.Controllers
 
         public IActionResult Edit(int id)
         {
-            return View();
+            IArticleModel richModel = _artColl.GetArticleById(id);
+            ArticleModel article = new ArticleModel();
+            article.Id = richModel.Id;
+            article.Title = richModel.Title;
+            article.Content = richModel.ArticleText;
+            article.Images = richModel.Images;
+            article.Author = richModel.Author;
+            article.CreatedAt = richModel.DateCreated;
+            article.LastEdited = richModel.LastEdited;
+            return View(article);
+        }
+
+        public IActionResult CommitChanges(ArticleModel articleViewModel)
+        {
+            _article.Id = articleViewModel.Id;
+            _article.Title = articleViewModel.Title;
+            _article.ArticleText = articleViewModel.Content;
+            _article.Images = articleViewModel.Images;
+            _article.Edit(_article);
+            return RedirectToAction(""); //Verander dit naar een redirect naar Jan's articlepage.
         }
 
         public IActionResult Delete(int id)
