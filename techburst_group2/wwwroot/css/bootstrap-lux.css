@@ -7021,7 +7021,11 @@ button.bg-dark:focus {
 }
 
 .border-white {
-  border-color: #fff !important;
+    border-color: white !important;
+}
+
+.border-yellow{
+    border-color:yellow !important;
 }
 
 .rounded-sm {

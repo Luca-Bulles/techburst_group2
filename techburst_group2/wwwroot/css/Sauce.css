@@ -18,3 +18,7 @@ a.rockstar-text{
 a.rockstar-text:hover{
     color: #000000 !important;
 }
+
+.border-color {
+    border-color: #FFE000 !important;
+}

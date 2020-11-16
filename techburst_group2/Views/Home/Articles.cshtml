@@ -33,14 +33,14 @@
                     {
                         article.Content = article.Content.Substring(0, 160) + "...";
                     }
-                    <div class="card">
+                    <div class="card shadow border-color">
 
                         <a href='@Url.Action("ArticlePage", "Home", new { id = article.Id }, null)'>
                             <img class="card-img" src="@article.Images" alt="Cardphoto">
                         </a>
 
                         <div class="card-body">
-                            <h4 asp-action="ArticlePage" class="card-title">@Html.DisplayFor(model => article.Title)</h4>
+                            <h4 asp-action="ArticlePage" class="card-title articles-text">@Html.DisplayFor(model => article.Title)</h4>
                             <small class="text-muted cat">
                                 <i class="far fa-clock text-info"></i> Geschreven door: @Html.DisplayFor(model => article.Author)
                                 <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
