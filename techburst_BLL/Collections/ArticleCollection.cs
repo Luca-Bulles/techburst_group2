@@ -7,7 +7,7 @@ using techburst_BLL.Utilities;
 
 namespace techburst_BLL
 {
-    public class ArticleCollection
+    public class ArticleCollection : IArticleCollection
     {
         private List<IArticleModel> _articles;
 
@@ -27,7 +27,6 @@ namespace techburst_BLL
             foreach (var dto in result)
             {
                 var model = ModelConverter.ConvertDtoToModel(dto);
-                //model.Categories.Add(model.GetCategory(model.CategoryId));
                 _articles.Add(model);
             }
 
@@ -45,6 +44,22 @@ namespace techburst_BLL
             }
 
             return _articles;
+        }
+
+        public IArticleModel GetArticleById(int id)
+        {
+            List<IArticleModel> articles = GetAllArticles();
+            IArticleModel article = null;
+
+            foreach (var art in articles) 
+            {
+                if (art.Id == id)
+                {
+                    article = art;
+                }
+            }
+
+            return article;
         }
     }
 }
