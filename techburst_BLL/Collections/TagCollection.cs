@@ -32,17 +32,19 @@ namespace techburst_BLL.Collections
         }
         public List<ITagModel> GetAllTags()
         {
+            List<ITagModel> tagList = new List<ITagModel>();
             _dtos = DalFactory.TagHandler.GetAllTags();
             foreach (var dto in _dtos)
             {
-                _tags.Add(_tag = new TagModel() {Id = dto.Id, Name = dto.Name});
+                tagList.Add(_tag = new TagModel() {Id = dto.Id, Name = dto.Name});
             }
-            return _tags;
+            return tagList;
         }
 
         public ITagModel GetById(int id)
         {
             _tag = null;
+            _tags = GetAllTags();
 
             for (int i = 0; i < _tags.Count; i++)
             {
@@ -51,6 +53,23 @@ namespace techburst_BLL.Collections
                     _tag = new TagModel() {Id = _tags[i].Id, Name = _tags[i].Name};
                 }
             }
+            return _tag;
+        }
+
+        public ITagModel GetByName(string name)
+        {
+            if (!String.IsNullOrEmpty(name))
+            {
+                _tags = GetAllTags();
+                for (int i = 0; i < _tags.Count; i++)
+                {
+                    if (_tags[i].Name == name)
+                    {
+                        _tag = new TagModel() { Id = _tags[i].Id, Name = _tags[i].Name};
+                    }
+                }
+            }
+
             return _tag;
         }
     }

@@ -21,11 +21,16 @@ namespace techburst_DAL.Handler
             var articles = new List<ArticleDto>();
             using (_dbCon.Open())
             {
-                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[Articles]";
+                string query =
+                    "SELECT Articles.ArticleID, Articles.AccountID, Articles.Title, Articles.ArticleText, Articles.DateCreated, Articles.Draft, Articles.LastEdited, Articles.Images, a1.TagID, t.TagName " +
+                    "FROM Articles " +
+                    "INNER JOIN ArticleTag a1 on Articles.ArticleID = a1.ArticleID " +
+                    "INNER JOIN Tags t on a1.TagID = t.TagID;";
+
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
-                    //connection.Open();
                     var reader = command.ExecuteReader();
+
                     while (reader.Read())
                     {
                         ArticleDto ArticleDTO = new ArticleDto
@@ -38,7 +43,8 @@ namespace techburst_DAL.Handler
                            Draft = reader.GetDouble(5),
                            LastEdited = reader.GetDateTime(6),
                            Images = reader.GetString(7),
-                           Categories = reader.GetInt32(8)
+                           TagID = reader.GetInt32(8),
+                           TagName = reader.GetString(9)
                         };
 
                         articles.Add(ArticleDTO);
@@ -54,26 +60,27 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open()) 
             {
-                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] (AccountID, Title, ArticleText, DateCreated, Draft, LastEdited, Images) VALUES (@AccountID, @Title, @ArticleText, @DateCreated, @Draft, @LastEdited, @Images)";
+                string query = "BEGIN TRANSACTION [T1]; " +
+                               "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] (AccountID, Title, ArticleText, DateCreated, Draft, LastEdited, Images) " +
+                               "VALUES (@AccountID, @Title, @ArticleText, CURRENT_TIMESTAMP, @Draft, CURRENT_TIMESTAMP, @Images); " +
+                               "INSERT INTO [dbi434548_rockstars].[dbo].[ArticleTag] (TagID, ArticleID) " +
+                               "VALUES (@TagID, IDENT_CURRENT('Articles')); " +
+                               "COMMIT TRANSACTION [T1];";
+
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
-                    
                     command.Parameters.AddWithValue("@AccountID", C1.AccountID);
                     command.Parameters.AddWithValue("@Title", C1.Title);
                     command.Parameters.AddWithValue("@ArticleText", C1.ArticleText);
-                    command.Parameters.AddWithValue("@DateCreated", C1.DateCreated);
-                    command.Parameters.AddWithValue("@LastEdited", C1.LastEdited);
-                    command.Parameters.AddWithValue("@Images", C1.Images);
                     command.Parameters.AddWithValue("@Draft", C1.Draft);
-                   
+                    command.Parameters.AddWithValue("@Images", C1.Images);
+                    command.Parameters.AddWithValue("@TagID", C1.TagID);
 
                     command.ExecuteNonQuery();
-  
                 }
             }
 
         }
-
 
         public void Update(ArticleDto E1)
         {
@@ -99,9 +106,14 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open())
             {
-                string query = "DELETE FROM Articles WHERE ArticleID = @ArticleID";
+                string query = "BEGIN TRANSACTION [T2]; " +
+                               "DELETE FROM ArticleTag WHERE ArticleID = @ArticleTagID;" +
+                               "DELETE FROM Articles WHERE ArticleID = @ArticleID;" +
+                               "COMMIT TRANSACTION [T2]";
+
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
+                    command.Parameters.AddWithValue("@ArticleTagID", ID);
                     command.Parameters.AddWithValue("@ArticleID", ID);
                     command.ExecuteNonQuery();
                 }
@@ -111,11 +123,10 @@ namespace techburst_DAL.Handler
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Articles WHERE ArticleID = @ArticleID; ";
+                string query = "SELECT * FROM Articles WHERE ArticleID = @ArticleID;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@ArticleID", id);
-
                 }
             }
             return new ArticleDto();
@@ -145,7 +156,7 @@ namespace techburst_DAL.Handler
                             Draft = reader.GetDouble(5),
                             LastEdited = reader.GetDateTime(6),
                             Images = reader.GetString(7),
-                            Categories = reader.GetInt32(8)
+                            TagID = reader.GetInt32(8)
                         };
 
                         articles.Add(ArticleDTO);

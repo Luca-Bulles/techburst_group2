@@ -44,22 +44,17 @@ namespace techburst_DAL.Handler
                 string query = $"SELECT * FROM [dbi434548_rockstars].[dbo].[Tags]";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
-                    //connection.Open();
                     var reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            TagDto tag = new TagDto()
+                        TagDto tag = new TagDto()
                             {
                                 Id = reader.GetInt32(0),
                                 Name = reader.GetString(1)
                             };
 
                             _tags.Add(tag);
-
-                        }
                     }
 
                     return _tags;

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using Entities.Enums;
 using Factories;
+using Interfaces.BLL;
 using techburst_BLL.Utilities;
 
 namespace techburst_BLL
 {
-    public class ArticleModel
+    public class ArticleModel : IArticleModel
     {
-        public List<Tag> Categories { get; set; }
-        public int CategoryId { get; set; }
+        public int TagID { get; set; }
+        public string TagName { get; set; }
         public int Id { get; set; }
         public string Author { get; set; }
         public int AuthorId { get; set; }
@@ -20,18 +21,13 @@ namespace techburst_BLL
         public double Draft { get; set; }
         public DateTime LastEdited { get; set; }
         public string Images { get; set; }
-       
-        public ArticleModel()
-        {
-            Categories = new List<Tag>();
-        }
 
         public void Delete(int id)
         {
             DalFactory.ArticleHandler.Delete(id);
         }
 
-        public void Edit(ArticleModel updatedArticle)
+        public void Edit(IArticleModel updatedArticle)
         {
             var dto = ModelConverter.ConvertModelToDto(updatedArticle);
             DalFactory.ArticleHandler.Update(dto);

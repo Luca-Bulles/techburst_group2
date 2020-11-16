@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using techburst_BLL;
 using techburst_group2.Models;
+using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
@@ -31,7 +32,7 @@ namespace techburst_group2.Controllers
             var data = _coll.GetAllArticles();
             foreach (var unconvertedArticle in data)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, Tags = unconvertedArticle.Categories, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited};
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                 _articles.Add(viewModel);
 
             }
@@ -51,7 +52,7 @@ namespace techburst_group2.Controllers
                     Author = unconvertedArticle.Author, 
                     Title = unconvertedArticle.Title,
                     Content = unconvertedArticle.ArticleText, 
-                    Tags = unconvertedArticle.Categories, 
+                    TagID = unconvertedArticle.TagID, 
                     CreatedAt = unconvertedArticle.DateCreated, 
                     LastEdited = unconvertedArticle.LastEdited
                });
@@ -72,7 +73,7 @@ namespace techburst_group2.Controllers
         public IActionResult ArticlePage(techburst_BLL.ArticleModel selectedArticle)
         {
             var data = _coll.GetAllArticles();
-            Models.ArticleModel viewModel = new Models.ArticleModel() { Id = selectedArticle.Id, Author = selectedArticle.Author, Title = selectedArticle.Title, Content = selectedArticle.ArticleText, Tags = selectedArticle.Categories, CreatedAt = selectedArticle.DateCreated, LastEdited = selectedArticle.LastEdited };
+            Models.ArticleModel viewModel = new Models.ArticleModel() { Id = selectedArticle.Id, Author = selectedArticle.Author, Title = selectedArticle.Title, Content = selectedArticle.ArticleText, TagID = selectedArticle.TagID, CreatedAt = selectedArticle.DateCreated, LastEdited = selectedArticle.LastEdited };
             _articles.Add(viewModel);
             return View();
         }
@@ -82,7 +83,7 @@ namespace techburst_group2.Controllers
             var data = _coll.GetAllArticles();
             foreach (var unconvertedArticle in data)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, Tags = unconvertedArticle.Categories, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                 _articles.Add(viewModel);
 
             }

@@ -9,5 +9,6 @@ namespace Interfaces.BLL
         void Create(ITagModel tag);
         List<ITagModel> GetAllTags();
         ITagModel GetById(int id);
+        ITagModel GetByName(string name);
     }
 }

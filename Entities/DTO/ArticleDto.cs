@@ -11,7 +11,8 @@ namespace techburst_Data_Access_Layer.DTO
         public int AccountID { get; set; }
         public string Title { get; set; }
         public string ArticleText { get; set; }
-        public int Categories { get; set; }
+        public string TagName { get; set; }
+        public int TagID { get; set; }
         public DateTime DateCreated { get; set; }
         public double Draft { get; set; }
         public DateTime LastEdited { get; set; }
