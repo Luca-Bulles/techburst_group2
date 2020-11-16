@@ -5,9 +5,18 @@
     ViewBag.ArticlePage = true;
 }
 
+<style>
+    .article-header {
+        position: absolute;
+        clip: rect(0px, 30px, 300px, 0px);
+    }
+
+    .article-header-container {
+    }
+</style>
 <body>
     <div class="article-header-container">
-        <img class="article-header" src="@Model.Images" alt="Article picture" style="display: block; margin-left: auto; margin-right: auto;">
+        <img class="article-header" src="@Model.Images" alt="Article picture">
     </div>
     <div class="container">
         <h1>@Html.DisplayFor(model => model.Title)</h1>

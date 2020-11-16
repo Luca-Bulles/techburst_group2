@@ -23,40 +23,42 @@
         </ul>
     </div>
 
-    <div class = "container">
+    <div class="container">
         <div class="card-columns">
             @if (Model != null)
             {
                 @foreach (var article in Model)
                 {
-            <div class="card">
-                <div class="card-img-top bd-placeholder-img" style="width:inherit; height:250px">
-                    <img class="img-fluid" style="width:auto; height:auto" src="@Html.DisplayFor(ModelItem => article.Images)" />
-                </div>
-                <div class="card-img-overlay" href="">
-                    <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(article.TagID)</a>
-                    @Html.ActionLink("Lees Artikel", "ArticlePage", "Home", new { id = article.Id }, null)
-                </div>
-                <div class="card-body">
-                    <h4 asp-action="ArticlePage" class="card-title">@Html.DisplayFor(model => article.Title)</h4>
-                    <small class="text-muted cat">
-                        <i class="far fa-clock text-info"></i> Geschreven door: @Html.DisplayFor(model => article.Author)
-                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
-                        <i class="far fa-clock text-info"></i>
-                        <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
-                    </small>
-                    <p class="card-text">@Html.DisplayFor(model => article.Content)</p>
-                </div>
-                <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                    <div class="views">
-                        @Html.DisplayFor(model => article.CreatedAt)
+                    if (article.Content.Length > 160)
+                    {
+                        article.Content = article.Content.Substring(0, 160) + "...";
+                    }
+                    <div class="card">
+
+                        <a href='@Url.Action("ArticlePage", "Home", new { id = article.Id }, null)'>
+                            <img class="card-img" src="@article.Images" alt="Cardphoto">
+                        </a>
+
+                        <div class="card-body">
+                            <h4 asp-action="ArticlePage" class="card-title">@Html.DisplayFor(model => article.Title)</h4>
+                            <small class="text-muted cat">
+                                <i class="far fa-clock text-info"></i> Geschreven door: @Html.DisplayFor(model => article.Author)
+                                <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                <i class="far fa-clock text-info"></i>
+                                <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
+                            </small>
+                            <p class="card-text">@Html.DisplayFor(model => article.Content)</p>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                            <div class="views">
+                                @Html.DisplayFor(model => article.CreatedAt)
+                            </div>
+                            <div class="stats">
+                                <i class="far fa-eye"></i>
+                                <i class="far fa-comment"></i> 12
+                            </div>
+                        </div>
                     </div>
-                    <div class="stats">
-                        <i class="far fa-eye"></i>
-                        <i class="far fa-comment"></i> 12
-                    </div>
-                </div>
-            </div>
                 }
             }
         </div>
