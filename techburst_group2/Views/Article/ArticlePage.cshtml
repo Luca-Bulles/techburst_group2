@@ -1,4 +1,6 @@
 ﻿@{
+    @inject ITagCollection TagCollection
+    @using Interfaces.BLL
     @model ArticleModel
     ViewBag.ArticlePage = true;
 }
@@ -8,23 +10,16 @@
         position: absolute;
         clip: rect(0px, 30px, 300px, 0px);
     }
+
     .article-header-container {
-        
     }
 </style>
 <body>
     <div class="article-header-container">
-        <img class="article-header" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="image">
+        <img class="article-header" src="@Model.Images" alt="Article picture">
     </div>
     <div class="container">
         <h1>@Html.DisplayFor(model => model.Title)</h1>
-        <p>
-            tags:
-            @foreach (var tag in Model.Tags)
-            {
-                @tag
-            }
-        </p>
         <p>@Html.DisplayFor(model => model.Content)</p>
     </div>
 </body>
