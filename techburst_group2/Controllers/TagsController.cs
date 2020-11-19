@@ -61,7 +61,8 @@ namespace techburst_group2.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View();
+            _tagModel.Delete(id);
+            return RedirectToAction("All");
         }
 
 

@@ -22,5 +22,10 @@ namespace techburst_BLL.Models
                 DalFactory.TagHandler.Update(dto);
             }
         }
+
+        public void Delete(int id)
+        {
+            DalFactory.TagHandler.Delete(id);
+        }
     }
 }

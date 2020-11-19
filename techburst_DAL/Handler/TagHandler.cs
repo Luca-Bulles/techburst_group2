@@ -52,7 +52,19 @@ namespace techburst_DAL.Handler
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using (_dbCon.Open())
+            {
+                string query = "BEGIN TRANSACTION [T3]; " +
+                                "DELETE FROM ArticleTag WHERE TagID = @TagID;" +
+                                "DELETE FROM Tags WHERE TagID = @TagID;" +
+                                "COMMIT TRANSACTION [T3];";
+
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
+                {
+                    command.Parameters.AddWithValue("@TagID", id);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<TagDto> GetAllTags()
