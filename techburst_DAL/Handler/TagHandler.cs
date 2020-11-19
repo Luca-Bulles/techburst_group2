@@ -12,7 +12,6 @@ namespace techburst_DAL.Handler
 {
     public class TagHandler : ITagHandler
     {
-        private static string connectionString = "";
         private IDBConnectionHandler _dbCon;
         private List<TagDto> _tags;
 
@@ -32,6 +31,38 @@ namespace techburst_DAL.Handler
 
                     command.ExecuteNonQuery();
 
+                }
+            }
+        }
+
+        public void Update(TagDto tag)
+        {
+            using (_dbCon.Open())
+            {
+                string query = "UPDATE Tags SET TagName = @TagName WHERE TagID = @TagID";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
+                {
+                    command.Parameters.AddWithValue("@TagName", tag.Name);
+                    command.Parameters.AddWithValue("TagID", tag.Id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (_dbCon.Open())
+            {
+                string query = "BEGIN TRANSACTION [T3]; " +
+                                "DELETE FROM ArticleTag WHERE TagID = @TagID;" +
+                                "DELETE FROM Tags WHERE TagID = @TagID;" +
+                                "COMMIT TRANSACTION [T3];";
+
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
+                {
+                    command.Parameters.AddWithValue("@TagID", id);
+                    command.ExecuteNonQuery();
                 }
             }
         }
@@ -59,31 +90,6 @@ namespace techburst_DAL.Handler
 
                     return _tags;
                 }
-            }
-        }
-
-        public TagDto GetTagById(int id)
-        {
-            TagDto tag = null;
-            using (SqlConnection connection = _dbCon.Open())
-            {
-                string query = $"SELECT SubjectName FROM Subject WHERE SubjectId = @TagID ;";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TagID", id);
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        tag = new TagDto()
-                        {
-                            Id = reader.GetInt32(0),
-                            Name = reader.GetString(1)
-                        };
-                    }
-                }
-
-                return tag;
             }
         }
     }

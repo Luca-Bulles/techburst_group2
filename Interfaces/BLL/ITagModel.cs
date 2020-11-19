@@ -8,5 +8,7 @@ namespace Interfaces.BLL
     {
         int Id { get; set; }
         string Name { get; set; }
+        void Edit(ITagModel tag);
+        void Delete(int id);
     }
 }

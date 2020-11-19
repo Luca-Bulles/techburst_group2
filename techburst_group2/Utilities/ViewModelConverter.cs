@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Entities.Enums;
 using Interfaces.BLL;
+using techburst_BLL.Models;
 using techburst_group2.Models;
 
 namespace techburst_group2.Utilities
@@ -40,6 +42,16 @@ namespace techburst_group2.Utilities
             }
 
             return _viewModelList;
+        }
+
+        public static TagViewModel ConvertModelToViewModel(ITagModel tag)
+        {
+            return new TagViewModel() { Id = tag.Id, Name = tag.Name };
+        }
+
+        public static ITagModel ConvertTagViewModelToModel(TagViewModel tvm)
+        {
+            return new TagModel() { Id = tvm.Id, Name = tvm.Name };
         }
     }
 }

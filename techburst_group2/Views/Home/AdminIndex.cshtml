@@ -3,7 +3,7 @@
 @{ ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml"; }
 
-<h2 class="text-center">Admin Workstadion</h2>
+<h2 class="text-center">Admin Workstation</h2>
 @Html.ActionLink("Add new article to the system", "Create", "Articles")
 <hr/>
 
@@ -70,7 +70,7 @@
         @Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id })
     </td>
     <td>
-        @Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })
+        @Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" })
     </td>
 </tr>}
     </tbody>

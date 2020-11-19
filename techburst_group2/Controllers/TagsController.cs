@@ -6,6 +6,7 @@ using Interfaces.BLL;
 using Microsoft.AspNetCore.Mvc;
 using techburst_BLL.Models;
 using techburst_group2.Models;
+using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
@@ -35,13 +36,24 @@ namespace techburst_group2.Controllers
             return View();
         }
 
+        public IActionResult CommitChanges(TagViewModel tvm)
+        {
+            if (ModelState.IsValid)
+            {
+                _tagModel.Edit(ViewModelConverter.ConvertTagViewModelToModel(tvm));
+            }
+
+            return RedirectToAction("All");
+        }
+
         public IActionResult All()
         {
             var tags =_tagColl.GetAllTags();
             _tagList = new List<TagViewModel>();
+
             foreach (var tag in tags)
             {
-                TagViewModel tvm = new TagViewModel() {Id = tag.Id, Name = tag.Name};
+                TagViewModel tvm = ViewModelConverter.ConvertModelToViewModel(tag);
                 _tagList.Add(tvm);
             }
             return View(_tagList);
@@ -49,13 +61,10 @@ namespace techburst_group2.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View();
+            _tagModel.Delete(id);
+            return RedirectToAction("All");
         }
 
-        public IActionResult Details(int id)
-        {
-            return View();
-        }
 
 
 
