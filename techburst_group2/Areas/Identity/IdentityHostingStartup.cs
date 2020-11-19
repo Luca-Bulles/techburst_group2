@@ -18,9 +18,13 @@ namespace techburst_group2.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<AuthDbContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("AuthDbContextConnection")));
+                        context.Configuration.GetConnectionString("DefaultConnection")));
 
-                services.AddDefaultIdentity<techburst_group2User>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<techburst_group2User>(options => {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                })
                     .AddEntityFrameworkStores<AuthDbContext>();
             });
         }
