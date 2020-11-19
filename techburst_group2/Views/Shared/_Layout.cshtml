@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-cyborg.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/Sauce.css" />
+    <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.snow.css">
+    <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.bubble.css">
 </head>
 <body>
     <header>
@@ -62,6 +64,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="_content/Blazored.TextEditor/quill-blot-formatter.min.js"></script>
+    <script src="_content/Blazored.TextEditor/Blazored-BlazorQuill.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

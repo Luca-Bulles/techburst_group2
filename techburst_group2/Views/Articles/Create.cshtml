@@ -25,13 +25,14 @@
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
+                @*<div class="form-group">
                     <div class="input-group-prepend">
                         <label asp-for="Content" class="control-label"></label>
                     </div>
                     <textarea asp-for="Content" class="form-control" rows="6"></textarea>
                     <span asp-validation-for="Content" class="text-danger"></span>
-                </div>
+                </div>*@
+                @Html.Partial("_TextEditor")
 
                 <div class="form-group">
                     <label asp-for="Author" class="control-label"></label>
