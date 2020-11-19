@@ -9,7 +9,8 @@ namespace Interfaces
     public interface ITagHandler
     {
         void Create(TagDto tag);
+        void Update(TagDto tag);
+        void Delete(int id);
         List<TagDto> GetAllTags();
-        TagDto GetTagById(int id);
     }
 }
