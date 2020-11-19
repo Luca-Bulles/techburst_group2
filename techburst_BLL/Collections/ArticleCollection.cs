@@ -35,12 +35,14 @@ namespace techburst_BLL
 
         public List<IArticleModel> GetArticlesByTag(int tagId)
         {
-            var dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
+            var modelList = GetAllArticles();
 
-            foreach (var dto in dtoList)
+            foreach (var model in modelList)
             {
-                var richModel = ModelConverter.ConvertDtoToModel(dto);
-                _articles.Add(richModel);
+                if (model.TagID == tagId)
+                {
+                    _articles.Add(model);
+                }
             }
 
             return _articles;

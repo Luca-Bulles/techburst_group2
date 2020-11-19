@@ -129,42 +129,5 @@ namespace techburst_DAL.Handler
             }
             return new ArticleDto();
         }
-
-        public List<ArticleDto> GetArticlesByTag(int tagId)
-        {
-            List<ArticleDto> articles = new List<ArticleDto>(
-                );
-            using (_dbCon.Open())
-            {
-                string query = "SELECT * FROM Article WHERE SubjectName = @TagId; ";
-                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
-                {
-                    command.Parameters.AddWithValue("TagId", tagId);
-
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        ArticleDto ArticleDTO = new ArticleDto
-                        {
-                            ArticleID = reader.GetInt32(0),
-                            AccountID = reader.GetInt32(1),
-                            Title = reader.GetString(2),
-                            ArticleText = reader.GetString(3),
-                            DateCreated = reader.GetDateTime(4),
-                            Draft = reader.GetDouble(5),
-                            LastEdited = reader.GetDateTime(6),
-                            Images = reader.GetString(7),
-                            TagID = reader.GetInt32(8)
-                        };
-
-                        articles.Add(ArticleDTO);
-                    }
-
-                    _dbCon.Close();
-                }
-
-                return articles;
-            }
-        }
     }
 }
