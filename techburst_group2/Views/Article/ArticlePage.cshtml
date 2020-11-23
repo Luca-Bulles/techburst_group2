@@ -15,11 +15,18 @@
     }
 </style>
 <body>
-    <div class="article-header-container">
-        <img class="article-header" src="@Model.Images" alt="Article picture">
-    </div>
     <div class="container">
-        <h1>@Html.DisplayFor(model => model.Title)</h1>
-        <p>@Html.DisplayFor(model => model.Content)</p>
+        <div class="row">
+            <div class="col">
+                <b class="text-danger">@Html.ActionLink("Terug naar artikeloverzicht", "Articles", "Home")</b>
+            </div>
+        </div>
+        <div class="article-header-container">
+            <img class="article-header" src="@Model.Images" alt="Article picture">
+        </div>
+        <div class="container">
+            <h1>@Html.DisplayFor(model => model.Title)</h1>
+            <p>@Html.DisplayFor(model => model.Content)</p>
+        </div>
     </div>
 </body>
