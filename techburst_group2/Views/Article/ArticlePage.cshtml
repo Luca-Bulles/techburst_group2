@@ -16,31 +16,35 @@
 </style>
 <body>
     <div class="container">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-1">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-1">
 
-                    </div>
-                    <div class="col-10">
-                        <div class="justify-content-center">
-                            <p class="text-danger">@Html.ActionLink("Terug naar artikeloverzicht", "Articles", "Home")</p>
-
-                        </div>
-                    </div>
-
-                    <div class="col-1">
+                </div>
+                <div class="col-10">
+                    <div class="justify-content-center">
+                        <p class="text-danger">@Html.ActionLink("Terug naar artikeloverzicht", "Articles", "Home")</p>
 
                     </div>
                 </div>
 
- 
+                <div class="col-1">
+
+                </div>
             </div>
-        <div class="article-header-container">
-            <img class="article-header" src="@Model.Images" alt="Article picture">
         </div>
-        <div class="container">
-            <h1>@Html.DisplayFor(model => model.Title)</h1>
-            <p>@Html.DisplayFor(model => model.Content)</p>
+        <div class="col">
+            <div class="row pt-3">
+                <div class="col bg-primary m-1 p-3 border-white text-white shadow">
+                    <div class="article-header-container">
+                        <img class="article-header" src="@Model.Images" alt="Article picture">
+                    </div>
+                    <h1 class="font-weight-bold pt-4">@Html.DisplayFor(model => model.Title)</h1>
+                    <p class="card-text font-weight-bold pt-4">@Html.DisplayFor(model => model.Content)</p>
+                </div>
+
+            </div>
+
         </div>
-    </div>
+
 </body>
