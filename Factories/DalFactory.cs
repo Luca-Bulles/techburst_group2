@@ -1,6 +1,5 @@
 ﻿using System;
 using Interfaces;
-using Interfaces.DAL;
 using techburst_DAL.Handler;
 using techburst_Data_Access_Layer.Handler;
 
@@ -10,8 +9,6 @@ namespace Factories
     {
         private static IArticleHandler _articleHandler;
         private static ITagHandler _tagHandler;
-        private static IUserHandler _userHandler;
-        private static IRoleHandler _roleHandler;
         public static IArticleHandler ArticleHandler
         {
             get
@@ -25,19 +22,6 @@ namespace Factories
 
         }
 
-        public static IUserHandler UserHandler
-        {
-            get
-            {
-                if (_userHandler == null)
-                {
-                    _userHandler = new UserHandler(new DBConnectionHandler());
-                }
-
-                return _userHandler;
-            }
-        }
-
         public static ITagHandler TagHandler
         {
             get
@@ -48,19 +32,6 @@ namespace Factories
                 }
 
                 return _tagHandler;
-            }
-        }
-
-        public static IRoleHandler RoleHandler
-        {
-            get
-            {
-                if (_roleHandler == null)
-                {
-                    _roleHandler = new RoleHandler(new DBConnectionHandler());
-                }
-
-                return _roleHandler;
             }
         }
     }
