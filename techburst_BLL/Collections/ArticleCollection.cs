@@ -15,6 +15,7 @@ namespace techburst_BLL
 
         public void Create(IArticleModel article)
         {
+            article.ArticleText = ArticleTextManager.EncodeArticleText(article.ArticleText);
             var result = ModelConverter.ConvertModelToDto(article);
             DalFactory.ArticleHandler.Create(result);
         }
