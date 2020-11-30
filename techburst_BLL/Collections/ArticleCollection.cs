@@ -42,6 +42,7 @@ namespace techburst_BLL
             {
                 if (model.TagID == tagId)
                 {
+                    model.ArticleText = ArticleTextManager.DecodeArticleText(model.ArticleText);
                     _articles.Add(model);
                 }
             }
@@ -59,6 +60,7 @@ namespace techburst_BLL
                 if (art.Id == id)
                 {
                     article = art;
+                    article.ArticleText = ArticleTextManager.DecodeArticleText(article.ArticleText);
                 }
             }
 

@@ -30,19 +30,14 @@ namespace techburst_group2.Models
 
         [Required] 
         public string Content { get; set; } = "";
-        [Required]
+        
         public string Author { get; set; }
-        [Required]
         public int AuthorId { get; set; }
-        [Required]
         public int TagID { get; set; }
         [Required]
         public string TagName { get; set; }
-        [Required]
         public string Images { get; set; }
-        [Required]
         public DateTime CreatedAt { get; set; }
-        [Required]
         public DateTime LastEdited { get; set; }
         [Required]
         public double Draft { get; set; }
