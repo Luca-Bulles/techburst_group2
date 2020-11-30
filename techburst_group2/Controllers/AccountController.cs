@@ -16,6 +16,7 @@ namespace techburst_group2.Controllers
     {
         UserCollection _userCollection = new UserCollection();
         RoleCollection _roleCollection = new RoleCollection();
+        private List<LoginViewmodel> LVM;
 
 
         [HttpGet]
@@ -34,7 +35,9 @@ namespace techburst_group2.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Email = model.Email,
-                    Password = model.Password
+                    Password = model.Password,
+                    Role = model.Role
+                    
                 };
                 _userCollection.Create(user);
                 return RedirectToAction("Index", "Home");
@@ -50,17 +53,35 @@ namespace techburst_group2.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewmodel model)
+        public async Task<IActionResult> Login(UserModel model)
         {
+            LVM = new List<LoginViewmodel>();
+           
             UserModel user = _userCollection.GetUserFromEmail(model.Email);
             if (ModelState.IsValid)
             {
                 var result = _userCollection.Login(user);
                 if (result)
                 {
-                    var role = _roleCollection.GetRole(user.UserId);
-                    //todo: implement default role if user has none
-                    await LoginMethod(model.Email, user.FirstName, user.LastName, role.RoleName);
+                    LVM.Add(new LoginViewmodel
+                    {
+                        Email = user.Email,
+                        Password = user.Password,
+                        Role = user.Role
+
+                    });
+
+                   var claims = new List<Claim>
+                   {
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Role, user.Role),
+                   };
+                    ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
+                    ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+
+                    await HttpContext.SignInAsync(principal);
+                    TempData["LoggedIn"] = "You have logged in with your personal account.";
+
                     return RedirectToAction("Index", "Home");
                 }
             }

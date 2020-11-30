@@ -51,13 +51,14 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open())
             {
-                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[User] (FirstName, LastName, Email, Password) VALUES (@FirstName, @LastName, @Email, @Password)";
+                string query = "INSERT INTO [dbi434548_rockstars].[dbo].[User] (FirstName, LastName, Email, Password, Role) VALUES (@FirstName, @LastName, @Email, @Password, @Role)";
                 using (SqlCommand create = new SqlCommand(query, _dbCon.connection))
                 {
                     create.Parameters.AddWithValue("@FirstName", user.FirstName);
                     create.Parameters.AddWithValue("@LastName", user.LastName);
                     create.Parameters.AddWithValue("@Email", user.Email);
                     create.Parameters.AddWithValue("@Password", user.Password);
+                    create.Parameters.AddWithValue("@Role", user.Role);
 
                     create.ExecuteNonQuery();
                 }
@@ -132,6 +133,7 @@ namespace techburst_DAL.Handler
                         dto.LastName = reader.GetString(2);
                         dto.Email = reader.GetString(3);
                         dto.Password = reader.GetString(4);
+                        dto.Role = reader.GetString(5);
                     }
                     _dbCon.Close();
                 }

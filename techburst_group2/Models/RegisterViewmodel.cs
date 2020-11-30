@@ -22,5 +22,6 @@ namespace techburst_group2.Models
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string ConPassword { get; set; }
+        public string Role { get; set; }
     }
 }
