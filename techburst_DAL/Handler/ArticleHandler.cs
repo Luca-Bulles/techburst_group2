@@ -40,7 +40,7 @@ namespace techburst_DAL.Handler
                            Title = reader.GetString(2),
                            ArticleText = reader.GetString(3),
                            DateCreated = reader.GetDateTime(4),
-                           Draft = reader.GetDouble(5),
+                           Draft = reader.GetBoolean(5),
                            LastEdited = reader.GetDateTime(6),
                            Images = reader.GetString(7),
                            TagID = reader.GetInt32(8),
