@@ -8,6 +8,7 @@ namespace techburst_group2.Models
 {
     public class RegisterViewmodel
     {
+        public int ID { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]

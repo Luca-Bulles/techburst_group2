@@ -69,7 +69,8 @@ namespace techburst_BLL.Utilities
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Password = dto.Password,
-                UserId = dto.UserId
+                UserId = dto.UserId,
+                Role = dto.Role
             };
             return _userModel;
         }
