@@ -130,41 +130,35 @@ namespace techburst_DAL.Handler
             return new ArticleDto();
         }
 
-        public List<ArticleDto> GetArticlesByTag(int tagId)
-        {
-            List<ArticleDto> articles = new List<ArticleDto>(
-                );
-            using (_dbCon.Open())
+        public List<int> GetArticleIdsByTag(int tagId) {
+
+            List<int> ArticleIds = new List<int>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Article WHERE SubjectName = @TagId; ";
-                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
+                string query = "SELECT Article FROM ArticleTag WHERE TagID = @TagID;";
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("TagId", tagId);
+                    command.Parameters.AddWithValue("@TagID", tagId);
 
                     var reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        ArticleDto ArticleDTO = new ArticleDto
-                        {
-                            ArticleID = reader.GetInt32(0),
-                            AccountID = reader.GetInt32(1),
-                            Title = reader.GetString(2),
-                            ArticleText = reader.GetString(3),
-                            DateCreated = reader.GetDateTime(4),
-                            Draft = reader.GetDouble(5),
-                            LastEdited = reader.GetDateTime(6),
-                            Images = reader.GetString(7),
-                            TagID = reader.GetInt32(8)
-                        };
-
-                        articles.Add(ArticleDTO);
+                        ArticleIds.Add(reader.GetInt32(0));
                     }
-
-                    _dbCon.Close();
                 }
-
-                return articles;
             }
+            return ArticleIds;
+        }
+
+        public List<ArticleDto> GetArticlesByTag(int tagId)
+        {
+
+            foreach (var TagId in GetArticleIdsByTag(tagId))
+            {
+
+            }
+
+            return null;
         }
     }
 }
