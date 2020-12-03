@@ -73,36 +73,20 @@ namespace techburst_group2.Controllers
             return View();
         }
 
-        //Vanaf hier nog in articles controller verplaatsen
-        public IActionResult Articles(List<Models.ArticleModel> articles) 
-        {
-            return View(articles);
-        }
 
-        public IActionResult LoadAllArticles() {
+        public IActionResult Articles() 
+        {
             var data = _coll.GetAllArticles();
             foreach (var unconvertedArticle in data)
             {
                 Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                 _articles.Add(viewModel);
+
             }
 
-            return Articles(_articles);
+            return View(_articles);
         }
 
-        public IActionResult GetArticlesByTag(int tagId)
-        {
-            var result = _coll.GetArticlesByTag(tagId);
-
-            foreach (var model in result)
-            {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
-                _articles.Add(viewModel);
-            }
-
-            return Articles(_articles);
-        }
-        //tot hier
 
         public ActionResult Delete(int ID)
         {
