@@ -17,7 +17,7 @@ namespace techburst_BLL
             var result = ModelConverter.ConvertModelToDto(article);
             DalFactory.ArticleHandler.Create(result);
         }
-
+        //Test githubsjihdjshdkjs
         public List<ArticleModel> GetAllArticles()
         {
             var result = DalFactory.ArticleHandler.GetAll();
