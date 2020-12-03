@@ -14,7 +14,7 @@ namespace Interfaces.BLL
         string Title { get; set; }
         string ArticleText { get; set; }
         DateTime DateCreated { get; set; }
-        double Draft { get; set; }
+        bool Draft { get; set; }
         DateTime LastEdited { get; set; }
         string Images { get; set; }
 

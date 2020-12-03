@@ -2,68 +2,48 @@
 using System.Collections.Generic;
 using Entities.Enums;
 using Factories;
-using Interfaces.BLL;
 using techburst_BLL.Utilities;
 
 namespace techburst_BLL
 {
-    public class ArticleCollection : IArticleCollection
+    public class ArticleCollection
     {
-        private List<IArticleModel> _articles;
+        private List<ArticleModel> _articles;
 
         //@TODO: Add validation for user type in later iteration.
 
-        public void Create(IArticleModel article)
+        public void Create(ArticleModel article)
         {
-            article.ArticleText = ArticleTextManager.EncodeArticleText(article.ArticleText);
             var result = ModelConverter.ConvertModelToDto(article);
             DalFactory.ArticleHandler.Create(result);
         }
-
-        public List<IArticleModel> GetAllArticles()
+        //Test githubsjihdjshdkjs
+        public List<ArticleModel> GetAllArticles()
         {
             var result = DalFactory.ArticleHandler.GetAll();
-            _articles = new List<IArticleModel>();
+            _articles = new List<ArticleModel>();
 
             foreach (var dto in result)
             {
                 var model = ModelConverter.ConvertDtoToModel(dto);
-                model.ArticleText = ArticleTextManager.DecodeArticleText(model.ArticleText);
+                //model.Categories.Add(model.GetCategory(model.CategoryId));
                 _articles.Add(model);
             }
 
             return _articles;
         }
 
-        public List<IArticleModel> GetArticlesByTag(int tagId)
+        public List<ArticleModel> GetArticlesByTag(int tagId)
         {
-            var modelList = GetAllArticles();
+            var dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
 
-            foreach (var model in modelList)
+            foreach (var dto in dtoList)
             {
-                if (model.TagID == tagId)
-                {
-                    _articles.Add(model);
-                }
+                var richModel = ModelConverter.ConvertDtoToModel(dto);
+                _articles.Add(richModel);
             }
 
             return _articles;
-        }
-
-        public IArticleModel GetArticleById(int id)
-        {
-            List<IArticleModel> articles = GetAllArticles();
-            IArticleModel article = null;
-
-            foreach (var art in articles) 
-            {
-                if (art.Id == id)
-                {
-                    article = art;
-                }
-            }
-
-            return article;
         }
     }
 }

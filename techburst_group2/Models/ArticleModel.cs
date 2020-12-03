@@ -40,6 +40,6 @@ namespace techburst_group2.Models
         public DateTime CreatedAt { get; set; }
         public DateTime LastEdited { get; set; }
         [Required]
-        public double Draft { get; set; }
+        public bool Draft { get; set; }
     }
 }
