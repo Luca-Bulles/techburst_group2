@@ -11,9 +11,15 @@ namespace techburst_BLL.Utilities
 {
     public static class ModelConverter
     {
-        private static IArticleModel _model;
+        private static ArticleModel _model;
         private static ArticleDto _dto;
         private static TagDto _tagDto;
+        private static UserDto _userDto;
+        private static UserModel _userModel;
+
+        private static RoleDto _roleDto;
+        private static RoleModel _roleModel;
+
         public static ArticleModel ConvertDtoToModel(ArticleDto dto)
         {
             _model = new ArticleModel()
