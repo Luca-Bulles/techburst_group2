@@ -2,38 +2,38 @@
 using System.Collections.Generic;
 using Entities.Enums;
 using Factories;
-using Interfaces.BLL;
 using techburst_BLL.Utilities;
 
 namespace techburst_BLL
 {
-    public class ArticleCollection : IArticleCollection
+    public class ArticleCollection
     {
-        private List<IArticleModel> _articles;
+        private List<ArticleModel> _articles;
 
         //@TODO: Add validation for user type in later iteration.
 
-        public void Create(IArticleModel article)
+        public void Create(ArticleModel article)
         {
             var result = ModelConverter.ConvertModelToDto(article);
             DalFactory.ArticleHandler.Create(result);
         }
-
-        public List<IArticleModel> GetAllArticles()
+        //Test githubsjihdjshdkjs
+        public List<ArticleModel> GetAllArticles()
         {
             var result = DalFactory.ArticleHandler.GetAll();
-            _articles = new List<IArticleModel>();
+            _articles = new List<ArticleModel>();
 
             foreach (var dto in result)
             {
                 var model = ModelConverter.ConvertDtoToModel(dto);
+                //model.Categories.Add(model.GetCategory(model.CategoryId));
                 _articles.Add(model);
             }
 
             return _articles;
         }
 
-        public List<IArticleModel> GetArticlesByTag(int tagId)
+        public List<ArticleModel> GetArticlesByTag(int tagId)
         {
             var dtoList = DalFactory.ArticleHandler.GetArticlesByTag(tagId);
 
@@ -44,22 +44,6 @@ namespace techburst_BLL
             }
 
             return _articles;
-        }
-
-        public IArticleModel GetArticleById(int id)
-        {
-            List<IArticleModel> articles = GetAllArticles();
-            IArticleModel article = null;
-
-            foreach (var art in articles) 
-            {
-                if (art.Id == id)
-                {
-                    article = art;
-                }
-            }
-
-            return article;
         }
     }
 }

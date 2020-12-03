@@ -18,7 +18,7 @@ namespace techburst_BLL
         public string Title { get; set; }
         public string ArticleText { get; set; }
         public DateTime DateCreated { get; set; }
-        public double Draft { get; set; }
+        public bool Draft { get; set; }
         public DateTime LastEdited { get; set; }
         public string Images { get; set; }
 

@@ -44,16 +44,20 @@ namespace techburst_group2.Controllers
 
         public IActionResult Submit(Models.ArticleModel article)
         {
-            _article.Author = article.Author;
-            _article.DateCreated = article.CreatedAt;
-            _article.ArticleText = article.Content;
-            _article.Title = article.Title;
-            _article.Images = article.Images;
-            _article.LastEdited = article.LastEdited;
-            _article.TagID = _tagColl.GetByName(article.TagName).Id;
-            _article.Draft = article.Draft;
+            if (ModelState.IsValid)
+            {
+                _article.Author = article.Author;
+                _article.DateCreated = article.CreatedAt;
+                _article.ArticleText = article.Content;
+                _article.Title = article.Title;
+                _article.Images = article.Images;
+                _article.LastEdited = article.LastEdited;
+                _article.TagID = _tagColl.GetByName(article.TagName).Id;
+                _article.Draft = article.Draft;
 
-            _artColl.Create(_article);
+                _artColl.Create(_article);
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -83,7 +87,7 @@ namespace techburst_group2.Controllers
             _article.ArticleText = articleViewModel.Content;
             _article.Images = articleViewModel.Images;
             _article.Edit(_article);
-            return RedirectToAction("Index", "Home"); //Verander dit naar een redirect naar Jan's articlepage.
+            return RedirectToAction("AdminIndex", "Home"); //Verander dit naar een redirect naar Jan's articlepage.
         }
 
         public IActionResult Delete(int id)

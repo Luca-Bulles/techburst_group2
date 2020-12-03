@@ -40,7 +40,7 @@ namespace techburst_DAL.Handler
                            Title = reader.GetString(2),
                            ArticleText = reader.GetString(3),
                            DateCreated = reader.GetDateTime(4),
-                           Draft = reader.GetDouble(5),
+                           Draft = reader.GetBoolean(5),
                            LastEdited = reader.GetDateTime(6),
                            Images = reader.GetString(7),
                            TagID = reader.GetInt32(8),
@@ -128,37 +128,6 @@ namespace techburst_DAL.Handler
                 }
             }
             return new ArticleDto();
-        }
-
-        public List<int> GetArticleIdsByTag(int tagId) {
-
-            List<int> ArticleIds = new List<int>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT Article FROM ArticleTag WHERE TagID = @TagID;";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@TagID", tagId);
-
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        ArticleIds.Add(reader.GetInt32(0));
-                    }
-                }
-            }
-            return ArticleIds;
-        }
-
-        public List<ArticleDto> GetArticlesByTag(int tagId)
-        {
-
-            foreach (var TagId in GetArticleIdsByTag(tagId))
-            {
-
-            }
-
-            return null;
         }
     }
 }
