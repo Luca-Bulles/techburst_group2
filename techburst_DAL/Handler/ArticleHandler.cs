@@ -35,16 +35,16 @@ namespace techburst_DAL.Handler
                     {
                         ArticleDto ArticleDTO = new ArticleDto
                         {
-                           ArticleID = reader.GetInt32(0),
-                           AccountID = reader.GetInt32(1),
-                           Title = reader.GetString(2),
-                           ArticleText = reader.GetString(3),
-                           DateCreated = reader.GetDateTime(4),
-                           Draft = reader.GetBoolean(5),
-                           LastEdited = reader.GetDateTime(6),
-                           Images = reader.GetString(7),
-                           TagID = reader.GetInt32(8),
-                           TagName = reader.GetString(9)
+                            ArticleID = reader.GetInt32(0),
+                            AccountID = reader.GetInt32(1),
+                            Title = reader.GetString(2),
+                            ArticleText = reader.GetString(3),
+                            DateCreated = reader.GetDateTime(4),
+                            Draft = reader.GetBoolean(5),
+                            LastEdited = reader.GetDateTime(6),
+                            Images = reader.GetString(7),
+                            TagID = reader.GetInt32(8),
+                            TagName = reader.GetString(9)
                         };
 
                         articles.Add(ArticleDTO);
@@ -58,7 +58,7 @@ namespace techburst_DAL.Handler
 
         public void Create(ArticleDto C1)
         {
-            using (_dbCon.Open()) 
+            using (_dbCon.Open())
             {
                 string query = "BEGIN TRANSACTION [T1]; " +
                                "INSERT INTO [dbi434548_rockstars].[dbo].[Articles] (AccountID, Title, ArticleText, DateCreated, Draft, LastEdited, Images) " +
