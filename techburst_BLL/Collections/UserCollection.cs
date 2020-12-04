@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.DTO;
 using Factories;
 using techburst_BLL.Models;
 using techburst_BLL.Utilities;
@@ -9,7 +10,7 @@ namespace techburst_BLL.Collections
 {
     public class UserCollection
     {
-        private List<UserModel> _users;
+        private List<UserModel> user;
 
         public void Create(UserModel model)
         {
@@ -23,10 +24,34 @@ namespace techburst_BLL.Collections
             return DalFactory.UserHandler.Login(dto);
         }
 
-        public UserModel GetUserFromEmail(string email)
+        public UserModel GetUserFromEmail(UserDto ID)
         {
-            var model = ModelConverter.ConvertUserDtoToModel(DalFactory.UserHandler.GetUserFromEmail(email));
+            var model = ModelConverter.ConvertUserDtoToModel(DalFactory.UserHandler.GetUserFromEmail(ID));
             return model;
+        }
+
+        public List<UserModel> GetUsers()
+        {
+            var result = DalFactory.UserHandler.GetAll();
+            user = new List<UserModel>();
+
+            foreach (var dto in result)
+            {
+                var model = ModelConverter.ConvertUserDtoToModel(dto);
+                user.Add(model);
+            }
+            return user;
+        }
+        public void Delete(int ID)
+        {
+            DalFactory.UserHandler.Delete(ID);
+        }
+
+        public void Edit(UserModel Edit)
+        {
+            var DTO = ModelConverter.ConvertUserModelToDto(Edit);
+            DalFactory.UserHandler.Update(DTO);
+
         }
     }
 }

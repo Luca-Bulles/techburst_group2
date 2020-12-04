@@ -16,7 +16,6 @@ namespace techburst_group2.Controllers
     public class UserController : Controller
     {
         UserCollection _userCollection = new UserCollection();
-        RoleCollection _roleCollection = new RoleCollection();
         private List<LoginViewmodel> LVM;
 
         [HttpGet]

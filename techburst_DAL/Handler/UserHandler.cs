@@ -24,24 +24,24 @@ namespace techburst_DAL.Handler
             var users = new List<UserDto>();
             using (_dbCon.Open())
             {
-                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[Users]";
-                using (SqlCommand getAll = new SqlCommand(query, _dbCon.connection))
+                string query = "SELECT * FROM [Dbo].[User]";
+                using SqlCommand command = new SqlCommand(query, _dbCon.connection);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    var reader = getAll.ExecuteReader();
-                    while (reader.Read())
-                    {
                         UserDto dto = new UserDto()
                         {
                             UserId = reader.GetInt32(0),
                             FirstName = reader.GetString(1),
                             LastName = reader.GetString(2),
                             Email = reader.GetString(3),
-                            Password = reader.GetString(4)
+                            Password = reader.GetString(4),
+                            Role = reader.GetString(5)
                         };
                         users.Add(dto);
-                    }
-                    _dbCon.Close();
                 }
+                _dbCon.Close();
+                
             }
 
             return users;
@@ -71,7 +71,7 @@ namespace techburst_DAL.Handler
             using (_dbCon.Open())
             {
                 string query =
-                    "UPDATE [dbi434548_rockstars].[dbo].[User] SET FirstName = @FirstName, LastName = @Lastname, Email = @Email, Password = @Password WHERE UserId = @UserId";
+                    "UPDATE [dbi434548_rockstars].[dbo].[User] SET FirstName = @FirstName, LastName = @Lastname, Email = @Email, Password = @Password, Role = @Role WHERE UserId = @UserId";
                 using (SqlCommand update = new SqlCommand(query, _dbCon.connection))
                 {
                     update.Parameters.AddWithValue("@UserId", user.UserId);
@@ -79,6 +79,7 @@ namespace techburst_DAL.Handler
                     update.Parameters.AddWithValue("@LastName", user.LastName);
                     update.Parameters.AddWithValue("@Email", user.Email);
                     update.Parameters.AddWithValue("@Password", user.Password);
+                    update.Parameters.AddWithValue("Role", user.Role);
 
                     update.ExecuteNonQuery();
                 }
@@ -116,16 +117,18 @@ namespace techburst_DAL.Handler
             }
         }
 
-        public UserDto GetUserFromEmail(string email)
+        public UserDto GetUserFromEmail(UserDto ID)
         {
             UserDto dto = new UserDto();
             using (_dbCon.Open())
             {
-                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[User] WHERE Email = @Email";
-                using (SqlCommand getUser = new SqlCommand(query, _dbCon.connection))
+                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[User] WHERE UserId = @UserId";
+                using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
-                    getUser.Parameters.AddWithValue("@Email", email);
-                    var reader = getUser.ExecuteReader();
+                    command.Parameters.AddWithValue("@UserId", ID.UserId);
+
+                    var reader = command.ExecuteReader();
+
                     while (reader.Read())
                     {
                         dto.UserId = reader.GetInt32(0);

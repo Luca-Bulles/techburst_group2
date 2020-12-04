@@ -37,8 +37,8 @@ namespace techburst_group2
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
+                options.LoginPath = "/User/Login";
+                options.LogoutPath = "/User/Logout";
             });
             services.AddControllersWithViews();
 

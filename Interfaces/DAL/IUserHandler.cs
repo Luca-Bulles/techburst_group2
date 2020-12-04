@@ -9,7 +9,7 @@ namespace Interfaces.DAL
     {
         public bool Login(UserDto dto);
 
-        public UserDto GetUserFromEmail(string email);
+        public UserDto GetUserFromEmail(UserDto ID);
         public bool CheckIfEmailExists(string email);
     }
 }
