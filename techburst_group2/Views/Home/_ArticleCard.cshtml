@@ -1,5 +1,6 @@
 ﻿@model ArticleModel
 @using Interfaces.BLL
+@using techburst_group2.Utilities
 @inject ITagCollection TagCollection
 @{var articles = ViewData["Articles"] as List<ArticleModel>;}
 
@@ -33,7 +34,7 @@
                         {
                             break;
                         }
-                        string content = articles[i].Content;
+                        string content = ArticleTextManager.ParseHeaderContent(articles[i].Content);
                         if (content.Length > 160)
                         {
                             content = content.Substring(0, 160) + "...";
@@ -54,7 +55,7 @@
                                         <i class="far fa-clock text-info"></i>
                                         <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
                                     </small>
-                                    <p class="card-text">@content</p>
+                                    <p class="card-text">@ArticleTextManager.ParseHtmlTags(content)</p>
                                 </div>
                                 <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                                     <div class="views">

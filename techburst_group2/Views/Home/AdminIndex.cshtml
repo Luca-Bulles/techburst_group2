@@ -1,7 +1,9 @@
-﻿@model IEnumerable<techburst_group2.Models.ArticleModel>
+﻿@using techburst_group2.Utilities
+@model IEnumerable<techburst_group2.Models.ArticleModel>
 
 @{ ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <h2 class="text-center">Admin Workstation</h2>
 @Html.ActionLink("Add new article to the system", "Create", "Articles")
@@ -39,40 +41,41 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Author)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Title)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Content)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Images)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TagID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreatedAt)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastEdited)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id })
-    </td>
-    <td>
-        @Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" })
-    </td>
-</tr>}
+
+    @foreach (var item in Model)
+    {
+        string parsedContent = ArticleTextManager.ParseHeaderContent(item.Content);
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => ArticleTextManager.ParseHtmlTags(parsedContent))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Images)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TagID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEdited)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Articles", new {id = item.Id})
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new {ID = item.Id}, new {onclick = "return confirm('Are you sure you want to delete?');"})
+        </td>
+    }
     </tbody>
 </table>
 
