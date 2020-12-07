@@ -2,10 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
+@if (TempData["LoggedIn"] != null)
+{
+    <strong class="alert alert-success">@TempData["LoggedIn"]</strong>
+    <br />
+    <br />
+}
 
-<h2 class="display-4">Recente artikelen</h2>
+
+<h2 class="display-4">Aangeraden artikelen</h2>
 @Html.Partial("_ArticleCard")
 
 
 <br />
-<h2 class="display-4">Aangeraden artikelen</h2>
+<h2 class="display-4">Recente artikelen</h2>

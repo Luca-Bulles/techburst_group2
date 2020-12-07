@@ -15,6 +15,8 @@ namespace techburst_group2.Utilities
         private static List<TagViewModel> _viewModelList;
         private static ITagModel _tag;
         private static TagViewModel _tagViewModel;
+        private static UserModel _usermodel;
+        private static UservViewModel _userviewmodel;
 
         public ViewModelConverter(ITagModel tag)
         {
@@ -52,6 +54,19 @@ namespace techburst_group2.Utilities
         public static ITagModel ConvertTagViewModelToModel(TagViewModel tvm)
         {
             return new TagModel() { Id = tvm.Id, Name = tvm.Name };
+        }
+        public static UserModel ConvertUserViewModelToModel(UservViewModel model)
+        {
+            _usermodel = new UserModel()
+            {
+                UserId = model.ID,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Password = model.Password,
+                Email = model.Email,
+                Role = model.Role
+            };
+            return _usermodel;
         }
     }
 }

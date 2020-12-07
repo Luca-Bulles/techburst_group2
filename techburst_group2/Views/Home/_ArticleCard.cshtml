@@ -45,7 +45,7 @@
                                 <div class="card-img-overlay">
                                     <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(articles[i].TagID).Name</a>
                                 </div>
-                                <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Articles", new { id = articles[i].Id }, null)"></a>
+                                <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Article", new { id = articles[i].Id }, null)"></a>
                                 <div class="card-body">
                                     <h4 class="card-title articles-text">@articles[i].Title</h4>
                                     <small class="text-muted cat">

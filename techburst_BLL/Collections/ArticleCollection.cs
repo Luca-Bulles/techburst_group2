@@ -55,7 +55,7 @@ namespace techburst_BLL
             List<IArticleModel> articles = GetAllArticles();
             IArticleModel article = null;
 
-            foreach (var art in articles) 
+            foreach (var art in articles)
             {
                 if (art.Id == id)
                 {
