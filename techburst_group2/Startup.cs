@@ -8,11 +8,11 @@ using Interfaces.DAL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using techburst_BLL;
 using techburst_BLL.Collections;
 using techburst_BLL.Models;
@@ -24,11 +24,9 @@ namespace techburst_group2
 {
     public class Startup
     {
-        private string ConnectionString = "";
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            configuration = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
-            ConnectionString = configuration["ConnectionStrings:DefaultConnection"];
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -36,12 +34,15 @@ namespace techburst_group2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
             {
-                options.LoginPath = "/Account/Login";
-                options.LogoutPath = "/Account/Logout";
+                options.LoginPath = "/User/Login";
+                options.LogoutPath = "/User/Logout";
             });
             services.AddControllersWithViews();
+
+
             services.AddScoped<IDBConnectionHandler, DBConnectionHandler>();
 
             services.AddScoped<IArticleHandler, ArticleHandler>();
@@ -69,12 +70,6 @@ namespace techburst_group2
                 app.UseHsts();
             }
 
-            app.UseAuthentication();
-            var cookiePolicyOptions = new CookiePolicyOptions
-            {
-                MinimumSameSitePolicy = SameSiteMode.Strict,
-            };
-            app.UseCookiePolicy(cookiePolicyOptions);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -88,7 +83,6 @@ namespace techburst_group2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
             });
 
             //ArticleHandler.SetConnectionString(ConnectionString);
