@@ -109,5 +109,16 @@ namespace techburst_group2.Controllers
 
             return _articles;
         }
+
+        public IActionResult SearchArticle(string SearchText)
+        {
+            var model = _artColl.GetAllArticles();
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                var result = model.Where(a => a.Title.Contains(SearchText));
+                return View(result.ToList());
+            }
+            return View(model);
+        }
     }
 }
