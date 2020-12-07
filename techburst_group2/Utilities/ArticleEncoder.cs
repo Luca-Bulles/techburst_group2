@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
+﻿using System.Net;
 
-namespace techburst_BLL.Utilities
+namespace techburst_group2.Utilities
 {
     public class ArticleTextManager
     {

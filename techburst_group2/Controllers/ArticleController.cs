@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using techburst_BLL;
+using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
@@ -18,7 +19,7 @@ namespace techburst_group2.Controllers
         public IActionResult ArticlePage(int id)
         {
             var article = _articleColl.GetArticleById(id);
-            Models.ArticleModel articleModel = new Models.ArticleModel() { Title = article.Title, Content = article.ArticleText, Images = article.Images };
+            Models.ArticleModel articleModel = new Models.ArticleModel() { Title = article.Title, Content = ArticleTextManager.DecodeArticleText(article.ArticleText), Images = article.Images };
             return View(articleModel);
         }
     }
