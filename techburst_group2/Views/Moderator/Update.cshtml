@@ -1,4 +1,4 @@
-﻿@model techburst_group2.Models.RegisterViewmodel
+﻿@model techburst_group2.Models.UservViewModel
 
 <div class="row">
     <div class="col-md-3">
@@ -9,7 +9,8 @@
             <form asp-action="View">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <input asp-for="@Model.ID" class="form-control" type="hidden" readonly />
+                    <label asp-for="@Model.ID" class="control-label disabled"></label>
+                    <input asp-for="@Model.ID" class="form-control" readonly />
                     <span asp-validation-for="@Model.ID" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -44,7 +45,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-sm btn-warning btn-outline-dark input text-center" type="submit" asp-controller="Moderator" asp-action="Update">Update my profile!</button>
+                    <button class="btn btn-sm btn-warning btn-outline-dark input text-center" type="submit" asp-controller="Moderator" asp-action="Edit">Update my profile!</button>
                 </div>
 
             </form>

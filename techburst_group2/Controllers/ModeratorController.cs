@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using techburst_BLL.Collections;
 using techburst_BLL.Models;
 using techburst_group2.Models;
+using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
@@ -15,7 +16,7 @@ namespace techburst_group2.Controllers
     public class ModeratorController : Controller
     {
         UserCollection _userCollection = new UserCollection();
-        List<RegisterViewmodel> userviews = new List<RegisterViewmodel>();
+        List<UservViewModel> userviews = new List<UservViewModel>();
         public ModeratorController()
         {
             _userCollection = new UserCollection();
@@ -23,11 +24,11 @@ namespace techburst_group2.Controllers
         public IActionResult Index()
         {
             var all = _userCollection.GetUsers();
-            userviews = new List<RegisterViewmodel>();
+            userviews = new List<UservViewModel>();
 
             foreach (var person in all)
             {
-                userviews.Add(new RegisterViewmodel
+                userviews.Add(new UservViewModel
                 {
                     ID = person.UserId,
                     FirstName = person.FirstName,
@@ -48,19 +49,36 @@ namespace techburst_group2.Controllers
 
         [HttpGet]
         [Authorize(Roles = "User")]
-        public ActionResult Update()
+        public ActionResult Update(int ID)
         {
-            var viewmodel = new RegisterViewmodel();
-            var result = _userCollection.GetUserFromEmail(viewmodel.Email);
-            return View(result);
+            var result = _userCollection.GetUsers();
+            foreach (var user in result)
+            {
+                //when the ID's are equal. This ID's will be chosen, and all the information that carries with the ID will be writen.
+                if (ID == user.UserId)
+                {
+                    var uservm = new UservViewModel()
+                    {
+                        ID = user.UserId,
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Password = user.Password,
+                        Role = user.Role
+                    };
+
+                    return View(uservm);
+                }
+            }
+            return View();
         }
 
 
         [HttpPost]
-        [Authorize(Roles = "User")]
-        public ActionResult Update(UserModel model)
+        public ActionResult Edit(UservViewModel model)
         {
-            _userCollection.Edit(model);
+            var result = ViewModelConverter.ConvertUserViewModelToModel(model);
+            _userCollection.Edit(result);
             TempData["Update"] = "The records has been changed from the system!";
             return RedirectToAction("Index", "Home");
         }

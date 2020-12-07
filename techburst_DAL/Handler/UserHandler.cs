@@ -117,15 +117,15 @@ namespace techburst_DAL.Handler
             }
         }
 
-        public UserDto GetUserFromEmail(UserDto ID)
+        public UserDto GetUserFromEmail(string email)
         {
             UserDto dto = new UserDto();
             using (_dbCon.Open())
             {
-                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[User] WHERE UserId = @UserId";
+                string query = "SELECT * FROM [dbi434548_rockstars].[dbo].[User] WHERE Email = @Email";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", ID.UserId);
+                    command.Parameters.AddWithValue("@Email", email);
 
                     var reader = command.ExecuteReader();
 

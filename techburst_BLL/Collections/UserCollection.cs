@@ -24,9 +24,9 @@ namespace techburst_BLL.Collections
             return DalFactory.UserHandler.Login(dto);
         }
 
-        public UserModel GetUserFromEmail(UserDto ID)
+        public UserModel GetUserFromEmail(string email)
         {
-            var model = ModelConverter.ConvertUserDtoToModel(DalFactory.UserHandler.GetUserFromEmail(ID));
+            var model = ModelConverter.ConvertUserDtoToModel(DalFactory.UserHandler.GetUserFromEmail(email));
             return model;
         }
 
@@ -52,6 +52,20 @@ namespace techburst_BLL.Collections
             var DTO = ModelConverter.ConvertUserModelToDto(Edit);
             DalFactory.UserHandler.Update(DTO);
 
+        }
+
+        public UserModel GetByID(int ID)
+        {
+            var result = GetUsers();
+            UserModel user = null;
+            foreach (var item in result)
+            {
+                if (item.UserId == ID)
+                {
+                    user = item;
+                }
+            }
+            return user;
         }
     }
 }
