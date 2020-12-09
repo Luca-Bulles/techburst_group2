@@ -38,6 +38,7 @@ namespace techburst_BLL
         public List<IArticleModel> GetArticlesByTag(int tagId)
         {
             var modelList = GetAllArticles();
+            _articles = new List<IArticleModel>();
 
             foreach (var model in modelList)
             {
