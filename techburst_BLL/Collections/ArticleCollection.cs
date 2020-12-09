@@ -15,7 +15,6 @@ namespace techburst_BLL
 
         public void Create(IArticleModel article)
         {
-            article.ArticleText = article.ArticleText;
             var result = ModelConverter.ConvertModelToDto(article);
             DalFactory.ArticleHandler.Create(result);
         }
@@ -28,7 +27,6 @@ namespace techburst_BLL
             foreach (var dto in result)
             {
                 var model = ModelConverter.ConvertDtoToModel(dto);
-                model.ArticleText = model.ArticleText;
                 _articles.Add(model);
             }
 
