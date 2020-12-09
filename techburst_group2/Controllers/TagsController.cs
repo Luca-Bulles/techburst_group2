@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Interfaces.BLL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using techburst_BLL.Models;
 using techburst_group2.Models;
@@ -10,6 +11,7 @@ using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
+    [Authorize(Roles = "Moderator")]
     public class TagsController : Controller
     {
         private ITagCollection _tagColl;
@@ -28,7 +30,7 @@ namespace techburst_group2.Controllers
         public IActionResult CreateTag(TagViewModel tvm)
         {
             _tagColl.Create(_tagModel = new TagModel() {Id = tvm.Id, Name = tvm.Name});
-            return RedirectToAction("Create");
+            return RedirectToAction("All");
         }
 
         public IActionResult Edit(int id)

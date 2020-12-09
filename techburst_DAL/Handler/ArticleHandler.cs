@@ -129,5 +129,17 @@ namespace techburst_DAL.Handler
             }
             return new ArticleDto();
         }
+
+        public int GetIdFromTags(int TagId) {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM ArticleTag WHERE TagID = @TagID;";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TagID", TagId);
+                }
+            }
+            return 1;
+        }
     }
 }

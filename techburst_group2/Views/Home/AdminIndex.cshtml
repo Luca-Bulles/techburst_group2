@@ -17,18 +17,9 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Images)
-            </th>
-            <th> <!--Temporary display for functionality, fix later-->
                 @Html.DisplayNameFor(model => model.TagID)
             </th>
             <th>
@@ -37,47 +28,43 @@
             <th>
                 @Html.DisplayNameFor(model => model.LastEdited)
             </th>
-         
+            <th></th>
+            <th></th>
+
         </tr>
     </thead>
     <tbody>
 
-    @foreach (var item in Model)
-    {
-        string parsedContent = ArticleTextManager.ParseHeaderContent(item.Content);
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => ArticleTextManager.ParseHtmlTags(parsedContent))
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Images)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TagID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastEdited)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Articles", new {id = item.Id})
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new {ID = item.Id}, new {onclick = "return confirm('Are you sure you want to delete?');"})
-        </td>
+        @foreach (var item in Model)
+        {
+            string parsedContent = ArticleTextManager.ParseHeaderContent(item.Content);
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TagID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastEdited)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" })
+                </td>
+        </tr>
     }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 
 
