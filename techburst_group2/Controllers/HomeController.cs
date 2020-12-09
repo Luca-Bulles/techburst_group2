@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entities.Enums;
 using Interfaces.BLL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using techburst_BLL;
@@ -120,7 +121,7 @@ namespace techburst_group2.Controllers
 
             return View("../Home/Articles", _articles);
         }
-
+        [Authorize(Roles ="Moderator")]
         public ActionResult Delete(int ID)
         {
             _articlelogic.Delete(ID);
