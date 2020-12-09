@@ -1,40 +1,62 @@
 <ul class="navbar-nav">
     @if (User.IsInRole("User"))
     {
-        
+
 
         <li class="nav-item">
             <a class="nav-link" asp-controller="User" asp-action="Logout">Log out</a>
         </li>
 
-     }
+    }
 
     else
     {
 
-        if (User.IsInRole("Admin"))
+        if (User.IsInRole("Moderator"))
         {
             <li class="nav-item dropdown show">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">Admin panel</a>
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">Moderator panel</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Index">Manage Vehicles</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="AdminIndex">View Articles as moderator</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Index">Manage Users</a>
+                    <a class="dropdown-item" asp-area="" asp-controller="Moderator" asp-action="Index">Manage Users</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-area="" asp-controller="Tags" asp-action="All">Manage Tags</a>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="User" asp-action="Logout">Log out!</a>
             </li>
+
         }
 
         else
         {
-            <li class="nav-item">
-                <a class="nav-link " asp-controller="User" asp-action="Register">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="User" asp-action="Login">Sign in</a>
-            </li>
+            if (User.IsInRole("Employee"))
+            {
+                <li class="nav-item dropdown show">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">Menu</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" asp-area="" asp-controller="Articles" asp-action="Create">Make an Article!</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="" asp-controller="Moderator" asp-action="Index">Demo error.</a>
+                       
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="User" asp-action="Logout">Log out!</a>
+                </li>
+            }
+
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link " asp-controller="User" asp-action="Register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="User" asp-action="Login">Sign in</a>
+                </li>
+            }
         }
     }
 

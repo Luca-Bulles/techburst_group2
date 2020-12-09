@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using techburst_BLL;
 using techburst_BLL.Collections;
 using techburst_BLL.Models;
 using techburst_group2.Models;
@@ -12,14 +13,18 @@ using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "Moderator")]
     public class ModeratorController : Controller
     {
         UserCollection _userCollection = new UserCollection();
         List<UservViewModel> userviews = new List<UservViewModel>();
+        ArticleCollection articleCollection = new ArticleCollection();
+        List<Models.ArticleModel> articles = new List<Models.ArticleModel>();
+
         public ModeratorController()
         {
             _userCollection = new UserCollection();
+            articleCollection = new ArticleCollection();
         }
         public IActionResult Index()
         {
@@ -48,7 +53,6 @@ namespace techburst_group2.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User")]
         public ActionResult Update(int ID)
         {
             var result = _userCollection.GetUsers();
@@ -82,5 +86,26 @@ namespace techburst_group2.Controllers
             TempData["Update"] = "The records has been changed from the system!";
             return RedirectToAction("Index", "Home");
         }
+
+        //public IActionResult ArticleIndex()
+        //{
+        //    var all = articleCollection.GetAllArticles();
+        //    articles = new List<Models.ArticleModel>();
+
+        //    foreach (var person in all)
+        //    {
+        //        userviews.Add(new UservViewModel
+        //        {
+        //            ID = person.UserId,
+        //            FirstName = person.FirstName,
+        //            LastName = person.LastName,
+        //            Email = person.Email,
+        //            Password = person.Password,
+        //            Role = person.Role
+        //        });
+        //    }
+
+        //    return View(userviews);
+        //}
     }
 }
