@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entities.Enums;
 using Interfaces.BLL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using techburst_BLL;
@@ -59,7 +60,7 @@ namespace techburst_group2.Controllers
             }
             
         }
-
+        [Authorize(Roles = "Moderator")]
         public IActionResult AdminIndex()
         {
             var data = _coll.GetAllArticles();
@@ -68,7 +69,8 @@ namespace techburst_group2.Controllers
             {
               articles.Add(new Models.ArticleModel
 
-                { Id = unconvertedArticle.Id, 
+                {
+                  Id = unconvertedArticle.Id, 
                     Author = unconvertedArticle.Author, 
                     Title = unconvertedArticle.Title,
                     Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), 
@@ -104,7 +106,7 @@ namespace techburst_group2.Controllers
             return View(_articles);
         }
 
-
+        [Authorize(Roles = "Moderator")]
         public ActionResult Delete(int ID)
         {
             _articlelogic.Delete(ID);
