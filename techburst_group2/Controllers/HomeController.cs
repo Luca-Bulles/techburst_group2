@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entities.Enums;
 using Interfaces.BLL;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using techburst_BLL;
@@ -91,8 +92,13 @@ namespace techburst_group2.Controllers
         }
 
 
-        public IActionResult Articles() 
+        public IActionResult Articles(List<Models.ArticleModel> articles) 
         {
+            return View(articles);
+        }
+
+        public IActionResult LoadAllArticles() {
+
             var data = _coll.GetAllArticles();
             foreach (var unconvertedArticle in data)
             {
@@ -101,10 +107,21 @@ namespace techburst_group2.Controllers
 
             }
 
-            return View(_articles);
+            return View("../Home/Articles", _articles);
         }
 
+        public IActionResult LoadArticlesByTag(int tagId) {
+            var data = _coll.GetArticlesByTag(tagId);
+            foreach (var unconvertedArticle in data)
+            {
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                _articles.Add(viewModel);
 
+            }
+
+            return View("../Home/Articles", _articles);
+        }
+        [Authorize(Roles ="Moderator")]
         public ActionResult Delete(int ID)
         {
             _articlelogic.Delete(ID);

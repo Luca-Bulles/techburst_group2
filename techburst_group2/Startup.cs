@@ -39,6 +39,8 @@ namespace techburst_group2
             {
                 options.LoginPath = "/User/Login";
                 options.LogoutPath = "/User/Logout";
+                options.ClaimsIssuer = "/User/Login";
+                options.AccessDeniedPath = "/User/Login";
             });
             services.AddControllersWithViews();
 
