@@ -93,7 +93,7 @@ namespace techburst_group2.Controllers
         public IActionResult Delete(int id)
         {
             _article.Delete(id);
-            return RedirectToAction("AdminIndex", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
 
