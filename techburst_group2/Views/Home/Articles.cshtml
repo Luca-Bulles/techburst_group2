@@ -1,5 +1,6 @@
 ﻿@using techburst_BLL.Collections
 @using Interfaces.BLL
+@using techburst_group2.Utilities
 @inject ITagCollection TagCollection
 @model IEnumerable<ArticleModel>
 @{ ViewData["Title"] = "Articles"; }
@@ -9,17 +10,20 @@
 </head>
 
 <body>
-    <h2>All articles</h2>
+    <h2 class="contact-big-text">Alle artikelen</h2>
 
     <div class="dropdown">
         <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-            Dropdown Example
+          Filter by Category
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <li><a href="#">C#</a></li>
-            <li><a href="#">Java</a></li>
-            <li><a href="#">C++</a></li>
+            <li><a href="@Url.Action("LoadAllArticles", "Home")">Reset Filter</a></li>
+            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 1 }, null)">Visual Studio</a></li>
+            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 2 }, null)">C#</a></li>
+            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 3 }, null)">Java</a></li>
+            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 4 }, null)">Python</a></li>
+            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 15 }, null)">JavaScript</a></li>
         </ul>
     </div>
 
@@ -33,6 +37,8 @@
                     {
                         article.Content = article.Content.Substring(0, 160) + "...";
                     }
+                    string contentWithoutHeaders = ArticleTextManager.ParseHeaderContent(article.Content);
+                    string parsedContent = ArticleTextManager.ParseHtmlTags(contentWithoutHeaders);
                     <div class="card shadow border-color">
 
                         <a href='@Url.Action("ArticlePage", "Article", new { id = article.Id }, null)'>
@@ -47,7 +53,7 @@
                                 <i class="far fa-clock text-info"></i>
                                 <i class="far fa-clock text-info"></i> Leestijd: 5 minutes
                             </small>
-                            <p class="card-text">@Html.DisplayFor(model => article.Content)</p>
+                            <p class="card-text">@Html.DisplayFor(model => parsedContent)</p>
                         </div>
                         <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                             <div class="views">

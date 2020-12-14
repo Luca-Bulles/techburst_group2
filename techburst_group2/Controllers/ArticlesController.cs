@@ -48,7 +48,7 @@ namespace techburst_group2.Controllers
             {
                 _article.Author = article.Author;
                 _article.DateCreated = article.CreatedAt;
-                _article.ArticleText = article.Content;
+                _article.ArticleText = ArticleTextManager.EncodeArticleText(article.Content);
                 _article.Title = article.Title;
                 _article.Images = article.Images;
                 _article.LastEdited = article.LastEdited;
@@ -72,7 +72,7 @@ namespace techburst_group2.Controllers
             ArticleModel article = new ArticleModel();
             article.Id = richModel.Id;
             article.Title = richModel.Title;
-            article.Content = richModel.ArticleText;
+            article.Content = ArticleTextManager.DecodeArticleText(richModel.ArticleText);
             article.Images = richModel.Images;
             article.Author = richModel.Author;
             article.CreatedAt = richModel.DateCreated;
@@ -84,7 +84,7 @@ namespace techburst_group2.Controllers
         {
             _article.Id = articleViewModel.Id;
             _article.Title = articleViewModel.Title;
-            _article.ArticleText = articleViewModel.Content;
+            _article.ArticleText = ArticleTextManager.EncodeArticleText(articleViewModel.Content);
             _article.Images = articleViewModel.Images;
             _article.Edit(_article);
             return RedirectToAction("AdminIndex", "Home"); //Verander dit naar een redirect naar Jan's articlepage.
@@ -103,7 +103,7 @@ namespace techburst_group2.Controllers
 
             foreach (var model in result)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = model.ArticleText, TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = ArticleTextManager.DecodeArticleText(model.ArticleText), TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
                 _articles.Add(viewModel);
             }
 
