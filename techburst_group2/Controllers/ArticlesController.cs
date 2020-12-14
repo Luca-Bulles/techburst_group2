@@ -87,7 +87,7 @@ namespace techburst_group2.Controllers
             _article.ArticleText = ArticleTextManager.EncodeArticleText(articleViewModel.Content);
             _article.Images = articleViewModel.Images;
             _article.Edit(_article);
-            return RedirectToAction("AdminIndex", "Home"); //Verander dit naar een redirect naar Jan's articlepage.
+            return RedirectToAction("ArticlePage", "Article");
         }
 
         public IActionResult Delete(int id)
