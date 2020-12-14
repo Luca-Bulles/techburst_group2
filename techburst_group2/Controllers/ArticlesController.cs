@@ -32,15 +32,6 @@ namespace techburst_group2.Controllers
             _article = article;
             _tagColl = tagColl;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Article(int id)
-        {
-            return View();
-        }
 
         public IActionResult Submit(Models.ArticleModel article)
         {
