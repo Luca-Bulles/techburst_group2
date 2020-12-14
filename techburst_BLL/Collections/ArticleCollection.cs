@@ -11,8 +11,6 @@ namespace techburst_BLL
     {
         private List<IArticleModel> _articles;
 
-        //@TODO: Add validation for user type in later iteration.
-
         public void Create(IArticleModel article)
         {
             var result = ModelConverter.ConvertModelToDto(article);
