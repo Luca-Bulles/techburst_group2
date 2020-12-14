@@ -24,13 +24,19 @@
 
 
                         <li class="nav-item">
-                            <a class="nav-link rockstar-text" asp-area="" asp-controller="Home" asp-action="Articles">Articles</a>
+                            <a class="nav-link rockstar-text" href='@Url.Action("LoadAllArticles", "Home")'>Articles</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link rockstar-text" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link rockstar-text" asp-area="" asp-controller="Home" asp-action="AddArticle">AddArticle</a>
+                            <div class="search-bar">
+                                @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                                {
+                                    @Html.TextBox("SearchText")
+                                    <input type="submit" value="Search" class="search-button" />
+                                }
+                            </div>
                         </li>
                     </ul>
                 </div>

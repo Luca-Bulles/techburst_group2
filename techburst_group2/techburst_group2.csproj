@@ -5,8 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
+    <Compile Remove="Areas\**" />
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Areas\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Areas\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Areas\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>
