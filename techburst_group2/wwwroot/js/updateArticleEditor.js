@@ -12,7 +12,7 @@ function getQuillContent() {
 }
 
 editorForm.onsubmit = function () {
-    $("#articlecontent").replaceWith(getQuillContent());
+    $("#content").val(getQuillContent());
     //$("#content").hide();
     /*
     let content = document.getElementById("content");
