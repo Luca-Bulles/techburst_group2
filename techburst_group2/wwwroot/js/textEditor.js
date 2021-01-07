@@ -15,8 +15,6 @@ var toolbarOptions = [
     [{ 'align': [] }]                                   //text aligning.
 ];
 
-export { toolbarOptions };
-
 //Set options for debugging, text editor themes, etc.
 var options = {
     debug: 'info',                                      //set debugging options.
@@ -26,8 +24,6 @@ var options = {
     readOnly: false,                                    //set readOnly property.
     theme: 'snow'                                       //set theme for text editor.
 };
-
-export { options };
 
 var quill = new Quill('#editor', options);              //instantiate the text editor within the specified div container (#editor) and the options as defined in the above variable.
 

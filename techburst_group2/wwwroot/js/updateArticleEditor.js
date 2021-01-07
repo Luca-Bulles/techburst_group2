@@ -1,9 +1,4 @@
-﻿import { toolbarOptions, options} from "../js/textEditor.js";
-
-
-let quill = new Quill("#editor", options);
-
-let editorForm = document.querySelector('#edit');
+﻿let editorForm = document.querySelector('#edit');
 
 let editors = {};
 editors[editor] = quill;
