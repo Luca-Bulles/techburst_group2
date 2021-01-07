@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-rockstar box-shadow mb-3">
             <div class="container">
                 <img src="https://cdn.discordapp.com/attachments/420292690127618089/771284704477184000/RST-073-logo-Team-Rockstars-IT.png" width="75" height="75" />
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Team Up IT</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,9 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link rockstar-text" href='@Url.Action("Index", "Home")'>Home</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link rockstar-text" href='@Url.Action("LoadAllArticles", "Home")'>Articles</a>
                         </li>
@@ -38,9 +41,19 @@
                             </div>
                         </li>
                     </ul>
+                
                 </div>
-            </div>
-            <partial name="_loginpartial"/>
+                    <div class="navbar-collapse collapse w-50 order-3 dual-collapse2">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <partial name="_loginpartial" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            
+           
         </nav>
     </header>
     @if (ViewBag.ArticlePage == null)
