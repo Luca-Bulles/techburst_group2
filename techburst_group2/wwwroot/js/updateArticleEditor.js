@@ -1,7 +1,7 @@
 ﻿let editorForm = document.getElementById("editform");
 
 window.onload = function () {
-    let content = document.getElementById("articleContent").value;
+    let content = document.getElementById("articlecontent").value;
     let qEditor = quill;
     qEditor.root.innerHTML = content;
 };
@@ -13,6 +13,6 @@ function getQuillContent() {
 }
 
 editorForm.onsubmit = function () {
-    let content = document.querySelector('input[name=content]');
+    let content = document.getElementById("content");
     content.value = getQuillContent();
 }
