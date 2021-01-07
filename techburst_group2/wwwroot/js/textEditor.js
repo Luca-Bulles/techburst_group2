@@ -45,4 +45,3 @@ function getQuillText() {
     var text = quillEditor.root.innerHTML;
     return text;
 }
-6
