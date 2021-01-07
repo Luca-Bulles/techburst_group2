@@ -50,17 +50,14 @@
                                 <div class="card-body">
                                     <h4 class="card-title articles-text">@articles[i].Title</h4>
                                     <small class="text-muted cat">
-                                        <i class="far fa-clock text-info"></i> Written by: @articles[i].Author
+                                        <i class="far fa-clock text-info"></i> Geschreven door: @articles[i].Author
                                         <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
                                         <i class="far fa-clock text-info"></i>
-                                        <i class="far fa-clock text-info"></i> Readingtime: 5 minutes
                                     </small>
                                     <p class="card-text">@ArticleTextManager.ParseHtmlTags(content)</p>
                                 </div>
                                 <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                                    <div class="views">
-                                        @articles[i].CreatedAt
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
