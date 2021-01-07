@@ -32,7 +32,6 @@ var form = document.querySelector('#create');           //get form from View.
 form.onsubmit = function () {                           
     var content = document.querySelector('input[name=content]');
     content.value = getQuillText();
-    alert(content.value); //Alert is for debugging purposes only, and can be safely removed later on.
 }
 
 //Initialize variables for getQuillText function.
@@ -45,3 +44,4 @@ function getQuillText() {
     var text = quillEditor.root.innerHTML;
     return text;
 }
+6
