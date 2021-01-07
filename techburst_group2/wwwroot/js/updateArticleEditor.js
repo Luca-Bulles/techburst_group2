@@ -13,8 +13,4 @@ function getQuillContent() {
 
 editorForm.onsubmit = function () {
     $("#content").val(getQuillContent());
-    //$("#content").hide();
-    /*
-    let content = document.getElementById("content");
-    content.value = getQuillContent();*/
 }
