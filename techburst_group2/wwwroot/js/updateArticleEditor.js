@@ -1,9 +1,9 @@
 ﻿let editorForm = document.getElementById("editform");
 
 window.onload = function () {
-    let content = document.getElementById("articlecontent").value;
+    let articleContent = document.getElementById("articlecontent").value;
     let qEditor = quill;
-    qEditor.root.innerHTML = content;
+    qEditor.root.innerHTML = articleContent;
 };
 
 function getQuillContent() {
