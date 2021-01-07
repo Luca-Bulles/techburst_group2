@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using techburst_BLL;
+using techburst_BLL.Collections;
 using techburst_group2.Models;
 using techburst_group2.Utilities;
 
@@ -21,14 +22,19 @@ namespace techburst_group2.Controllers
         private ArticleCollection _coll;
         private techburst_BLL.ArticleModel _articlelogic;
         private IArticleCollection _articleColl;
+        private ContactCollection contactCollection;
 
-        public HomeController(ILogger<HomeController> logger, IArticleCollection articleColl)
+        private readonly ContactCollection _contact;
+
+        public HomeController(ILogger<HomeController> logger, IArticleCollection articleColl, ContactCollection _contactCollection)
         {
             _logger = logger;
             _coll = new ArticleCollection();
             _articles = new List<Models.ArticleModel>();
             _articlelogic = new techburst_BLL.ArticleModel();
             _articleColl = articleColl;
+            contactCollection = _contactCollection;
+          
         }
 
         public IActionResult Index(string SearchText)
@@ -106,7 +112,7 @@ namespace techburst_group2.Controllers
                 _articles.Add(viewModel);
 
             }
-
+            _articles.Reverse();
             return View("../Home/Articles", _articles);
         }
 
@@ -118,7 +124,7 @@ namespace techburst_group2.Controllers
                 _articles.Add(viewModel);
 
             }
-
+            _articles.Reverse();
             return View("../Home/Articles", _articles);
         }
         [Authorize(Roles ="Moderator")]
@@ -128,11 +134,6 @@ namespace techburst_group2.Controllers
             return RedirectToAction("Index");
         }
       
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

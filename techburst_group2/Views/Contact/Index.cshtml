@@ -1,0 +1,87 @@
+﻿@model techburst_group2.Models.ContactViewModel
+@{
+    ViewData["Title"] = "Contact";
+}
+<div class="row">
+    <div class="col-md-5">
+
+        <h3 class="contact-big-text"><br />Get in touch! </h3>
+        <p>
+            <br />
+            All of our members at the frontoffce team are piece by piece a nice voice to listen and talk to.<br />
+            <br /> Call us if you want to know more about who we are, what we do, our event or any other question!
+        </p>
+        <p><br />Tel: 073 - 615 77 77</p>
+        <p><br />From 08:30 tot 17:30 available</p>
+
+    </div>
+
+    <div class="col-md-1">
+        <p></p>
+    </div>
+
+    <div class="col-md-5 position-relative justify-content-md-center pt-3 mb-5">
+        <img src="~/Images/superhero_rockstars.jpg" alt="Rockstarsit Superhero" height="300" style="width:inherit; height:inherit;"/>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-sm-7 col-md-5">
+        <iframe frameborder="1" scrolling="no" marginheight="0" marginwidth="0" width="900" height="400" style="width:inherit"
+                src="https://maps.google.com/maps?hl=nl&q=lekkerbeetjestraat8&ie=UTF8&t=m&z=15&iwloc=B&output=embed">
+        </iframe>
+    </div>
+
+    <div class="col-md-1">
+        <p></p>
+    </div>
+
+    <div class="contact col-md-6">
+        <h5 class="contact-big-text"><br />You can also send us your questions by email!</h5>
+        <form asp-action="View">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Firstname" class="control-label col-sm-3 pt-2"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Firstname" class="form-control border-secondary" />
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Lastname" class="control-label col-sm-3 pt-2"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Lastname" class="form-control border-secondary" />
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="control-label col-sm-3 pt-2"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Email" class="form-control border-secondary" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Question" class="control-label col-sm-3 pt-2"></label>
+                <div class="col-sm-9">
+                    <input asp-for="Question" class="form-control border-secondary" />
+                    <span asp-validation-for="Question" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-sm btn-success btn-outline-dark input text-center" type="submit" asp-controller="Contact" asp-action="Create">Add new Account!</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
