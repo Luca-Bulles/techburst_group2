@@ -112,7 +112,7 @@ namespace techburst_group2.Controllers
                 _articles.Add(viewModel);
 
             }
-
+            _articles.Reverse();
             return View("../Home/Articles", _articles);
         }
 
@@ -124,7 +124,7 @@ namespace techburst_group2.Controllers
                 _articles.Add(viewModel);
 
             }
-
+            _articles.Reverse();
             return View("../Home/Articles", _articles);
         }
         [Authorize(Roles ="Moderator")]
