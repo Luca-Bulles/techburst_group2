@@ -16,9 +16,11 @@ namespace techburst_BLL.Utilities
         private static TagDto _tagDto;
         private static UserDto _userDto;
         private static UserModel _userModel;
+        private static ContactModel _contactModel;
 
         private static RoleDto _roleDto;
         private static RoleModel _roleModel;
+        private static ContactDTO _contactDTO;
 
         public static ArticleModel ConvertDtoToModel(ArticleDto dto)
         {
@@ -93,6 +95,17 @@ namespace techburst_BLL.Utilities
                 RoleName = dto.Name
             };
             return _roleModel;
+        }
+        public static ContactDTO ConvertContactmodelToDTO(ContactModel model)
+        {
+            _contactDTO = new ContactDTO()
+            {
+                Email = model.Email,
+                Firstname = model.Firstname,
+                Lastname = model.Lastname,
+                Question = model.Question
+            };
+            return _contactDTO;
         }
     }
 }

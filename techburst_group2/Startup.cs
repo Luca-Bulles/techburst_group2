@@ -55,6 +55,7 @@ namespace techburst_group2
             services.AddScoped<ITagCollection, TagCollection>();
             services.AddScoped<ITagModel, TagModel>();
             services.AddScoped<IUserHandler, UserHandler>();
+            services.AddScoped<ContactCollection, ContactCollection>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
