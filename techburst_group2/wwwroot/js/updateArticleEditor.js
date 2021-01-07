@@ -1,8 +1,16 @@
-﻿let editorForm = document.querySelector('#edit');
+﻿import { toolbarOptions, options} from "../js/textEditor.js";
+
+
+let quill = new Quill("#editor", options);
+
+let editorForm = document.querySelector('#edit');
+
+let editors = {};
+editors[editor] = quill;
 
 window.onload = function () {
     let content = document.getElementById("articleContent").value;
-    let qEditor = quill;
+    let qEditor = editors[editor];
     render(content, qEditor.root);
     //qEditor.root.innerHTML = content;
 };
@@ -14,7 +22,7 @@ function getQuillContent() {
 }
 
 editorForm.onsubmit = function () {
-    var content = document.querySelector('input[name=content]');
+    let content = document.querySelector('input[name=content]');
     content.value = getQuillContent();
 }
 
