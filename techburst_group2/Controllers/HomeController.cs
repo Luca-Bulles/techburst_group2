@@ -34,10 +34,10 @@ namespace techburst_group2.Controllers
         public IActionResult Index(string SearchText)
         {
             var data = _coll.GetAllArticles();
-
             if (!string.IsNullOrEmpty(SearchText))
             {
-                var result = data.Where(a => a.Title.Contains(SearchText));
+                string text = SearchText.ToUpper();
+                var result = data.Where(a => a.Title.Contains(text));
                 foreach (var unconvertedArticle in result)
                 {
                     Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
