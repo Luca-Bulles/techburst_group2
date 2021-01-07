@@ -37,8 +37,27 @@ namespace techburst_group2.Models
         [Required]
         public string TagName { get; set; }
         public string Images { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime LastEdited { get; set; }
+
+        private DateTime? date;
+
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
+        public DateTime CreatedAt
+        {
+            get { return date ?? DateTime.Today; }
+            set { date = value; }
+        }
+        private DateTime? enddate;
+
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:d}")]
+        [DataType(DataType.Date)]
+        public DateTime LastEdited
+        {
+            get { return enddate ?? DateTime.Today.Date; }
+            set { enddate = value; }
+        }
+        
         [Required]
         public bool Draft { get; set; }
     }
