@@ -13,7 +13,7 @@
 <hr />
 <div class="row">
     <div>
-        <form asp-action="Edit" id="edit">
+        <form asp-action="Edit" id="editform">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -52,6 +52,7 @@
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="~/js/textEditor.js"></script>
 <script src="~/js/updateArticleEditor.js"></script>
 
 @section Scripts {
