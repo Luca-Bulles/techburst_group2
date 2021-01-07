@@ -70,9 +70,10 @@ namespace techburst_group2.Controllers
         {
             IArticleModel richModel = _artColl.GetArticleById(id);
             ArticleModel article = new ArticleModel();
+            string decoded = ArticleTextManager.DecodeArticleText(richModel.ArticleText);
             article.Id = richModel.Id;
             article.Title = richModel.Title;
-            article.Content = ArticleTextManager.DecodeArticleText(richModel.ArticleText);
+            article.Content = ArticleTextManager.ParseHtmlTags(decoded);
             article.Images = richModel.Images;
             article.Author = richModel.Author;
             article.CreatedAt = richModel.DateCreated;

@@ -24,6 +24,7 @@ var options = {
     readOnly: false,                                    //set readOnly property.
     theme: 'snow'                                       //set theme for text editor.
 };
+
 var quill = new Quill('#editor', options);              //instantiate the text editor within the specified div container (#editor) and the options as defined in the above variable.
 
 var form = document.querySelector('#create');           //get form from View.
@@ -44,4 +45,3 @@ function getQuillText() {
     var text = quillEditor.root.innerHTML;
     return text;
 }
-6
