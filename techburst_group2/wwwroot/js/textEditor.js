@@ -41,7 +41,7 @@ window.onload = function () {
 //This function gets the content from an input field with the name content from the View, and then calls getQuillText in order to set the value for the hidden input field in the View.
 form.onsubmit = function () {                           
     var content = document.querySelector('input[name=content]');
-    content.value = getQuillText();
+    content.setAttribute("value", getQuillText());
 }
 
 //Initialize variables for getQuillText function.
