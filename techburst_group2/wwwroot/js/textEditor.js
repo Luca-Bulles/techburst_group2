@@ -30,9 +30,9 @@ var quill = new Quill('#editor', options);              //instantiate the text e
 var form = document.querySelector('#create');           //get form from View.
 
 window.onload = function () {
-    let articleContentDiv = document.getElementById("articlecontent");
-    if (articleContentDiv != null) {
-        let articleContent = document.getElementById("articlecontent").value;
+    let articleContent = document.getElementById("articlecontent").value;
+    if (articleContent != null) {
+        
         qEditor.root.innerHTML = articleContent;
     }
     
