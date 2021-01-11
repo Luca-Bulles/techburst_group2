@@ -29,6 +29,15 @@ var quill = new Quill('#editor', options);              //instantiate the text e
 
 var form = document.querySelector('#create');           //get form from View.
 
+window.onload = function () {
+    let articleContentDiv = document.getElementById("articlecontent");
+    if (articleContentDiv != null) {
+        let articleContent = document.getElementById("articlecontent").value;
+        qEditor.root.innerHTML = articleContent;
+    }
+    
+};
+
 //This function gets the content from an input field with the name content from the View, and then calls getQuillText in order to set the value for the hidden input field in the View.
 form.onsubmit = function () {                           
     var content = document.querySelector('input[name=content]');
