@@ -7,7 +7,7 @@ window.onload = function () {
 };
 
 function getQuillContent() {
-    let text = qEditor.root.textContent;
+    let text = qEditor.root.innerHTML;//qEditor.root.textContent;
     return text;
 }
 
