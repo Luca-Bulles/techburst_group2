@@ -11,20 +11,33 @@ namespace techburst_group2.Controllers
     public class ArticleController : Controller
         
     {
+        List<Models.ArticleModel> model = new List<Models.ArticleModel>();
         private readonly ArticleCollection _articleColl;
         public ArticleController()
         {
             _articleColl = new ArticleCollection();
         }
-        public IActionResult ArticlePage(int id)
+
+        public ActionResult ArticlePage(int id)
         {
-            var article = _articleColl.GetArticleById(id);
-            Models.ArticleModel articleModel = new Models.ArticleModel()
+            if (id != 0)
             {
-                Title = article.Title, Content = ArticleTextManager.DecodeArticleText(article.ArticleText),
-                Images = article.Images
-            };
-            return View(articleModel);
+                var article = _articleColl.GetArticleById(id);
+
+                Models.ArticleModel articleModel = new Models.ArticleModel()
+                {
+                    Title = article.Title,
+                    Content = ArticleTextManager.DecodeArticleText(article.ArticleText),
+                    Images = article.Images
+                };
+                model.Add(articleModel);
+
+                return View(model);
+            }
+            else
+            {
+                return Content("<script>console.log('Id cannot be 0!');</script>") ;
+            }
         }
     }
 }

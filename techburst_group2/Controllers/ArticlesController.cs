@@ -37,7 +37,7 @@ namespace techburst_group2.Controllers
             return View();
         }
 
-        public IActionResult Article(int id)
+        public IActionResult Article()
         {
             return View();
         }

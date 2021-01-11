@@ -1,10 +1,8 @@
 ﻿@using techburst_group2.Utilities
 @using Interfaces.BLL
+
 @inject ITagCollection TagCollection
-@model ArticleModel
-@{
-    ViewBag.ArticlePage = true;
-}
+@model IEnumerable<techburst_group2.Models.ArticleModel>
 
 <style>
     .article-header {
@@ -15,7 +13,9 @@
     .article-header-container {
     }
 </style>
-<body>
+
+@foreach(var item in Model) 
+{ 
     <div class="container">
         <div class="col-md-12">
             <div class="row">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-10 m-1 p-3 text-white">
                     <div class="article-header-container">
-                        <img src="@Model.Images" class="rounded mx-auto d-block" alt="Article Image">
+                        <img src="@item.Images" class="rounded mx-auto d-block" alt="Article Image">
                     </div>
                 </div>
                 <div class="col-1">
@@ -55,8 +55,8 @@
 
                 </div>
                 <div class="col-10">
-                    <h1 class="font-weight-bold pt-4">@Html.DisplayFor(model => model.Title)</h1>
-                    <p class="card-text font-weight-bold pt-4">@Html.Raw(Model.Content)</p>
+                    <h1 class="font-weight-bold pt-4">@item.Title</h1>
+                    <p class="card-text font-weight-bold pt-4">@Html.Raw(item.Content)</p>
                 </div>
                 <div class="col-1">
 
@@ -81,5 +81,4 @@
             </div>
         </div>
     </div>
-
-</body>
+ }
