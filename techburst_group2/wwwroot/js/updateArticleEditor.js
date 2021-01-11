@@ -2,7 +2,7 @@
 let qEditor = quill;
 
 window.onload = function () {
-    let articleContent = document.getElementById("articlecontent").innerHTML;
+    let articleContent = document.getElementById("articlecontent").value;
     qEditor.root.innerHTML = articleContent;
 };
 
