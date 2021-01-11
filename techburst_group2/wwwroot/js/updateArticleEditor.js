@@ -17,5 +17,5 @@ function getQuillContent() {
 
 editorForm.onsubmit = function () {
     var content = document.querySelector('input[name=content]');
-    content.root.innerHTML = getQuillText();
+    content.root.innerHTML = getQuillContent();
 }
