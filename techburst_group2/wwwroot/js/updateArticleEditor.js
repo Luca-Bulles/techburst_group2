@@ -11,7 +11,7 @@ editors[uEditor] = qEditor;
 
 function getQuillContent() {
     let q = editors[uEditor];
-    let text = $("#editor").html()//qEditor.root.textContent;
+    let text = $(q).html();//qEditor.root.textContent;
     return text;
 }
 
