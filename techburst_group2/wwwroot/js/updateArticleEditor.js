@@ -17,5 +17,7 @@ function getQuillContent() {
 }
 
 editorForm.onsubmit = function () {
-    $("#content").val(getQuillContent());
+    let newContent = $("#content").val(getQuillContent);
+    $("#articlecontent").change(newContent);
+
 }
