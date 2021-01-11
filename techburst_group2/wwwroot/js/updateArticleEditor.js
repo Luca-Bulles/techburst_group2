@@ -6,8 +6,12 @@ window.onload = function () {
     qEditor.root.innerHTML = articleContent;
 };
 
+var editors = {};
+editors[uEditor] = qEditor;
+
 function getQuillContent() {
-    let text = qEditor.root.innerHTML;//qEditor.root.textContent;
+    let q = editors[uEditor];
+    let text = q.root.innerHTML;//qEditor.root.textContent;
     return text;
 }
 
