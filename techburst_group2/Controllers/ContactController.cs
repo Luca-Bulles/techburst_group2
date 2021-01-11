@@ -33,7 +33,7 @@ namespace techburst_group2.Controllers
         {
             var convertedmodel = ContactViewModel.ConvertContactViewModelToModel(vehicle);
             _contact.Create(convertedmodel);
-            TempData["Create"] = "The records has been added to the system!";
+            TempData["Succesfull"] = "Your request has been send, you will get contacted soon!";
             return RedirectToAction("Index");
         }
 
