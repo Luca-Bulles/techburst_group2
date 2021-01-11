@@ -29,8 +29,7 @@
 
     <div class="container">
         <div class="card-columns">
-            @if (Model != null)
-            {
+           
                 @foreach (var article in Model)
                 {
                     if (article.Content.Length > 160)
@@ -41,36 +40,38 @@
                     string parsedContent = ArticleTextManager.ParseHtmlTags(contentWithoutHeaders);
                     <div class="card shadow border-color">
 
-                        <a href='@Url.Action("ArticlePage", "Article", new { id = article.Id }, null)'>
-                            <img class="card-img" src="@article.Images" alt="Cardphoto">
-                        </a>
+                
+                        <img class="card-img" src="@article.Images" alt="Cardphoto">
+               
 
-                        <div class="card-body">
-                            <h4 asp-action="ArticlePage" class="card-title articles-text">@Html.DisplayFor(model => article.Title)</h4>
-                            <small class="text-muted cat">
-                                <i class="far fa-clock text-info"></i> Written by: @Html.DisplayFor(model => article.Author)
-                                <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
-                                <i class="far fa-clock text-info"></i>
-                                <i class="far fa-clock text-info"></i> Readingtime: 5 minutes
-                            </small>
-                            <p class="card-text">@Html.DisplayFor(model => parsedContent)</p>
+                        @Html.ActionLink("View Article","ArticlePage", "Article", new { id = article.Id })
+
+                    <div class="card-body">
+                        <h4 asp-action="ArticlePage" class="card-title articles-text">@Html.DisplayFor(model => article.Title)</h4>
+                        <small class="text-muted cat">
+                            <i class="far fa-clock text-info"></i> Written by: @Html.DisplayFor(model => article.Author)
+                            <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <i class="far fa-clock text-info"></i>
+                            <i class="far fa-clock text-info"></i> Readingtime: 5 minutes
+                        </small>
+                        <p class="card-text">@Html.DisplayFor(model => parsedContent)</p>
+                    </div>
+                    <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                        <div class="views">
+                            @{
+                                var date = article.CreatedAt.Date.ToString("dd/MM/yyyy");
+                            }
+                            @Html.DisplayFor(modelItem => date)
                         </div>
-                        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                            <div class="views">
-                                @{
-                                    var date = article.CreatedAt.Date.ToString("dd/MM/yyyy");
-                                }
-                                @Html.DisplayFor(modelItem => date)
-                            </div>
-                            <div class="stats">
-                                <i class="far fa-eye"></i>
-                                <i class="far fa-comment"></i> 12
-                            </div>
+                        <div class="stats">
+                            <i class="far fa-eye"></i>
+                            <i class="far fa-comment"></i> 12
                         </div>
                     </div>
-                }
-            }
-        </div>
+                </div>
+                    }
+                
+            </div>
 
     </div>
 
