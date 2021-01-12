@@ -44,9 +44,11 @@ namespace techburst_group2.Controllers
             {
                 string text = SearchText.ToUpper();
                 var result = data.Where(a => a.Title.Contains(text));
+                UserCollection userColl = new UserCollection();
                 foreach (var unconvertedArticle in result)
                 {
-                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                    var author = userColl.GetByID(unconvertedArticle.AuthorId);
+                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                     _articles.Add(viewModel);
 
                 }
@@ -55,9 +57,11 @@ namespace techburst_group2.Controllers
             }
             else
             {
+                UserCollection userColl = new UserCollection();
                 foreach (var unconvertedArticle in data)
                 {
-                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                    var author = userColl.GetByID(unconvertedArticle.AuthorId);
+                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                     _articles.Add(viewModel);
 
                 }
@@ -71,12 +75,16 @@ namespace techburst_group2.Controllers
         {
             var data = _coll.GetAllArticles();
             var articles = new List<Models.ArticleModel>();
+            UserCollection userColl = new UserCollection();
+
             foreach (var unconvertedArticle in data)
             {
-              articles.Add(new Models.ArticleModel
+                var author = userColl.GetByID(unconvertedArticle.AuthorId);
 
-                { Id = unconvertedArticle.Id, 
-                    Author = unconvertedArticle.Author, 
+                articles.Add(new Models.ArticleModel
+
+                { Id = unconvertedArticle.Id,
+                    Author = author.FirstName + " " + author.LastName,
                     Title = unconvertedArticle.Title,
                     Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), 
                     TagID = unconvertedArticle.TagID, 
@@ -106,9 +114,11 @@ namespace techburst_group2.Controllers
         public IActionResult LoadAllArticles() {
 
             var data = _coll.GetAllArticles();
+            UserCollection userColl = new UserCollection();
             foreach (var unconvertedArticle in data)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                var author = userColl.GetByID(unconvertedArticle.AuthorId);
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                 _articles.Add(viewModel);
 
             }
@@ -118,15 +128,19 @@ namespace techburst_group2.Controllers
 
         public IActionResult LoadArticlesByTag(int tagId) {
             var data = _coll.GetArticlesByTag(tagId);
+            UserCollection userColl = new UserCollection();
+            
             foreach (var unconvertedArticle in data)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                var author = userColl.GetByID(unconvertedArticle.AuthorId);
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                 _articles.Add(viewModel);
 
             }
             _articles.Reverse();
             return View("../Home/Articles", _articles);
         }
+
         [Authorize(Roles ="Moderator")]
         public ActionResult Delete(int ID)
         {

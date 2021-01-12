@@ -49,7 +49,7 @@ namespace techburst_group2.Controllers
 
         public IActionResult Submit(Models.ArticleModel article)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 _article.Author = article.Author;
                 _article.AuthorId = CookieManager.GetUserId();
@@ -107,10 +107,12 @@ namespace techburst_group2.Controllers
         public List<Models.ArticleModel> GetArticlesByTag(int tagId)
         {
             var result = _artColl.GetArticlesByTag(tagId);
+            UserCollection userColl = new UserCollection();
 
             foreach (var model in result)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = ArticleTextManager.DecodeArticleText(model.ArticleText), TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
+                var author = userColl.GetByID(model.AuthorId);
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = author.FirstName + " " + author.LastName, Title = model.Title, Content = ArticleTextManager.DecodeArticleText(model.ArticleText), TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
                 _articles.Add(viewModel);
             }
 
@@ -122,7 +124,15 @@ namespace techburst_group2.Controllers
             var model = _artColl.GetAllArticles();
             if (!string.IsNullOrEmpty(SearchText))
             {
+                UserCollection userColl = new UserCollection();
                 var result = model.Where(a => a.Title.Contains(SearchText));
+
+                foreach (var article in result)
+                {
+                    var author = userColl.GetByID(article.AuthorId);
+                    article.Author = author.FirstName + " " + author.LastName;
+                }
+
                 return View(result.ToList());
             }
             return View(model);
