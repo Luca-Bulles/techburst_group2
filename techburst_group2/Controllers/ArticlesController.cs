@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Entities.DTO;
@@ -12,6 +16,7 @@ using techburst_BLL;
 using techburst_BLL.Collections;
 using techburst_group2.Models;
 using techburst_group2.Utilities;
+
 using ArticleModel = techburst_group2.Models.ArticleModel;
 
 namespace techburst_group2.Controllers
@@ -47,6 +52,7 @@ namespace techburst_group2.Controllers
             if (ModelState.IsValid)
             {
                 _article.Author = article.Author;
+                _article.AuthorId = CookieManager.GetUserId();
                 _article.DateCreated = article.CreatedAt;
                 _article.ArticleText = ArticleTextManager.EncodeArticleText(article.Content);
                 _article.Title = article.Title;
@@ -101,10 +107,12 @@ namespace techburst_group2.Controllers
         public List<Models.ArticleModel> GetArticlesByTag(int tagId)
         {
             var result = _artColl.GetArticlesByTag(tagId);
+            UserCollection userColl = new UserCollection();
 
             foreach (var model in result)
             {
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = model.Author, Title = model.Title, Content = ArticleTextManager.DecodeArticleText(model.ArticleText), TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
+                var author = userColl.GetByID(model.AuthorId);
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = model.Id, Author = author.FirstName + " " + author.LastName, Title = model.Title, Content = ArticleTextManager.DecodeArticleText(model.ArticleText), TagName = model.TagName, CreatedAt = model.DateCreated, LastEdited = model.LastEdited };
                 _articles.Add(viewModel);
             }
 
@@ -116,7 +124,15 @@ namespace techburst_group2.Controllers
             var model = _artColl.GetAllArticles();
             if (!string.IsNullOrEmpty(SearchText))
             {
+                UserCollection userColl = new UserCollection();
                 var result = model.Where(a => a.Title.Contains(SearchText));
+
+                foreach (var article in result)
+                {
+                    var author = userColl.GetByID(article.AuthorId);
+                    article.Author = author.FirstName + " " + author.LastName;
+                }
+
                 return View(result.ToList());
             }
             return View(model);

@@ -9,6 +9,7 @@ namespace techburst_group2.Models
 {
     public class LoginViewmodel
     {
+        public int Id { get; set; }
         [Required]
         public string Email { get; set; }
         [Required]

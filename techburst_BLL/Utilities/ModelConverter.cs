@@ -26,7 +26,7 @@ namespace techburst_BLL.Utilities
         {
             _model = new ArticleModel()
             {
-                Id = dto.ArticleID, Title = dto.Title, ArticleText = dto.ArticleText, TagID = dto.TagID, TagName = dto.TagName, DateCreated = dto.DateCreated, Draft = dto.Draft, Images = dto.Images, LastEdited = dto.LastEdited
+                Id = dto.ArticleID, AuthorId = dto.AccountID, Title = dto.Title, ArticleText = dto.ArticleText, TagID = dto.TagID, TagName = dto.TagName, DateCreated = dto.DateCreated, Draft = dto.Draft, Images = dto.Images, LastEdited = dto.LastEdited
             };
 
             return _model;
@@ -34,7 +34,10 @@ namespace techburst_BLL.Utilities
 
         public static ArticleDto ConvertModelToDto(IArticleModel model)
         {
-            _dto = new ArticleDto() {ArticleID = model.Id, Title = model.Title, ArticleText = model.ArticleText, TagID = model.TagID, TagName = model.TagName, DateCreated = model.DateCreated, Draft = model.Draft, Images = model.Images, LastEdited = model.LastEdited};
+            _dto = new ArticleDto()
+            {
+                ArticleID = model.Id, AccountID = model.AuthorId, Title = model.Title, ArticleText = model.ArticleText, TagID = model.TagID, TagName = model.TagName, DateCreated = model.DateCreated, Draft = model.Draft, Images = model.Images, LastEdited = model.LastEdited
+            };
             return _dto;
         }
 
