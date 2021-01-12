@@ -55,10 +55,8 @@
                                 <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Article", new { id = articles[i].Id }, null)"></a>
                                 <div class="card-body">
                                     <h4 class="mt-3" style="color:#FFE000">@ArticleTextManager.ParseHtmlTags(title)</h4>
-                                    <small class="text-muted cat">
-                                        <i class="far fa-clock text-info"></i> Written by: @articles[i].Author
-                                        <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
-                                        <i class="far fa-clock text-info"></i>
+                                    <small class="text-muted">
+                                        <i class="far fa-clock text-info"></i> Written by: | @articles[i].Author
                                     </small>
                                     <p class="mt-1" style="color:white">@ArticleTextManager.ParseHtmlTags(content)</p>
                                 </div>

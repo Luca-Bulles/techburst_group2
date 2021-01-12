@@ -104,15 +104,15 @@
                     <div class="card shadow border-color articlecard">
 
                             <img class="card-img text-white" src="@article.Images" alt="Image currently unavailable">
-      
+                           
+                            <small class="text-muted d-flex justify-content-center">
+                                <p class="text-muted">Written by: | @Html.DisplayFor(model => article.Author)</p>
+                            </small>
+
                             <div class="card-body articlecard">
 
                                 <h5 asp-action="ArticlePage" class="card-title articles-text">@Html.DisplayFor(model => article.Title)</h5>
-                                <small class="text-muted cat">
-                                    <i class="far fa-clock text-white">Written by: @Html.DisplayFor(model => article.Author)</i>
-                                    <i class="far fa-clock text-info"></i> &nbsp; &nbsp;| &nbsp; &nbsp;
-                                    <i class="far fa-clock text-info"></i>
-                                </small>
+                               
                                 <p class="mt-2">@Html.DisplayFor(model => parsedContent)</p>
                             </div>
                             <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Article", new { id = article.Id }, null)"></a>
