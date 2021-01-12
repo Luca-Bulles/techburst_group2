@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Entities.DTO;
@@ -12,6 +16,7 @@ using techburst_BLL;
 using techburst_BLL.Collections;
 using techburst_group2.Models;
 using techburst_group2.Utilities;
+
 using ArticleModel = techburst_group2.Models.ArticleModel;
 
 namespace techburst_group2.Controllers
@@ -46,7 +51,6 @@ namespace techburst_group2.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 _article.Author = article.Author;
                 _article.AuthorId = article.AuthorId;
                 _article.DateCreated = article.CreatedAt;

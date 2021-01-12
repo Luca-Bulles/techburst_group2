@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using techburst_BLL.Collections;
 using techburst_BLL.Models;
 using techburst_group2.Models;
+using techburst_group2.Utilities;
 
 namespace techburst_group2.Controllers
 {
@@ -69,29 +70,12 @@ namespace techburst_group2.Controllers
 
                 if (result)
                 {
+                    var cookie = CookieManager.SetCookie(model);
                     LVM = new List<LoginViewmodel>();
                     UserModel user = _userCollection.GetUserFromEmail(model.Email);
                     if (user.Email == model.Email)
                     {
-                        LVM.Add(new LoginViewmodel
-                        {
-                            Id = user.UserId,
-                            Email = user.Email,
-                            Password = user.Password,
-                            Role = user.Role
-
-                        });
-
-                        var claims = new List<Claim>
-                                {
-                                    new Claim(ClaimTypes.Email, model.Email),
-                                    new Claim(ClaimTypes.Role, user.Role),
-                                    new Claim("UserID", user.UserId.ToString())
-                                };
-                        ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
-                        ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
-
-                        await HttpContext.SignInAsync(principal);
+                        await HttpContext.SignInAsync((ClaimsPrincipal)cookie[2]);
                         TempData["LoggedIn"] = "You have logged in with your personal account.";
                         return RedirectToAction("Index", "Home");
                     }
