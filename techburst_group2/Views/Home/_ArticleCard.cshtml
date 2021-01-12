@@ -52,7 +52,7 @@
                             <div class="card border-color">
                                 <img class="card-img" src="@articles[i].Images" alt="Cardphoto">
                                 <div class="card-img-overlay">
-                                    <a href="#" class="text-white btn btn-dark mb-4" style="font-weight:600;">@TagCollection.GetById(articles[i].TagID).Name</a>
+                                    <a href="#" class="btn btn-primary mb-4" style="font-weight:600; color:#000000;">@TagCollection.GetById(articles[i].TagID).Name</a>
                                 </div>
                                 <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Article", new { id = articles[i].Id }, null)"></a>
                                 <div class="card-body">
