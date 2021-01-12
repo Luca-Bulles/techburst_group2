@@ -63,6 +63,7 @@ namespace techburst_group2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind] UserModel model)
         {
+            
             if (ModelState.IsValid)
             {
                 var result = _userCollection.Login(model);
@@ -85,6 +86,7 @@ namespace techburst_group2.Controllers
                                 {
                                     new Claim(ClaimTypes.Email, model.Email),
                                     new Claim(ClaimTypes.Role, user.Role),
+                                    new Claim("fullname",user.FirstName + " " + user.LastName)
                                 };
                         ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
                         ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);

@@ -4,8 +4,10 @@
     ViewData["Title"] = "Register";
 }
 
-<h3 class="text-center contact-big-text">Become a Rockstar today! And make your personal account!</h3>
-
+<div container class="card border-yellow shadow text-center border-color p-3">
+    <h3 style="color:#ffe000">Become a Rockstar today!</h3>
+    <h5 style="color:#dcd32e">Register</h5>
+</div>
 
 <hr />
 <div class="row">
@@ -47,7 +49,7 @@
                     <input asp-for="Role" value=User class="form-control border-secondary" />
                     <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group align-items-center">
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </form>
@@ -55,14 +57,14 @@
     </div>
 
 
-    <div class="col-3">
+    <div class="col-md-3">
 
     </div>
 </div>
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
