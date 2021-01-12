@@ -11,6 +11,9 @@ namespace techburst_group2.Utilities
 {
     public class CookieManager
     {
+        private static List<Claim> _claims;
+        private static ClaimsIdentity _identity;
+        private static ClaimsPrincipal _principal;
         public static List<object> SetCookie(UserModel model)
         {
             var LVM = new List<LoginViewmodel>();
@@ -27,24 +30,30 @@ namespace techburst_group2.Utilities
 
                 });
 
-                var claims = new List<Claim>
+                _claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, model.Email),
                     new Claim(ClaimTypes.Role, user.Role),
                     new Claim("UserID", user.UserId.ToString())
                 };
-                ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
-                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                _identity = new ClaimsIdentity(_claims, "login");
+                _principal = new ClaimsPrincipal(_identity);
 
                 return new List<object>()
                 {
-                    claims,
-                    userIdentity,
-                    principal
+                    _claims,
+                    _identity,
+                    _principal
                 };
             }
 
             return null;
+        }
+
+        public static int GetUserId()
+        {
+            var claim = _identity.FindFirst("UserID");
+            return Convert.ToInt32(claim == null ? string.Empty : claim.Value);
         }
     }
 }
