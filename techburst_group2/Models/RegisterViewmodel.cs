@@ -22,7 +22,7 @@ namespace techburst_group2.Models
         [Required]
         [DataType(DataType.Password)]
         [Compare("Password")]
-        public string ConPassword { get; set; }
+        public string ConfirmPassword { get; set; }
         public string Role { get; set; }
     }
 }

@@ -35,26 +35,32 @@
                             break;
                         }
                         string content = ArticleTextManager.ParseHeaderContent(articles[i].Content);
+                        string title = ArticleTextManager.ParseHeaderContent(articles[i].Title);
                         if (content.Length > 160)
                         {
                             content = content.Substring(0, 160) + "...";
                         }
+
+                        if (title.Length > 30)
+                        {
+                            title = title.Substring(0, 30) + "...";
+                        }
                         <!--carousel cards-->
-                        <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-4 mt-5">
                             <div class="card border-color">
                                 <img class="card-img" src="@articles[i].Images" alt="Cardphoto">
                                 <div class="card-img-overlay">
-                                    <a href="#" class="btn btn-dark btn-sm text-light">@TagCollection.GetById(articles[i].TagID).Name</a>
+                                    <a href="#" class="text-white btn btn-dark mb-4" style="font-weight:600;">@TagCollection.GetById(articles[i].TagID).Name</a>
                                 </div>
                                 <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Article", new { id = articles[i].Id }, null)"></a>
                                 <div class="card-body">
-                                    <h4 class="card-title articles-text">@articles[i].Title</h4>
+                                    <h4 class="mt-3" style="color:#FFE000">@ArticleTextManager.ParseHtmlTags(title)</h4>
                                     <small class="text-muted cat">
-                                        <i class="far fa-clock text-info"></i> Geschreven door: @articles[i].Author
+                                        <i class="far fa-clock text-info"></i> Written by: @articles[i].Author
                                         <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
                                         <i class="far fa-clock text-info"></i>
                                     </small>
-                                    <p class="card-text">@ArticleTextManager.ParseHtmlTags(content)</p>
+                                    <p class="mt-1" style="color:white">@ArticleTextManager.ParseHtmlTags(content)</p>
                                 </div>
                                 <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
                                     
