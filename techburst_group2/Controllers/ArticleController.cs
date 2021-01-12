@@ -19,16 +19,25 @@ namespace techburst_group2.Controllers
         }
         public IActionResult ArticlePage(int id)
         {
-            var article = _articleColl.GetArticleById(id);
-            UserCollection userColl = new UserCollection();
-            var author = userColl.GetByID(article.AuthorId);
-            Models.ArticleModel articleModel = new Models.ArticleModel()
+            if (id != 0)
             {
-                Title = article.Title, Content = ArticleTextManager.DecodeArticleText(article.ArticleText),
-                Images = article.Images,
-                Author = author.FirstName + " " + author.LastName
-            };
-            return View(articleModel);
+                var article = _articleColl.GetArticleById(id);
+                UserCollection userColl = new UserCollection();
+                var author = userColl.GetByID(article.AuthorId);
+                Models.ArticleModel articleModel = new Models.ArticleModel()
+                {
+                    Title = article.Title,
+                    Content = ArticleTextManager.DecodeArticleText(article.ArticleText),
+                    Images = article.Images,
+                    Author = author.FirstName + " " + author.LastName
+                };
+                return View(articleModel);
+            }
+            else
+            {
+                return Content("<script>console.log('It can not be null!');</script>");
+            }
+            
         }
     }
 }
