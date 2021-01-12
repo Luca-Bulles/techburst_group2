@@ -46,7 +46,9 @@ namespace techburst_group2.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 _article.Author = article.Author;
+                _article.AuthorId = article.AuthorId;
                 _article.DateCreated = article.CreatedAt;
                 _article.ArticleText = ArticleTextManager.EncodeArticleText(article.Content);
                 _article.Title = article.Title;
