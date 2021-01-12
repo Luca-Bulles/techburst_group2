@@ -9,8 +9,25 @@
     <br />
 }
 
+@if (TempData["Register"] != null)
+{
+    <strong class="alert alert-success">@TempData["Register"]</strong>
+    <br />
+    <br />
+}
+<style>
+    .text {
+        font-size: 3em;
+        color: #000000;
+        font-weight: 600;
+    }
+</style>
 
-<h2 class="display-4">Recommended articles</h2>
+
+
+
+
+
 @Html.Partial("_ArticleCard")
 
 

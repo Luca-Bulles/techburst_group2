@@ -33,6 +33,8 @@
     <ProjectReference Include="..\techburst_BLL\techburst_BLL.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap-reboot_1css_1map__JsonSchema="https://json.schemastore.org/tsdrc" /></VisualStudio></ProjectExtensions>
+
 
 
 </Project>

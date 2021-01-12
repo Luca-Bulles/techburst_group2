@@ -4,37 +4,55 @@
     ViewData["Title"] = "All";
 }
 
-<h1>All</h1>
-
+<div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
+    <h4 class="text text-center ">Manage Tags</h4>
+</div>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+<div class="table mt-4">
+    <table class="table table-striped table-responsive-sm">
+        <thead class="thead-light">
+            <tr>
+                <th class="col-5">
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th class="col-5">
+                    @Html.DisplayNameFor(model => model.Name)
+
+                </th>
+                <th class="col-1">
+
+                </th>
+                <th class="col-1">
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td class="col-5">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td class="col-5">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                
+
+                <td class="col-1">
+                    <button class="btn-warning">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
+                </td>
+
+
+                <td class="col-1">
+                    <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })</button>
+                </td>
+            </tr>
+             }
+        </tbody>
+    </table>
+</div>

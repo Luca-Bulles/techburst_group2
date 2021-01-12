@@ -120,7 +120,7 @@ namespace techburst_group2.Controllers
         }
 
         public IActionResult SearchArticle(string SearchText)
-        {
+        { 
             var model = _artColl.GetAllArticles();
             if (!string.IsNullOrEmpty(SearchText))
             {

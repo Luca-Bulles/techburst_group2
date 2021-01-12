@@ -68,8 +68,37 @@ namespace techburst_group2.Controllers
                 ViewData["Articles"] = _articles;
                 return View();
             }
-            
         }
+
+            public ActionResult Searchresult(string SearchText)
+            {
+                var data = _coll.GetAllArticles();
+                if (!string.IsNullOrEmpty(SearchText))
+                {
+                    string text = SearchText.ToUpper();
+                    var result = data.Where(a => a.Title.Contains(text));
+                    foreach (var unconvertedArticle in result)
+                    {
+                        Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                        _articles.Add(viewModel);
+
+                    }
+                    ViewData["Articles"] = _articles;
+                    return View();
+                }
+                else
+                {
+                    foreach (var unconvertedArticle in data)
+                    {
+                        Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                        _articles.Add(viewModel);
+
+                    }
+                    ViewData["Articles"] = _articles;
+                    return View();
+                }
+            }
+        
 
         public IActionResult AdminIndex()
         {

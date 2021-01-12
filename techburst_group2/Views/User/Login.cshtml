@@ -3,15 +3,40 @@
     ViewData["Title"] = "UserLogin";
 }
 
-<h2 class="text-center p-3 contact-big-text">Login</h2>
+@if (TempData["FalseAttempt"] != null)
+{
+    <strong class="alert alert-danger">@TempData["FalseAttempt"]</strong>
+    <br />
+    <br />
+}
+<style>
+    .article-button {
+        font-size: 1em;
+        color: #000000;
+        background: #FFE000;
+        display: inline-block;
+        padding: 10px 30px;
+        margin-top: 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: 0.5s;
+    }
+</style>
+
+
+<div container class="card border-yellow shadow text-center border-color p-3">
+    <h3 style="color:#ffe000">Welcome back Rockstar!</h3>
+    <h5 style="color:#dcd32e">Log in</h5>
+</div>
 <hr />
 <div class="row">
     <div class="col-md-3">
 
     </div>
     <div class="col-md-6">
-       
-        <div class="card p-5 pt-3 shadow border-secondary">
+
+        <div class="card p-3 pt-3 shadow border-secondary">
             <form asp-action="Login">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -24,9 +49,18 @@
                     <input asp-for="Password" class="form-control border-secondary" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-default btn-success" />
-                    <a asp-action="Register" class="btn btn-info">SignUp</a>
+                <div class="form-group d-flex justify-content-center">
+
+                    <button type="submit" class="btn btn-light article-button">Log in</button>
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+
+                    <p>
+                        Don't have an account?
+                        <a asp-action="Register">Register now!</a>
+                    </p>
+
                 </div>
             </form>
         </div>

@@ -17,15 +17,15 @@
             <li class="nav-item dropdown show">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">Moderator panel</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item rockstar-text" asp-area="" asp-controller="Home" asp-action="AdminIndex">View Articles as moderator</a>
+                    <a class="dropdown-item text-white" asp-area="" asp-controller="Home" asp-action="AdminIndex">View Articles as moderator</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item rockstar-text" asp-area="" asp-controller="Moderator" asp-action="Index">Manage Users</a>
+                    <a class="dropdown-item text-white" asp-area="" asp-controller="Moderator" asp-action="Index">Manage Users</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item rockstar-text" asp-area="" asp-controller="Tags" asp-action="All">Manage Tags</a>
+                    <a class="dropdown-item text-white" asp-area="" asp-controller="Tags" asp-action="All">Manage Tags</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" asp-controller="User" asp-action="Logout">Log out!</a>
+                <a class="nav-link rockstar-text" asp-controller="User" asp-action="Logout">Log out!</a>
             </li>
 
         }
@@ -53,10 +53,10 @@
                 <li class="nav-item">
                     <a class="nav-link rockstar-text" asp-controller="User" asp-action="Register">Register</a>
                 </li>
+            }
                 <li class="nav-item">
                     <a class="nav-link rockstar-text" asp-controller="User" asp-action="Login">Sign in</a>
                 </li>
-            }
         }
     }
 

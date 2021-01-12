@@ -5,13 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center">Admin Workstation</h2>
+
+<div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
+    <h2 class="text text-center ">Manage Articles</h2>
+</div>
 @Html.ActionLink("Add new article to the system", "Create", "Articles")
 <hr/>
 
 
-<table class="table bg-y text-white" style="width: 1200px; position: absolute; left: 250px; top: 200px;">
-    <thead>
+<table class="text-white table table-striped table-responsive-sm mt-4">
+    <thead class="thead-light">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -38,29 +41,30 @@
         @foreach (var item in Model)
         {
             string parsedContent = ArticleTextManager.ParseHeaderContent(item.Content);
-            <tr>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TagID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedAt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastEdited)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id })
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');" })
-                </td>
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastEdited)
+            </td>
+            <td>
+                <button class="btn-warning" style="color:white">@Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id },new { @class = "text-white p-3 text-decoration-none" })</button>
+            </td>
+            <td>
+                <button class="btn-danger">@Html.ActionLink("Delete","Delete", "Home", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "text-white p-3 text-decoration-none" })</button>
+            </td>
+
         </tr>
     }
         </tbody>

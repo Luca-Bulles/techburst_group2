@@ -9,22 +9,78 @@
     <link rel="stylesheet" href="~/css/articles.css">
 </head>
 
+<style>
+    .text {
+        font-size: 3em;
+        color: #000000;
+        font-weight:600;
+    }
+
+    .article-button {
+        font-size: 1em;
+        color: #000000;
+        background: #FFE000;
+        display: inline-block;
+        padding: 10px 30px;
+        margin-top: 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: 0.5s;
+    }
+
+    .articlecard {
+        font-size: 1em;
+        color: #000000;
+        display: inline-block;
+        margin-top: 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: 0.5s;
+        border-color: #FFE000 !important;
+        
+    }
+
+    .articlecard h5{
+        color:#FFE000;
+        font-weight:600;
+    }
+
+    .articlecard p{
+        color: white;
+    }
+
+    .dropdownitems
+    {
+        text-decoration: none;
+        color: white;
+        font-size: 1em;
+    }
+
+</style>
+
+
 <body>
-    <h2 class="contact-big-text">Alle artikelen</h2>
+    <div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
+        <h2 class="text text-center ">TECH BURST ARTICLES</h2>
+    </div>    
+
 
     <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
+        <button class="btn btn-light dropdown-toggle article-button" type="button" data-toggle="dropdown">
           Filter by Category
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu">  
-            <li><a href="@Url.Action("LoadAllArticles", "Home")">Reset Filter</a></li>
-            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 1 }, null)">Visual Studio</a></li>
-            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 2 }, null)">C#</a></li>
-            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 3 }, null)">Java</a></li>
-            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 4 }, null)">Python</a></li>
-            <li><a href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 15 }, null)">JavaScript</a></li>
-        </ul>
+
+        <div class="dropdown-menu bg-rockstar align-items-center">  
+            <a class="dropdown-item text-black-50" href="@Url.Action("LoadAllArticles", "Home")">Reset filter</a>
+            <a class="dropdown-item text-black-50" href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 1 }, null)">Visual Studio</a>
+            <a class="dropdown-item text-black-50" href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 2 }, null)">C#</a>
+            <a class="dropdown-item text-black-50" href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 3 }, null)">Java</a>
+            <a class="dropdown-item text-black-50" href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 4 }, null)">Python</a>
+            <a class="dropdown-item text-black-50" href="@Url.Action("LoadArticlesByTag", "Home", new { tagId = 15 }, null)">Javascript</a>
+        </div>
     </div>
 
     <div class="container">
@@ -37,36 +93,38 @@
                     {
                         article.Content = article.Content.Substring(0, 160) + "...";
                     }
+                    if (article.Title.Length > 25)
+                    { 
+                    article.Title = article.Title.Substring(0, 23) + "...";
+                    }
+
+
                     string contentWithoutHeaders = ArticleTextManager.ParseHeaderContent(article.Content);
                     string parsedContent = ArticleTextManager.ParseHtmlTags(contentWithoutHeaders);
-                    <div class="card shadow border-color">
+                    <div class="card shadow border-color articlecard">
 
-                        <a href='@Url.Action("ArticlePage", "Article", new { id = article.Id }, null)'>
-                            <img class="card-img" src="@article.Images" alt="Cardphoto">
-                        </a>
+                            <img class="card-img text-white" src="@article.Images" alt="Image currently unavailable">
+      
+                            <div class="card-body articlecard">
 
-                        <div class="card-body">
-                            <h4 asp-action="ArticlePage" class="card-title articles-text">@Html.DisplayFor(model => article.Title)</h4>
-                            <small class="text-muted cat">
-                                <i class="far fa-clock text-info"></i> Written by: @Html.DisplayFor(model => article.Author)
-                                <i class="far fa-clock text-info"></i> &nbsp;&nbsp;|&nbsp;&nbsp;
-                                <i class="far fa-clock text-info"></i>
-                                <i class="far fa-clock text-info"></i> Readingtime: 5 minutes
-                            </small>
-                            <p class="card-text">@Html.DisplayFor(model => parsedContent)</p>
-                        </div>
-                        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-                            <div class="views">
-                                @{
-                                    var date = article.CreatedAt.Date.ToString("dd/MM/yyyy");
-                                }
-                                @Html.DisplayFor(modelItem => date)
+                                <h5 asp-action="ArticlePage" class="card-title articles-text">@Html.DisplayFor(model => article.Title)</h5>
+                                <small class="text-muted cat">
+                                    <i class="far fa-clock text-white">Written by: @Html.DisplayFor(model => article.Author)</i>
+                                    <i class="far fa-clock text-info"></i> &nbsp; &nbsp;| &nbsp; &nbsp;
+                                    <i class="far fa-clock text-info"></i>
+                                </small>
+                                <p class="mt-2">@Html.DisplayFor(model => parsedContent)</p>
                             </div>
-                            <div class="stats">
-                                <i class="far fa-eye"></i>
-                                <i class="far fa-comment"></i> 12
+                            <a class="card-img-overlay" href="@Url.Action("ArticlePage", "Article", new { id = article.Id }, null)"></a>
+                            <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+                                <div class="views">
+                                    @{
+                                        var date = article.CreatedAt.Date.ToString("dd/MM/yyyy");
+                                    }
+                                    <p class="far fa-clock text-dark">publish date:  @Html.DisplayFor(modelItem => date)</p>
+                                </div>
+
                             </div>
-                        </div>
                     </div>
                 }
             }
