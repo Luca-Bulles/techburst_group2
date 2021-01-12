@@ -93,7 +93,10 @@ namespace techburst_group2.Controllers
             _article.Title = articleViewModel.Title;
             _article.ArticleText = ArticleTextManager.EncodeArticleText(articleViewModel.Content);
             _article.Images = articleViewModel.Images;
+            _article.TagID = _tagColl.GetByName(articleViewModel.TagName).Id;
+
             _article.Edit(_article);
+            TempData["Update"] = "Succesfully changed records!";
             return RedirectToAction("AdminIndex", "Home"); //Verander dit naar een redirect naar Jan's articlepage.
         }
 

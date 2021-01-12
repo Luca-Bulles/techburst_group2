@@ -15,7 +15,8 @@
     <!--indicators-->
     <!--carousel slides-->
     <div class="carousel-inner">
-        @for (int c = 0; c < (articles.Count + 2) / 3; c++)
+        
+        @for (int c = 0; c < 3; c++)
         {
             string classname;
             if (c == 0)
@@ -26,6 +27,7 @@
             {
                 classname = "carousel-item";
             }
+
             <div class="@classname">
                 <div class="row">
                     @for (int i = c * 3; i < 3 * (c + 1); i++)

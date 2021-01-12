@@ -4,6 +4,20 @@
     ViewData["Title"] = "All";
 }
 
+@if (TempData["Create"] != null)
+{
+    <strong class="alert alert-success">@TempData["Create"]</strong>
+    <br />
+    <br />
+}
+
+@if (TempData["Delete"] != null)
+{
+    <strong class="alert alert-danger">@TempData["Delete"]</strong>
+    <br />
+    <br />
+}
+
 <div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
     <h4 class="text text-center ">Manage Tags</h4>
 </div>
@@ -34,25 +48,25 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td class="col-5">
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
-                <td class="col-5">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                
-
-                <td class="col-1">
-                    <button class="btn-warning">@Html.ActionLink("Edit", "Edit", new { id = item.Id })</button>
-                </td>
+                <tr>
+                    <td class="col-5">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td class="col-5">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
 
 
-                <td class="col-1">
-                    <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })</button>
-                </td>
-            </tr>
-             }
+                    <td class="col-1">
+                        <button class="btn-warning">@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "text-white p-3 text-decoration-none" })</button>
+                    </td>
+
+
+                    <td class="col-1">
+                        <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "text-white p-3 text-decoration-none" })</button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

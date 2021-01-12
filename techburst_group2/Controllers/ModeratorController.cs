@@ -49,6 +49,7 @@ namespace techburst_group2.Controllers
         public IActionResult Delete(int ID)
         {
             _userCollection.Delete(ID);
+            TempData["Delete"] = "The records has been deleted from the system!";
             return RedirectToAction("Index");
         }
 
@@ -83,8 +84,8 @@ namespace techburst_group2.Controllers
         {
             var result = ViewModelConverter.ConvertUserViewModelToModel(model);
             _userCollection.Edit(result);
-            TempData["Update"] = "The records has been changed from the system!";
-            return RedirectToAction("Index", "Home");
+            TempData["Update"] = "The record has been changed from the system!";
+            return RedirectToAction("Index", "Moderator");
         }
 
         //public IActionResult ArticleIndex()

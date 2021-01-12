@@ -162,7 +162,7 @@ namespace techburst_group2.Controllers
             foreach (var unconvertedArticle in data)
             {
                 var author = userColl.GetByID(unconvertedArticle.AuthorId);
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = unconvertedArticle.ArticleText, TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
                 _articles.Add(viewModel);
 
             }
@@ -174,6 +174,7 @@ namespace techburst_group2.Controllers
         public ActionResult Delete(int ID)
         {
             _articlelogic.Delete(ID);
+            TempData["Delete"] = "This has been deleted!";
             return RedirectToAction("Index");
         }
       

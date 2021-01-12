@@ -30,6 +30,7 @@ namespace techburst_group2.Controllers
         public IActionResult CreateTag(TagViewModel tvm)
         {
             _tagColl.Create(_tagModel = new TagModel() {Id = tvm.Id, Name = tvm.Name});
+            TempData["Create"] = "Succesfully created a tag!";
             return RedirectToAction("All");
         }
 
@@ -64,6 +65,7 @@ namespace techburst_group2.Controllers
         public IActionResult Delete(int id)
         {
             _tagModel.Delete(id);
+            TempData["Delete"] = "Deleted tag!";
             return RedirectToAction("All");
         }
 

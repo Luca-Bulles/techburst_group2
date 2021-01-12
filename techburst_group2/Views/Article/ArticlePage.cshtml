@@ -16,54 +16,39 @@
     }
 </style>
 <body>
+
+    
     <div class="container">
-        <div class="col-md-12">
+        <a class="font-weight-bolder text-decoration-none btn btn-secondary" style="font-size:1em; color:#ffd800;" href=@Url.Action("LoadAllArticles","Home")>Back</a>
             <div class="row">
                 <div class="col-1">
 
                 </div>
-                <div class="col-10">
-                    <div class="justify-content-center">
-                        <b class="text-warning">@Html.ActionLink("Return to article overview", "Articles", "Home")</b>
-
-                    </div>
-                </div>
-
-                <div class="col-1">
-
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="row pt-3">
-                <div class="col-1">
-
-                </div>
-                <div class="col-10 m-1 p-3 text-white">
+                <div class="col-10 text-white">
                     <div class="article-header-container">
-                        <img src="@Model.Images" class="rounded mx-auto d-block" alt="Article Image">
+                        <img src="@Model.Images" class="mx-auto d-block img-fluid " alt="Image currently unavailable">
                     </div>
                 </div>
                 <div class="col-1">
 
                 </div>
             </div>
-        </div>
-        <div class="=col-md-12">
+            
+        
             <div class="row">
                 <div class="col-1">
 
                 </div>
                 <div class="col-10">
-                    <h1 class="font-weight-bold pt-4">@Html.DisplayFor(model => model.Title)</h1>
-                    <p class="card-text font-weight-bold pt-4">@Html.Raw(Model.Content)</p>
+                    <h3 class="font-weight-bold pt-4 text-center">@Html.DisplayFor(model => model.Title)</h3>
+                    <p class="card-text font-weight-bold pt-4 text-center">@Html.Raw(Model.Content)</p>
                 </div>
                 <div class="col-1">
 
                 </div>
 
             </div>
-        </div>
+        
         <div class="=col-md-12">
             <div class="row">
                 <div class="col-1">

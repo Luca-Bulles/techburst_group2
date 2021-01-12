@@ -4,9 +4,25 @@
 @{
     ViewData["Title"] = "View";
 }
-    <div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
-        <h2 class="text text-center ">Manage users</h2>
-    </div>
+
+@if (TempData["Update"] != null)
+{
+    <strong class="alert alert-success">@TempData["Update"]</strong>
+    <br />
+    <br />
+}
+
+@if (TempData["Delete"] != null)
+{
+    <strong class="alert alert-success">@TempData["Delete"]</strong>
+    <br />
+    <br />
+}
+
+
+<div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
+    <h2 class="text text-center ">Manage users</h2>
+</div>
 
 <div class="table mt-4">
     <table class="table table-striped table-responsive-sm">
@@ -28,7 +44,7 @@
                     @Html.DisplayNameFor(model => model.Role)
                 </th>
                 <th>
-                   
+
                 </th>
 
                 <th></th>
@@ -57,10 +73,12 @@
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>
                 <td>
-                    <button class="btn-warning">@Html.ActionLink("Update", "Update", new { ID = item.ID })</button>
+                    <button class="btn-warning">@Html.ActionLink("Edit", "Update", new { ID = item.ID }, new {@class = "text-white p-3 text-decoration-none" })</button>
                 </td>
-                <td> 
-                    <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { ID = item.ID }, new { onclick = "return confirm('Are sure wants to delete?');" })</button>
+               
+                <td>
+                    <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { ID = item.ID }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "text-white p-3 text-decoration-none" })</button>
+
                 </td>
             </tr>
             }

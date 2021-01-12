@@ -48,6 +48,7 @@ namespace techburst_group2.Controllers
                     
                 };
                 _userCollection.Create(user);
+                TempData["Register"] = "Created account succesfully.";
                 return RedirectToAction("Index", "Home");
             }
 
@@ -83,6 +84,7 @@ namespace techburst_group2.Controllers
                 }
                 else
                 {
+                    TempData["FalseAttempt"] = "Email or Password is incorrect, try again.";
                     return View();
                 }
             }

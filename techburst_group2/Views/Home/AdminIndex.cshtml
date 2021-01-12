@@ -5,12 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (TempData["Delete"] != null)
+{
+    <strong class="alert alert-danger">@TempData["Delete"]</strong>
+    <br />
+    <br />
+}
+
+@if (TempData["Update"] != null)
+{
+    <strong class="alert alert-warning">@TempData["Update"]</strong>
+    <br />
+    <br />
+}
 
 <div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
     <h2 class="text text-center ">Manage Articles</h2>
 </div>
 @Html.ActionLink("Add new article to the system", "Create", "Articles")
-<hr/>
+<hr />
 
 
 <table class="text-white table table-striped table-responsive-sm mt-4">
@@ -41,34 +54,34 @@
         @foreach (var item in Model)
         {
             string parsedContent = ArticleTextManager.ParseHeaderContent(item.Content);
-        <tr>
+            <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TagID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastEdited)
-            </td>
-            <td>
-                <button class="btn-warning" style="color:white">@Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id },new { @class = "text-white p-3 text-decoration-none" })</button>
-            </td>
-            <td>
-                <button class="btn-danger">@Html.ActionLink("Delete","Delete", "Home", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "text-white p-3 text-decoration-none" })</button>
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TagID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastEdited)
+                </td>
+                <td>
+                    <button class="btn-warning" style="color:white">@Html.ActionLink("Edit", "Edit", "Articles", new { id = item.Id }, new { @class = "text-white p-3 text-decoration-none" })</button>
+                </td>
+                <td>
+                    <button class="btn-danger">@Html.ActionLink("Delete", "Delete", "Home", new { ID = item.Id }, new { onclick = "return confirm('Are you sure you want to delete?');", @class = "text-white p-3 text-decoration-none" })</button>
+                </td>
 
-        </tr>
-    }
-        </tbody>
-    </table>
+            </tr>
+        }
+    </tbody>
+</table>
 
 
 

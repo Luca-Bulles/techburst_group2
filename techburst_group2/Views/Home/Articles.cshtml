@@ -33,7 +33,7 @@
         font-size: 1em;
         color: #000000;
         display: inline-block;
-        margin-top: 20px;
+        
         text-transform: uppercase;
         text-decoration: none;
         letter-spacing: 2px;
@@ -104,8 +104,9 @@
                     <div class="card shadow border-color articlecard">
 
                             <img class="card-img text-white" src="@article.Images" alt="Image currently unavailable">
-                           
-                            <small class="text-muted d-flex justify-content-center">
+                            
+                            <small class="text-muted d-flex justify-content-center mt-1">
+                                
                                 <p class="text-muted">Written by: | @Html.DisplayFor(model => article.Author)</p>
                             </small>
 

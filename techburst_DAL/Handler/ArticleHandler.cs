@@ -86,7 +86,8 @@ namespace techburst_DAL.Handler
         {
             using (_dbCon.Open())
             {
-                string query = "UPDATE Articles SET Title = @Title, ArticleText = @ArticleText, Draft = @Draft, LastEdited = CURRENT_TIMESTAMP, Images = @Images WHERE ArticleID = @ArticleID";
+                string query = "UPDATE Articles SET Title = @Title, ArticleText = @ArticleText, Draft = @Draft, LastEdited = CURRENT_TIMESTAMP, Images = @Images WHERE ArticleID = @ArticleID;" +
+                                "UPDATE [dbo].[ArticleTag] SET TagID = @TagID WHERE ArticleID = @ArticleID;";
                 using (SqlCommand command = new SqlCommand(query, _dbCon.connection))
                 {
                     command.Parameters.AddWithValue("@ArticleID", E1.ArticleID);
@@ -95,6 +96,7 @@ namespace techburst_DAL.Handler
                     command.Parameters.AddWithValue("@ArticleText", E1.ArticleText);
                     command.Parameters.AddWithValue("@Draft", E1.Draft);
                     command.Parameters.AddWithValue("@Images", E1.Images);
+                    command.Parameters.AddWithValue("@TagID", E1.TagID);
                     command.ExecuteNonQuery();
                 }
             }
