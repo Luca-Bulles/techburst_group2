@@ -49,7 +49,7 @@ namespace techburst_group2.Controllers
 
         public IActionResult Submit(Models.ArticleModel article)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _article.Author = article.Author;
                 _article.AuthorId = CookieManager.GetUserId();
