@@ -75,6 +75,7 @@ namespace techburst_group2.Controllers
                     {
                         LVM.Add(new LoginViewmodel
                         {
+                            Id = user.UserId,
                             Email = user.Email,
                             Password = user.Password,
                             Role = user.Role
@@ -85,6 +86,7 @@ namespace techburst_group2.Controllers
                                 {
                                     new Claim(ClaimTypes.Email, model.Email),
                                     new Claim(ClaimTypes.Role, user.Role),
+                                    new Claim("UserID", user.UserId.ToString())
                                 };
                         ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
                         ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
