@@ -36,8 +36,10 @@ namespace techburst_group2.Utilities
 
         public static List<TagViewModel> ConvertTagModelList(List<ITagModel> modelList)
         {
+            _viewModelList = new List<TagViewModel>();
             foreach (var model in modelList)
             {
+                _tagViewModel = new TagViewModel();
                 _tagViewModel.Id = model.Id;
                 _tagViewModel.Name = model.Name;
                 _viewModelList.Add(_tagViewModel);
