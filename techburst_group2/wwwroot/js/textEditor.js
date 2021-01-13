@@ -48,7 +48,7 @@ window.onload = function () {
 quill.on('text-change',
     function (delta, oldDelta, source) {
         var content = document.querySelector('input[name=content]');
-        content.setAttribute("value", delta.dangerouslyPasteHTML());
+        content.setAttribute("value", quill.root.innerHTML);
     });
 
 //This function gets the content from an input field with the name content from the View, and then calls getQuillText in order to set the value for the hidden input field in the View.
@@ -58,15 +58,10 @@ content.setAttribute("value", getQuillText());
 }
 
 editForm.onsubmit = function () {
-/*quill.on('text-change',
-    function (delta, oldDelta, source) {
-        var content = document.querySelector('input[name=content]');
-        content.setAttribute("value", delta.dangerouslyPastaHTML());
-        alert(delta.dangerouslyPastaHTML());
-    });*/
+
 var content = document.querySelector('input[name=content]');
     content.setAttribute("value", getQuillText());
-    alert(delta.dangerouslyPasteHTML());
+    alert(content.value);
 }
 
 //Initialize variables for getQuillText function.
@@ -77,5 +72,6 @@ editors[editor] = quill;
 function getQuillText() {
     var quillEditor = editors[editor];
     var text = quillEditor.root.innerHTML;
+    alert(text);
     return text;
 }
