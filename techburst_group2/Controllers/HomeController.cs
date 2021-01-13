@@ -48,7 +48,7 @@ namespace techburst_group2.Controllers
                 foreach (var unconvertedArticle in result)
                 {
                     var author = userColl.GetByID(unconvertedArticle.AuthorId);
-                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Thumbnail = unconvertedArticle.Images };
                     _articles.Add(viewModel);
 
                 }
@@ -61,7 +61,7 @@ namespace techburst_group2.Controllers
                 foreach (var unconvertedArticle in data)
                 {
                     var author = userColl.GetByID(unconvertedArticle.AuthorId);
-                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                    Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Thumbnail = unconvertedArticle.Images };
                     _articles.Add(viewModel);
 
                 }
@@ -79,7 +79,7 @@ namespace techburst_group2.Controllers
                     var result = data.Where(a => a.Title.Contains(text));
                     foreach (var unconvertedArticle in result)
                     {
-                        Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                        Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Thumbnail = unconvertedArticle.Images };
                         _articles.Add(viewModel);
 
                     }
@@ -90,7 +90,7 @@ namespace techburst_group2.Controllers
                 {
                     foreach (var unconvertedArticle in data)
                     {
-                        Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                        Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = unconvertedArticle.Author, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Thumbnail = unconvertedArticle.Images };
                         _articles.Add(viewModel);
 
                     }
@@ -147,7 +147,7 @@ namespace techburst_group2.Controllers
             foreach (var unconvertedArticle in data)
             {
                 var author = userColl.GetByID(unconvertedArticle.AuthorId);
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Thumbnail = unconvertedArticle.Images };
                 _articles.Add(viewModel);
 
             }
@@ -162,7 +162,7 @@ namespace techburst_group2.Controllers
             foreach (var unconvertedArticle in data)
             {
                 var author = userColl.GetByID(unconvertedArticle.AuthorId);
-                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Images = unconvertedArticle.Images };
+                Models.ArticleModel viewModel = new Models.ArticleModel() { Id = unconvertedArticle.Id, Author = author.FirstName + " " + author.LastName, Title = unconvertedArticle.Title, Content = ArticleTextManager.DecodeArticleText(unconvertedArticle.ArticleText), TagID = unconvertedArticle.TagID, CreatedAt = unconvertedArticle.DateCreated, LastEdited = unconvertedArticle.LastEdited, Thumbnail = unconvertedArticle.Images };
                 _articles.Add(viewModel);
 
             }
@@ -175,7 +175,7 @@ namespace techburst_group2.Controllers
         {
             _articlelogic.Delete(ID);
             TempData["Delete"] = "This has been deleted!";
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminIndex");
         }
       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -28,7 +28,7 @@ namespace techburst_group2.Controllers
                 {
                     Title = article.Title,
                     Content = ArticleTextManager.DecodeArticleText(article.ArticleText),
-                    Images = article.Images,
+                    Thumbnail = article.Images,
                     Author = author.FirstName + " " + author.LastName
                 };
                 return View(articleModel);

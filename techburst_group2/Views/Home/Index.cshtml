@@ -15,6 +15,12 @@
     <br />
     <br />
 }
+@if (TempData["UserLogout"] != null)
+{
+    <strong class="alert alert-warning">@TempData["UserLogout"]</strong>
+    <br />
+    <br />
+}
 <style>
     .text {
         font-size: 3em;

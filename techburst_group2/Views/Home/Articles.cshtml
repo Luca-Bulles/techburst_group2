@@ -100,7 +100,7 @@
                     string parsedContent = ArticleTextManager.ParseHtmlTags(contentWithoutHeaders);
             <div class="card shadow border-color articlecard">
 
-                <img class="card-img text-white" src="@article.Images" alt="Image currently unavailable">
+                <img class="card-img text-white" src="@article.Thumbnail" alt="Image currently unavailable">
                 <div class="card-img-overlay">
                     <a href="#" class="btn btn-primary mb-4" style="font-weight:600; color:#000000;">@TagCollection.GetById(article.TagID).Name</a>
                 </div>

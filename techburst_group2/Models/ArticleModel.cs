@@ -21,7 +21,7 @@ namespace techburst_group2.Models
             Title = title;
             Content = content;
             Author = author;
-            Images = image;
+            Thumbnail = image;
 
         }
         public int Id { get; set; }
@@ -36,7 +36,7 @@ namespace techburst_group2.Models
         public int TagID { get; set; }
         [Required]
         public string TagName { get; set; }
-        public string Images { get; set; }
+        public string Thumbnail { get; set; }
 
         private DateTime? date;
 

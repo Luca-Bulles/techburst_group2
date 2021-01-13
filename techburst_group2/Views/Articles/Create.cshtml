@@ -5,71 +5,97 @@
 @model techburst_group2.Models.ArticleModel
 
 
-    @{
-        ViewData["Title"] = "Create";
-        Layout = "~/Views/Shared/_Layout.cshtml";
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .centered {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+
+
+    .article-button {
+        font-size: 1em;
+        color: #000000;
+        background: #FFE000;
+        display: inline-block;
+        padding: 10px 30px;
+        margin-top: 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: 0.5s;
+    }
+</style>
 
 <head>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 
-<h1>Create</h1>
+<div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
+    <h2 class="text text-center ">Add Article</h2>
+</div>
+<hr />
+<div class="row">
 
-    <hr />
-    <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div>
-            <form asp-action="Create" id="create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
+    <div>
+        <form asp-action="Create" id="create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group row">
+                <label asp-for="Title" class="control-label col-3 mt-2 text-center" style="font-size:1.5rem; font-weight:600; color: white;"></label>
+                <div class="col-9">
+
+                    <input asp-for="Title" class="form-control form-control-lg border-primary" placeholder="Enter Title" />
                     <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-
-                <div class="form-group">
-                    <div class="input-group-prepend">
-                        <label asp-for="Content" class="control-label"></label>
-                    </div>
-                    <input hidden asp-for="Content" name="content" class="form-control" id="content" rows="6" />
-                    <div id="editor" name="editor">
-                        @(new HtmlString(""))
-                    </div>
-                    <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Thumbnail" class="control-label col-3 mt-2 text-center" style="font-size:1.5rem; font-weight:600; color: white;"></label>
+                <div class="col-9">
+                    <input asp-for="Thumbnail" class="form-control form-control-lg border-primary" placeholder="Enter ImageLink" />
+                    <span asp-validation-for="Thumbnail" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Draft" class="control-label"></label>
-                    <input asp-for="Draft" class="form-control" />
-                    <span asp-validation-for="Draft" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <label asp-for="Content" class="control-label"></label>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Images" class="control-label"></label>
-                    <input asp-for="Images" class="form-control" />
-                    <span asp-validation-for="Images" class="text-danger"></span>
+                <input hidden asp-for="Content" name="content" class="form-control" id="content" rows="6" />
+                <div id="editor" name="editor">
+                    @(new HtmlString(""))
                 </div>
-                <div class="form-group">
-                    <select asp-for="TagName">
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group centered">
 
-                        @foreach (var tag in TagCollection.GetAllTags())
-                        {
-                            <option value="@tag.Name">@tag.Name</option>
-                        }
-                    </select>
-                    <span asp-validation-for="TagName" class="text-danger"></span>
-                </div>
+                <select class="btn btn-light dropdown-toggle article-button bg" asp-for="TagName">
 
-                <div class="form-group">
-                    <button class="btn btn-sm btn-warning btn-outline-dark input text-center" type="submit" asp-controller="Articles" asp-action="Submit">Add new Article!</button>
-                </div>
+                    @foreach (var tag in TagCollection.GetAllTags())
+                    {
+                        <option class="dropdown-item" style="color:white" value="@tag.Name">@tag.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="TagName" class="text-danger"></span>
+            </div>
 
-            </form>
-        </div>
-        <div class="col-md-2">
 
-        </div>
+            <div class="form-group" hidden>
+                <label asp-for="Draft" class="control-label" hidden></label>
+                <input asp-for="Draft" class="form-control" hidden />
+                <span asp-validation-for="Draft" class="text-danger" hidden></span>
+            </div>
+
+            <div class="form-group centered">
+                <button class="btn btn-light article-button text-center" type="submit" asp-controller="Articles" asp-action="Submit">Add new Article!</button>
+            </div>
+
+        </form>
     </div>
+</div>
 
 <div>
     <a asp-controller="Home" asp-action="AdminIndex">Back to List</a>
@@ -81,5 +107,5 @@
 
 
 @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

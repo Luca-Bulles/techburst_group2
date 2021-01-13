@@ -49,22 +49,22 @@ namespace techburst_group2.Controllers
 
         public IActionResult Submit(Models.ArticleModel article)
         {
-            if (ModelState.IsValid)
-            {
+            
                 _article.Author = article.Author;
                 _article.AuthorId = CookieManager.GetUserId();
                 _article.DateCreated = article.CreatedAt;
                 _article.ArticleText = ArticleTextManager.EncodeArticleText(article.Content);
                 _article.Title = article.Title;
-                _article.Images = article.Images;
+                _article.Images = article.Thumbnail;
                 _article.LastEdited = article.LastEdited;
                 _article.TagID = _tagColl.GetByName(article.TagName).Id;
                 _article.Draft = article.Draft;
 
                 _artColl.Create(_article);
-            }
 
-            return RedirectToAction("Index", "Home");
+            
+            TempData["Create"] = "Article was created succesfully!";
+            return RedirectToAction("AdminIndex","Home");
         }
 
         public IActionResult Create()
@@ -80,7 +80,7 @@ namespace techburst_group2.Controllers
             article.Id = richModel.Id;
             article.Title = richModel.Title;
             article.Content = decoded;
-            article.Images = richModel.Images;
+            article.Thumbnail = richModel.Images;
             article.Author = richModel.Author;
             article.CreatedAt = richModel.DateCreated;
             article.LastEdited = richModel.LastEdited;
@@ -93,7 +93,7 @@ namespace techburst_group2.Controllers
             _article.Id = articleViewModel.Id;
             _article.Title = articleViewModel.Title;
             _article.ArticleText = ArticleTextManager.EncodeArticleText(articleViewModel.Content);
-            _article.Images = articleViewModel.Images;
+            _article.Images = articleViewModel.Thumbnail;
             _article.TagID = _tagColl.GetByName(articleViewModel.TagName).Id;
 
             _article.Edit(_article);

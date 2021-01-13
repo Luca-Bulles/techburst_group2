@@ -19,6 +19,13 @@
     <br />
 }
 
+@if (TempData["Create"] != null)
+{
+    <strong class="alert alert-success">@TempData["Create"]</strong>
+    <br />
+    <br />
+}
+
 <div class="card border-yellow shadow text-center border-color p-3 contact-big-text">
     <h2 class="text text-center ">Manage Articles</h2>
 </div>
