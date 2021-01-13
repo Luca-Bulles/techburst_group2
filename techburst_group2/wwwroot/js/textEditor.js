@@ -35,12 +35,7 @@ window.onload = function () {
     if ($("#articlecontent").length) {
 
         let articleContent = document.getElementById("articlecontent").value;
-        quill.setContents({
-            "ops":[
-                {
-                    "insert":articleContent
-                }]
-        }); //quill.root.innerHTML = articleContent;
+        quill.root.innerHTML = articleContent;
     }
     
 };
