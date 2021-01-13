@@ -45,15 +45,21 @@ window.onload = function () {
     
 };
 
+
 //This function gets the content from an input field with the name content from the View, and then calls getQuillText in order to set the value for the hidden input field in the View.
 form.onsubmit = function () {                           
     var content = document.querySelector('input[name=content]');
     content.setAttribute("value", getQuillText());
 }
 
-editForm.onsubmit = function() {
-    var content = document.querySelector('input[name=content]');
-    content.setAttribute("value", getQuillText());
+editForm.onsubmit = function () {
+    quill.on('text-change',
+        function (delta, oldDelta, source) {
+            var content = document.querySelector('input[name=content]');
+            content.setAttribute("value", delta.dangerouslyPastaHTML);
+        });
+    /*var content = document.querySelector('input[name=content]');
+    content.setAttribute("value", getQuillText());*/
 }
 
 //Initialize variables for getQuillText function.
