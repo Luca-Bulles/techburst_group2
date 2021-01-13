@@ -28,12 +28,19 @@ var options = {
 var quill = new Quill('#editor', options);              //instantiate the text editor within the specified div container (#editor) and the options as defined in the above variable.
 
 var form = document.querySelector('#create');           //get form from View.
+var editForm = document.querySelector('#editform');
 
 window.onload = function () {
     
     if ($("#articlecontent").length) {
+
         let articleContent = document.getElementById("articlecontent").value;
-        quill.root.innerHTML = articleContent;
+        quill.setContents({
+            "ops":[
+                {
+                    "insert":articleContent
+                }]
+        }); //quill.root.innerHTML = articleContent;
     }
     
 };
@@ -43,6 +50,11 @@ form.onsubmit = function () {
     var content = document.querySelector('input[name=content]');
     content.setAttribute("value", getQuillText());
 }
+
+editForm.onsubmit = function() {
+    var content = document.querySelector('input[name=content]');
+    content.setAttribute("value", getQuillText());
+
 
 //Initialize variables for getQuillText function.
 var editors = {};
