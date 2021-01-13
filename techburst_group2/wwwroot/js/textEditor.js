@@ -54,7 +54,7 @@ form.onsubmit = function () {
 editForm.onsubmit = function() {
     var content = document.querySelector('input[name=content]');
     content.setAttribute("value", getQuillText());
-
+}
 
 //Initialize variables for getQuillText function.
 var editors = {};
