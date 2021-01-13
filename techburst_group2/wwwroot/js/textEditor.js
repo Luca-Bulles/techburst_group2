@@ -56,7 +56,8 @@ editForm.onsubmit = function () {
     quill.on('text-change',
         function (delta, oldDelta, source) {
             var content = document.querySelector('input[name=content]');
-            content.setAttribute("value", delta.dangerouslyPastaHTML);
+            content.setAttribute("value", delta.dangerouslyPastaHTML());
+            alert(delta.dangerouslyPastaHTML());
         });
     /*var content = document.querySelector('input[name=content]');
     content.setAttribute("value", getQuillText());*/
