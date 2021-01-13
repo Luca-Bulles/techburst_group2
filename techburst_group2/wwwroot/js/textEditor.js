@@ -28,11 +28,35 @@ var options = {
 var quill = new Quill('#editor', options);              //instantiate the text editor within the specified div container (#editor) and the options as defined in the above variable.
 
 var form = document.querySelector('#create');           //get form from View.
+var editForm = document.querySelector('#editform');
+
+window.onload = function () {
+    
+    if ($("#articlecontent").length) {
+
+        let articleContent = document.getElementById("articlecontent").value;
+        quill.root.innerHTML = articleContent;
+    }
+    
+};
+
+quill.on('text-change',
+    function (delta, oldDelta, source) {
+        var content = document.querySelector('input[name=content]');
+        content.setAttribute("value", quill.root.innerHTML);
+    });
 
 //This function gets the content from an input field with the name content from the View, and then calls getQuillText in order to set the value for the hidden input field in the View.
 form.onsubmit = function () {                           
-    var content = document.querySelector('input[name=content]');
-    content.value = getQuillText();
+var content = document.querySelector('input[name=content]');
+content.setAttribute("value", getQuillText());
+}
+
+editForm.onsubmit = function () {
+
+var content = document.querySelector('input[name=content]');
+    content.setAttribute("value", getQuillText());
+    alert(content.value);
 }
 
 //Initialize variables for getQuillText function.
@@ -43,5 +67,6 @@ editors[editor] = quill;
 function getQuillText() {
     var quillEditor = editors[editor];
     var text = quillEditor.root.innerHTML;
+    alert(text);
     return text;
 }
